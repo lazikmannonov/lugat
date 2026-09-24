@@ -2,321 +2,342 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lug‘at Boshqotirmasi</title>
 
 <style>
 *{box-sizing:border-box}
 
 :root{
---bg1:#111827;
---bg2:#1e3a8a;
---card:#fff;
---text:#111827;
---muted:#6b7280;
---soft:#f3f4f6;
---blue:#2563eb;
---blue2:#1d4ed8;
---green:#16a34a;
---red:#dc2626;
---gold:#f59e0b
+  --bg1:#111827;
+  --bg2:#1e3a8a;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --soft:#f3f4f6;
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --green:#16a34a;
+  --red:#dc2626;
+  --gold:#f59e0b;
 }
 
 body.dark{
---card:#1f2937;
---text:#f9fafb;
---muted:#cbd5e1;
---soft:#374151
+  --card:#1f2937;
+  --text:#f9fafb;
+  --muted:#cbd5e1;
+  --soft:#374151;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,var(--bg1),var(--bg2));
-color:var(--text);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px
+  margin:0;
+  min-height:100vh;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:var(--text);
 }
 
 .game{
-width:100%;
-max-width:720px;
-background:var(--card);
-border-radius:28px;
-padding:30px;
-box-shadow:0 25px 70px #0006
+  width:100%;
+  max-width:720px;
+  padding:30px;
+  border-radius:28px;
+  background:var(--card);
+  box-shadow:0 25px 70px #0006;
 }
 
-h1{margin-top:0;font-size:32px}
-h2{margin-top:0}
+h1{
+  margin-top:0;
+  font-size:32px;
+}
+
+h2{
+  margin-top:0;
+}
 
 .subtitle{
-color:var(--muted);
-margin-bottom:25px
+  color:var(--muted);
+  margin-bottom:25px;
 }
 
 button{
-width:100%;
-border:0;
-border-radius:13px;
-padding:14px;
-margin:6px 0;
-background:var(--blue);
-color:#fff;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-transition:.2s
+  width:100%;
+  padding:14px;
+  margin:6px 0;
+  border:0;
+  border-radius:13px;
+  background:var(--blue);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
 }
 
 button:hover{
-background:var(--blue2);
-transform:translateY(-1px)
+  background:var(--blue2);
+  transform:translateY(-1px);
 }
 
 button:active{
-transform:scale(.98)
+  transform:scale(.98);
 }
 
-.secondary{background:#6b7280}
-.secondary:hover{background:#4b5563}
-.dark-btn{background:#111827}
-.hidden{display:none!important}
+.secondary{
+  background:#6b7280;
+}
+
+.secondary:hover{
+  background:#4b5563;
+}
+
+.dark-btn{
+  background:#111827;
+}
+
+.hidden{
+  display:none!important;
+}
 
 .topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-margin-bottom:15px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:15px;
 }
 
 .small-btn{
-width:auto;
-padding:9px 12px;
-margin:0;
-font-size:13px
+  width:auto;
+  padding:9px 12px;
+  margin:0;
+  font-size:13px;
 }
 
 .menu-grid,
 .mode-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
 .stats{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:7px;
-margin-bottom:15px
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  margin-bottom:15px;
 }
 
 .stat{
-background:var(--soft);
-padding:10px 5px;
-border-radius:12px;
-text-align:center;
-font-size:13px;
-font-weight:bold
+  padding:10px 5px;
+  border-radius:12px;
+  background:var(--soft);
+  text-align:center;
+  font-size:13px;
+  font-weight:bold;
 }
 
 .stat span{
-display:block;
-font-size:18px;
-margin-top:3px
+  display:block;
+  margin-top:3px;
+  font-size:18px;
 }
 
 .progress{
-width:100%;
-height:9px;
-background:var(--soft);
-border-radius:20px;
-overflow:hidden;
-margin:10px 0 20px
+  width:100%;
+  height:9px;
+  margin:10px 0 20px;
+  overflow:hidden;
+  border-radius:20px;
+  background:var(--soft);
 }
 
 .progress-bar{
-height:100%;
-width:100%;
-background:var(--blue);
-transition:width 1s linear
+  width:100%;
+  height:100%;
+  background:var(--blue);
+  transition:width 1s linear;
 }
 
 .mode-title{
-color:var(--blue);
-font-weight:bold;
-margin-bottom:10px
+  margin-bottom:10px;
+  color:var(--blue);
+  font-weight:bold;
 }
 
 .question{
-background:var(--soft);
-border-radius:18px;
-padding:25px;
-text-align:center;
-font-size:26px;
-font-weight:bold;
-margin-bottom:15px
+  padding:25px;
+  margin-bottom:15px;
+  border-radius:18px;
+  background:var(--soft);
+  text-align:center;
+  font-size:26px;
+  font-weight:bold;
 }
 
 .result{
-min-height:30px;
-text-align:center;
-font-size:18px;
-font-weight:bold;
-margin:12px 0
+  min-height:30px;
+  margin:12px 0;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
 }
 
-.correct{color:var(--green)}
-.wrong{color:var(--red)}
+.correct{
+  color:var(--green);
+}
+
+.wrong{
+  color:var(--red);
+}
 
 .combo{
-text-align:center;
-color:var(--gold);
-font-weight:bold;
-min-height:24px
+  min-height:24px;
+  color:var(--gold);
+  text-align:center;
+  font-weight:bold;
 }
 
 .letters{
-text-align:center;
-font-size:30px;
-font-weight:bold;
-letter-spacing:8px;
-color:var(--blue);
-margin:20px 0
+  margin:20px 0;
+  color:var(--blue);
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  letter-spacing:8px;
 }
 
 input{
-width:100%;
-padding:14px;
-border:2px solid #d1d5db;
-border-radius:12px;
-font-size:17px;
-outline:none;
-background:var(--card);
-color:var(--text);
-margin-bottom:8px
+  width:100%;
+  padding:14px;
+  margin-bottom:8px;
+  border:2px solid #d1d5db;
+  border-radius:12px;
+  outline:none;
+  background:var(--card);
+  color:var(--text);
+  font-size:17px;
 }
 
 input:focus{
-border-color:var(--blue)
+  border-color:var(--blue);
 }
 
 .sentence{
-font-size:21px;
-line-height:1.5
+  font-size:21px;
+  line-height:1.5;
 }
 
 .level{
-text-align:center;
-font-size:18px;
-font-weight:bold
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .big-score{
-text-align:center;
-font-size:55px;
-font-weight:bold;
-color:var(--blue);
-margin:20px
+  margin:20px;
+  color:var(--blue);
+  text-align:center;
+  font-size:55px;
+  font-weight:bold;
 }
 
 .word-card{
-background:var(--soft);
-border-radius:15px;
-padding:14px;
-margin:7px 0;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:14px;
+  margin:7px 0;
+  border-radius:15px;
+  background:var(--soft);
 }
 
 .word-card button{
-width:auto;
-margin:0;
-padding:8px 12px
+  width:auto;
+  margin:0;
+  padding:8px 12px;
 }
 
 .hint-box{
-background:#fef3c7;
-color:#92400e;
-border-radius:12px;
-padding:10px;
-margin:10px 0;
-text-align:center;
-font-weight:bold
+  padding:10px;
+  margin:10px 0;
+  border-radius:12px;
+  background:#fef3c7;
+  color:#92400e;
+  text-align:center;
+  font-weight:bold;
 }
 
 body.dark .hint-box{
-background:#78350f;
-color:#fef3c7
+  background:#78350f;
+  color:#fef3c7;
 }
 
 .daily{
-background:linear-gradient(135deg,#f59e0b,#ef4444);
-color:#fff;
-padding:15px;
-border-radius:15px;
-margin-bottom:15px
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#f59e0b,#ef4444);
+  color:white;
 }
 
 .daily strong{
-font-size:20px
+  font-size:20px;
 }
 
 .challenge{
-background:linear-gradient(135deg,#7c3aed,#dc2626);
-color:#fff;
-padding:12px;
-border-radius:14px;
-margin:10px 0;
-text-align:center;
-font-weight:bold
+  padding:12px;
+  margin:10px 0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#dc2626);
+  color:white;
+  text-align:center;
+  font-weight:bold;
 }
 
 .daily-stats{
-background:var(--soft);
-border-radius:15px;
-padding:14px;
-margin:10px 0
+  padding:14px;
+  margin:10px 0;
+  border-radius:15px;
+  background:var(--soft);
 }
 
 .daily-stats div{
-margin:5px 0
+  margin:5px 0;
 }
 
 @media(max-width:550px){
 
-.game{
-padding:20px
-}
+  .game{
+    padding:20px;
+  }
 
-h1{
-font-size:26px
-}
+  h1{
+    font-size:26px;
+  }
 
-.stats{
-grid-template-columns:repeat(3,1fr)
-}
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
 
-.mode-grid,
-.menu-grid{
-grid-template-columns:1fr
-}
+  .mode-grid,
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
 
-.question{
-font-size:22px
-}
+  .question{
+    font-size:22px;
+  }
 
-.letters{
-font-size:24px;
-letter-spacing:5px
-}
-
+  .letters{
+    font-size:24px;
+    letter-spacing:5px;
+  }
 }
 </style>
 </head>
@@ -331,7 +352,10 @@ letter-spacing:5px
 
 <div class="topbar">
 <div></div>
-<button id="themeBtn" class="small-btn dark-btn">🌙 Dark</button>
+
+<button id="themeBtn" class="small-btn dark-btn">
+🌙 Dark
+</button>
 </div>
 
 <h1>🧩 Lug‘at Boshqotirmasi</h1>
@@ -341,11 +365,15 @@ Inglizcha va dasturlash so‘zlarini o‘yin orqali o‘rganing
 </p>
 
 <div class="daily">
+
 🎯 <strong>Daily Challenge</strong>
+
 <br>
+
 <span id="dailyMenuText">
 Bugungi 10 ta maxsus savolga javob bering!
 </span>
+
 </div>
 
 <div class="menu-grid">
@@ -435,7 +463,7 @@ Level <span id="level">1</span>
 <div id="challengeBox" class="challenge hidden">
 ⚡ CHALLENGE!
 Tezlik oshdi:
-<span id="challengeCount">0</span> ta savol
+<span id="challengeCount">0</span>
 </div>
 
 <div class="stats">
@@ -479,7 +507,6 @@ Tezlik oshdi:
 
 <div id="answers"></div>
 
-
 <div id="lettersBox" class="hidden">
 
 <div id="mixedLetters" class="letters"></div>
@@ -495,7 +522,6 @@ placeholder="So‘zni yozing..."
 
 </div>
 
-
 <div id="blankBox" class="hidden">
 
 <input
@@ -508,7 +534,6 @@ placeholder="Javobni yozing..."
 </button>
 
 </div>
-
 
 <div id="result" class="result"></div>
 
@@ -670,7 +695,7 @@ Eng yuqori natijangiz shu yerda saqlanadi.
 
 <script>
 
-const words=[
+const words = [
 
 ["create","yaratmoq"],
 ["delete","o‘chirmoq"],
@@ -780,7 +805,7 @@ uzbek:x[1]
 }));
 
 
-const sentenceQuestions=[
+const sentenceQuestions = [
 
 ["Faylni ___ uchun Ctrl + S tugmalarini bosing.","save"],
 ["Yangi loyiha ___ uchun bu tugmani bosing.","create"],
@@ -832,26 +857,22 @@ q.answer,
 });
 
 
-const $=id=>document.getElementById(id);
+const $ = id => document.getElementById(id);
 
-const menu=$("menu");
-const modeScreen=$("modeScreen");
-const gameScreen=$("gameScreen");
-const resultScreen=$("resultScreen");
-const wordsScreen=$("wordsScreen");
-const highScreen=$("highScreen");
-const dailyScreen=$("dailyScreen");
+const menu = $("menu");
+const modeScreen = $("modeScreen");
+const gameScreen = $("gameScreen");
+const resultScreen = $("resultScreen");
+const wordsScreen = $("wordsScreen");
+const highScreen = $("highScreen");
+const dailyScreen = $("dailyScreen");
 
 
-const shuffle=a=>{
+const shuffle = a => {
 
 a=[...a];
 
-for(
-let i=a.length-1;
-i>0;
-i--
-){
+for(let i=a.length-1;i>0;i--){
 
 let j=Math.floor(Math.random()*(i+1));
 
@@ -864,7 +885,7 @@ return a;
 };
 
 
-const random=a=>
+const random = a =>
 a[Math.floor(Math.random()*a.length)];
 
 
@@ -878,9 +899,7 @@ resultScreen,
 wordsScreen,
 highScreen,
 dailyScreen
-].forEach(x=>
-x.classList.add("hidden")
-);
+].forEach(x=>x.classList.add("hidden"));
 
 }
 
@@ -894,12 +913,12 @@ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.
 }
 
 
-let highScore=
-Number(localStorage.getItem("vocabularyHighScore"))||0;
+let highScore =
+Number(localStorage.getItem("vocabularyHighScore")) || 0;
 
-let learned=
+let learned =
 JSON.parse(
-localStorage.getItem("learnedVocabulary")||"[]"
+localStorage.getItem("learnedVocabulary") || "[]"
 );
 
 
@@ -967,13 +986,11 @@ let d=dailyData();
 
 $("dailyDate").textContent=today();
 
-$("dailyProgress").textContent=
-d.progress+"/10";
+$("dailyProgress").textContent=d.progress+"/10";
 
-$("dailyBest").textContent=
-d.best;
+$("dailyBest").textContent=d.best;
 
-$("dailyMenuText").textContent=
+$("dailyMenuText").textContent =
 d.progress>=10
 ?
 "✅ Bugungi topshiriq bajarildi!"
@@ -985,10 +1002,7 @@ d.progress>=10
 
 function addLearned(w){
 
-if(
-w &&
-!learned.includes(w)
-){
+if(w && !learned.includes(w)){
 
 learned.push(w);
 
@@ -1047,6 +1061,7 @@ dailyCorrect=0;
 dailyCombo=0;
 dailyBestCombo=0;
 challenge=0;
+mistakes=0;
 
 currentMode="sentence";
 
@@ -1063,7 +1078,7 @@ function startDailyQuestionTimer(){
 
 clearInterval(timerInterval);
 
-let max=
+let max =
 challenge>0
 ?
 Math.max(5,10-challenge)
@@ -1082,7 +1097,7 @@ timer--;
 
 $("timer").textContent=timer;
 
-$("progressBar").style.width=
+$("progressBar").style.width =
 (timer/max*100)+"%";
 
 if(timer<=0){
@@ -1112,7 +1127,7 @@ $("result").textContent="";
 
 dailyIndex++;
 
-let q=
+let q =
 sentenceQuestions[
 (dailyIndex-1)%sentenceQuestions.length
 ];
@@ -1120,10 +1135,10 @@ sentenceQuestions[
 currentSentence=q;
 correctAnswer=q.answer;
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "🎯 DAILY "+dailyIndex+"/10";
 
-$("question").innerHTML=
+$("question").innerHTML =
 '<div class="sentence">'+
 q.sentence+
 "</div>";
@@ -1147,7 +1162,6 @@ clearInterval(timerInterval);
 
 mistakes++;
 
-combo=0;
 dailyCombo=0;
 
 challenge=Math.min(5,challenge+1);
@@ -1156,26 +1170,21 @@ $("challengeCount").textContent=challenge;
 
 $("challengeBox").classList.remove("hidden");
 
-$("result").textContent=
+$("result").textContent =
 (timeout?"⏰ Vaqt tugadi! ":"❌ Xato! ")+
-"Javob: "+
-correctAnswer;
+"Javob: "+correctAnswer;
 
 $("result").className="result wrong";
 
-if(dailyIndex>=10)
+if(dailyIndex>=10){
 
-setTimeout(
-finishDaily,
-1200
-);
+setTimeout(finishDaily,1200);
 
-else
+}else{
 
-setTimeout(
-showDailyQuestion,
-1200
-);
+setTimeout(showDailyQuestion,1200);
+
+}
 
 }
 
@@ -1184,23 +1193,18 @@ function finishDaily(){
 
 clearInterval(timerInterval);
 
-let bonus=
+let bonus =
 dailyCorrect===10
 ?
 50
 :
 0;
 
-let total=
-dailyScore+bonus;
+let total=dailyScore+bonus;
 
 let old=dailyData();
 
-let best=
-Math.max(
-old.best,
-total
-);
+let best=Math.max(old.best,total);
 
 localStorage.setItem(
 "dailyProgress",
@@ -1222,17 +1226,13 @@ $("finalScore").textContent=total;
 
 $("finalLevel").textContent="Daily";
 
-$("finalCorrect").textContent=
-dailyCorrect+"/10";
+$("finalCorrect").textContent=dailyCorrect+"/10";
 
-$("finalMistakes").textContent=
-mistakes;
+$("finalMistakes").textContent=mistakes;
 
-$("finalCombo").textContent=
-dailyBestCombo;
+$("finalCombo").textContent=dailyBestCombo;
 
-$("finalHighScore").textContent=
-best;
+$("finalHighScore").textContent=best;
 
 if(total>highScore){
 
@@ -1275,7 +1275,7 @@ questionNumber=1;
 
 }
 
-let av=
+let av =
 words.filter(
 w=>!usedWords.includes(w.english)
 );
@@ -1320,7 +1320,7 @@ function startTimer(){
 
 clearInterval(timerInterval);
 
-let max=
+let max =
 currentMode==="letters"
 ?
 Math.max(20,30-level+1)
@@ -1328,10 +1328,7 @@ Math.max(20,30-level+1)
 Math.max(8,15-level+1);
 
 if(challenge>0)
-max=Math.max(
-5,
-max-challenge*2
-);
+max=Math.max(5,max-challenge*2);
 
 timer=max;
 
@@ -1345,7 +1342,7 @@ timer--;
 
 $("timer").textContent=timer;
 
-$("progressBar").style.width=
+$("progressBar").style.width =
 (timer/max*100)+"%";
 
 if(timer<=0){
@@ -1364,19 +1361,28 @@ timeOut();
 
 function timeOut(){
 
+if(answered)return;
+
 answered=true;
+
+clearInterval(timerInterval);
 
 lives--;
 mistakes++;
 combo=0;
 
-updateStats();
+challenge=Math.min(5,challenge+1);
 
-$("result").textContent=
-"⏰ Vaqt tugadi! Javob: "+
-correctAnswer;
+$("challengeCount").textContent=challenge;
+
+$("challengeBox").classList.remove("hidden");
+
+$("result").textContent =
+"⏰ Vaqt tugadi! Javob: "+correctAnswer;
 
 $("result").className="result wrong";
+
+updateStats();
 
 checkGameOver();
 
@@ -1385,20 +1391,17 @@ checkGameOver();
 
 function showEnglish(){
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "🇬🇧 English → 🇺🇿 O‘zbekcha";
 
-$("question").textContent=
+$("question").textContent =
 currentWord.english;
 
-correctAnswer=
+correctAnswer =
 currentWord.uzbek;
 
 createButtons(
-getOptions(
-"uzbek",
-correctAnswer
-)
+getOptions("uzbek",correctAnswer)
 );
 
 }
@@ -1406,20 +1409,17 @@ correctAnswer
 
 function showUzbek(){
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "🇺🇿 O‘zbekcha → 🇬🇧 English";
 
-$("question").textContent=
+$("question").textContent =
 currentWord.uzbek;
 
-correctAnswer=
+correctAnswer =
 currentWord.english;
 
 createButtons(
-getOptions(
-"english",
-correctAnswer
-)
+getOptions("english",correctAnswer)
 );
 
 }
@@ -1427,18 +1427,18 @@ correctAnswer
 
 function showLetters(){
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "🔤 Harflardan so‘z";
 
-$("question").textContent=
+$("question").textContent =
 "Harflarni to‘g‘ri joylashtiring";
 
-correctAnswer=
+correctAnswer =
 currentWord.english;
 
 $("lettersBox").classList.remove("hidden");
 
-$("mixedLetters").textContent=
+$("mixedLetters").textContent =
 shuffle(
 currentWord.english.split("")
 ).join(" ");
@@ -1455,20 +1455,17 @@ setTimeout(
 
 function showMatch(){
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "🔗 Juftini topish";
 
-$("question").textContent=
+$("question").textContent =
 currentWord.english;
 
-correctAnswer=
+correctAnswer =
 currentWord.uzbek;
 
 createButtons(
-getOptions(
-"uzbek",
-correctAnswer
-)
+getOptions("uzbek",correctAnswer)
 );
 
 }
@@ -1476,7 +1473,7 @@ correctAnswer
 
 function showBlank(){
 
-let s={
+let sentences={
 
 save:"Faylni ___ uchun Ctrl + S tugmasini bosing.",
 create:"Yangi loyiha ___ uchun tugmani bosing.",
@@ -1495,19 +1492,15 @@ install:"Dasturni kompyuterga ___ kerak."
 
 };
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "✍️ Bo‘sh joyni to‘ldirish";
 
-correctAnswer=
+correctAnswer =
 currentWord.english;
 
-$("question").textContent=
-"“"+
-(
-s[currentWord.english]||
-"Bu so‘zni gapda ishlating: ___"
-)+
-"”";
+$("question").textContent =
+sentences[currentWord.english] ||
+"Bu so‘zni gapda ishlating: ___";
 
 $("blankBox").classList.remove("hidden");
 
@@ -1523,18 +1516,18 @@ setTimeout(
 
 function showSentence(){
 
-currentSentence=
+currentSentence =
 random(sentenceQuestions);
 
-$("modeTitle").textContent=
+$("modeTitle").textContent =
 "💬 Gapdan so‘zni topish";
 
-$("question").innerHTML=
+$("question").innerHTML =
 '<div class="sentence">'+
 currentSentence.sentence+
 "</div>";
 
-correctAnswer=
+correctAnswer =
 currentSentence.answer;
 
 createButtons(
@@ -1546,42 +1539,40 @@ shuffle(currentSentence.options)
 
 function getOptions(type,correct){
 
-let a=
-words.map(w=>w[type]);
+let all=words.map(w=>w[type]);
 
-let o=
-shuffle(a).slice(0,4);
+let options=shuffle(all).slice(0,4);
 
-if(!o.includes(correct)){
+if(!options.includes(correct)){
 
-o[0]=correct;
+options[0]=correct;
 
-o=shuffle(o);
+options=shuffle(options);
 
 }
 
-return o;
+return options;
 
 }
 
 
-function createButtons(opts){
+function createButtons(options){
 
 $("answers").innerHTML="";
 
-opts.forEach(o=>{
+options.forEach(option=>{
 
-let b=
-document.createElement("button");
+let button=document.createElement("button");
 
-b.className="answer-btn";
+button.className="answer-btn";
 
-b.textContent=o;
+button.textContent=option;
 
-b.onclick=
-()=>checkAnswer(o);
+button.onclick=()=>{
+checkAnswer(option);
+};
 
-$("answers").appendChild(b);
+$("answers").appendChild(button);
 
 });
 
@@ -1596,8 +1587,8 @@ answered=true;
 
 clearInterval(timerInterval);
 
-let ok=
-String(user).trim().toLowerCase()===
+let ok =
+String(user).trim().toLowerCase() ===
 String(correctAnswer).trim().toLowerCase();
 
 if(isDaily){
@@ -1607,13 +1598,13 @@ if(ok){
 dailyCorrect++;
 dailyCombo++;
 
-dailyBestCombo=
+dailyBestCombo =
 Math.max(
 dailyBestCombo,
 dailyCombo
 );
 
-let bonus=
+let bonus =
 10+
 (
 dailyCombo>=2
@@ -1627,12 +1618,10 @@ dailyScore+=bonus;
 
 addLearned(correctAnswer);
 
-$("result").textContent=
-"✅ To‘g‘ri! +"+
-bonus+
-" ⭐";
+$("result").textContent =
+"✅ To‘g‘ri! +"+bonus+" ⭐";
 
-$("result").className=
+$("result").className =
 "result correct";
 
 }else{
@@ -1641,39 +1630,30 @@ mistakes++;
 
 dailyCombo=0;
 
-challenge=
-Math.min(
-5,
-challenge+1
-);
+challenge=Math.min(5,challenge+1);
 
-$("challengeCount").textContent=
-challenge;
+$("challengeCount").textContent=challenge;
 
 $("challengeBox").classList.remove("hidden");
 
-$("result").textContent=
+$("result").textContent =
 "❌ Xato! Challenge kuchaydi! Javob: "+
 correctAnswer;
 
-$("result").className=
+$("result").className =
 "result wrong";
 
 }
 
-if(dailyIndex>=10)
+if(dailyIndex>=10){
 
-setTimeout(
-finishDaily,
-1200
-);
+setTimeout(finishDaily,1200);
 
-else
+}else{
 
-setTimeout(
-showDailyQuestion,
-1200
-);
+setTimeout(showDailyQuestion,1200);
+
+}
 
 return;
 
@@ -1682,7 +1662,7 @@ return;
 
 if(ok){
 
-let bonus=
+let bonus =
 10+
 (
 combo>=2
@@ -1699,11 +1679,7 @@ hintUsed
 0
 );
 
-bonus=
-Math.max(
-1,
-bonus
-);
+bonus=Math.max(1,bonus);
 
 score+=bonus;
 
@@ -1711,11 +1687,8 @@ correctAnswers++;
 
 combo++;
 
-bestCombo=
-Math.max(
-bestCombo,
-combo
-);
+bestCombo =
+Math.max(bestCombo,combo);
 
 addLearned(
 currentWord
@@ -1725,15 +1698,13 @@ currentWord.english
 correctAnswer
 );
 
-$("result").textContent=
-"✅ To‘g‘ri! +"+
-bonus+
-" ball";
+$("result").textContent =
+"✅ To‘g‘ri! +"+bonus+" ball";
 
-$("result").className=
+$("result").className =
 "result correct";
 
-$("comboText").textContent=
+$("comboText").textContent =
 combo>=2
 ?
 "🔥 Combo x"+combo
@@ -1746,25 +1717,20 @@ lives--;
 mistakes++;
 combo=0;
 
-$("result").textContent=
+challenge=Math.min(5,challenge+1);
+
+$("challengeCount").textContent=challenge;
+
+$("challengeBox").classList.remove("hidden");
+
+$("result").textContent =
 "❌ Noto‘g‘ri! To‘g‘ri javob: "+
 correctAnswer;
 
-$("result").className=
+$("result").className =
 "result wrong";
 
 $("comboText").textContent="";
-
-challenge=
-Math.min(
-5,
-challenge+1
-);
-
-$("challengeCount").textContent=
-challenge;
-
-$("challengeBox").classList.remove("hidden");
 
 }
 
@@ -1777,19 +1743,15 @@ checkGameOver();
 
 function checkGameOver(){
 
-if(lives<=0)
+if(lives<=0){
 
-setTimeout(
-showFinalResult,
-1200
-);
+setTimeout(showFinalResult,1200);
 
-else
+}else{
 
-setTimeout(
-showQuestion,
-1000
-);
+setTimeout(showQuestion,1000);
+
+}
 
 }
 
@@ -1817,17 +1779,13 @@ $("finalScore").textContent=score;
 
 $("finalLevel").textContent=level;
 
-$("finalCorrect").textContent=
-correctAnswers;
+$("finalCorrect").textContent=correctAnswers;
 
-$("finalMistakes").textContent=
-mistakes;
+$("finalMistakes").textContent=mistakes;
 
-$("finalCombo").textContent=
-bestCombo;
+$("finalCombo").textContent=bestCombo;
 
-$("finalHighScore").textContent=
-highScore;
+$("finalHighScore").textContent=highScore;
 
 }
 
@@ -1842,50 +1800,49 @@ $("learnedWords").innerHTML="";
 
 if(!learned.length){
 
-$("learnedWords").innerHTML=
+$("learnedWords").innerHTML =
 "<p>📚 Hali hech qanday so‘z o‘rganilmagan.</p>";
 
 return;
 
 }
 
-learned.forEach(w=>{
+learned.forEach(word=>{
 
-let d=
+let data =
 words.find(
-x=>x.english===w
+x=>x.english===word
 );
 
-if(!d)return;
+if(!data)return;
 
-let c=
+let card =
 document.createElement("div");
 
-c.className="word-card";
+card.className="word-card";
 
-c.innerHTML=
+card.innerHTML =
 "<div><strong>"+
-d.english+
+data.english+
 "</strong> — "+
-d.uzbek+
+data.uzbek+
 "</div><button>🔊</button>";
 
-c.querySelector("button").onclick=()=>{
+card.querySelector("button").onclick=()=>{
 
-let s=
+let speech =
 new SpeechSynthesisUtterance(
-d.english
+data.english
 );
 
-s.lang="en-US";
-s.rate=.8;
+speech.lang="en-US";
+speech.rate=.8;
 
-speechSynthesis.speak(s);
+speechSynthesis.speak(speech);
 
 };
 
-$("learnedWords")
-.appendChild(c);
+$("learnedWords").appendChild(card);
 
 });
 
@@ -1894,24 +1851,24 @@ $("learnedWords")
 
 function speak(){
 
-let w=
+let word =
 currentWord
 ?
 currentWord.english
 :
 correctAnswer;
 
-if("speechSynthesis"in window){
+if("speechSynthesis" in window){
 
-let s=
-new SpeechSynthesisUtterance(w);
+let speech =
+new SpeechSynthesisUtterance(word);
 
-s.lang="en-US";
-s.rate=.8;
+speech.lang="en-US";
+speech.rate=.8;
 
 speechSynthesis.cancel();
 
-speechSynthesis.speak(s);
+speechSynthesis.speak(speech);
 
 }
 
@@ -1938,7 +1895,7 @@ updateDailyUI();
 };
 
 
-$("dailyStartBtn").onclick=
+$("dailyStartBtn").onclick =
 startDaily;
 
 
@@ -1952,12 +1909,12 @@ menu.classList.remove("hidden");
 
 
 document.querySelectorAll(".mode-btn")
-.forEach(b=>
+.forEach(button=>{
 
-b.onclick=()=>{
+button.onclick=()=>{
 
-currentMode=
-b.dataset.mode;
+currentMode =
+button.dataset.mode;
 
 isDaily=false;
 
@@ -1967,12 +1924,12 @@ gameScreen.classList.remove("hidden");
 
 startGame();
 
-}
+};
 
-);
+});
 
 
-$("wordsBtn").onclick=
+$("wordsBtn").onclick =
 showWords;
 
 
@@ -1982,7 +1939,7 @@ hideAll();
 
 highScreen.classList.remove("hidden");
 
-$("highScoreValue").textContent=
+$("highScoreValue").textContent =
 highScore;
 
 };
@@ -1992,7 +1949,7 @@ $("themeBtn").onclick=()=>{
 
 document.body.classList.toggle("dark");
 
-$("themeBtn").textContent=
+$("themeBtn").textContent =
 document.body.classList.contains("dark")
 ?
 "☀️ Light"
@@ -2002,10 +1959,10 @@ document.body.classList.contains("dark")
 };
 
 
-$("backMenuBtn").onclick=
-$("resultMenuBtn").onclick=
-$("wordsBackBtn").onclick=
-$("highBackBtn").onclick=
+$("backMenuBtn").onclick =
+$("resultMenuBtn").onclick =
+$("wordsBackBtn").onclick =
+$("highBackBtn").onclick =
 $("quitBtn").onclick=()=>{
 
 clearInterval(timerInterval);
@@ -2030,14 +1987,11 @@ modeScreen.classList.remove("hidden");
 
 $("hintBtn").onclick=()=>{
 
-if(
-!answered &&
-!hintUsed
-){
+if(!answered && !hintUsed){
 
 hintUsed=true;
 
-$("hintBox").textContent=
+$("hintBox").textContent =
 "💡 Birinchi harfi: "+
 correctAnswer[0].toUpperCase();
 
@@ -2048,7 +2002,7 @@ $("hintBox").classList.remove("hidden");
 };
 
 
-$("speakBtn").onclick=
+$("speakBtn").onclick =
 speak;
 
 
@@ -2063,8 +2017,11 @@ $("wordInput").value
 
 $("wordInput").onkeydown=e=>{
 
-if(e.key==="Enter")
+if(e.key==="Enter"){
+
 checkAnswer(e.target.value);
+
+}
 
 };
 
@@ -2080,8 +2037,11 @@ $("blankInput").value
 
 $("blankInput").onkeydown=e=>{
 
-if(e.key==="Enter")
+if(e.key==="Enter"){
+
 checkAnswer(e.target.value);
+
+}
 
 };
 
