@@ -6,7 +6,9 @@
 <title>Lug‘at Boshqotirmasi</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 :root{
   --bg1:#111827;
@@ -48,6 +50,10 @@ body{
   border-radius:28px;
   background:var(--card);
   box-shadow:0 25px 70px #0006;
+}
+
+.hidden{
+  display:none!important;
 }
 
 h1{
@@ -99,8 +105,11 @@ button:active{
   background:#111827;
 }
 
-.hidden{
-  display:none!important;
+.small-btn{
+  width:auto;
+  padding:9px 12px;
+  margin:0;
+  font-size:13px;
 }
 
 .topbar{
@@ -111,18 +120,33 @@ button:active{
   margin-bottom:15px;
 }
 
-.small-btn{
-  width:auto;
-  padding:9px 12px;
-  margin:0;
-  font-size:13px;
-}
-
 .menu-grid,
 .mode-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
+}
+
+.daily{
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#f59e0b,#ef4444);
+  color:white;
+}
+
+.daily strong{
+  font-size:20px;
+}
+
+.challenge{
+  padding:12px;
+  margin:10px 0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#dc2626);
+  color:white;
+  text-align:center;
+  font-weight:bold;
 }
 
 .stats{
@@ -179,6 +203,11 @@ button:active{
   font-weight:bold;
 }
 
+.sentence{
+  font-size:21px;
+  line-height:1.5;
+}
+
 .result{
   min-height:30px;
   margin:12px 0;
@@ -227,15 +256,19 @@ input:focus{
   border-color:var(--blue);
 }
 
-.sentence{
-  font-size:21px;
-  line-height:1.5;
+.hint-box{
+  padding:10px;
+  margin:10px 0;
+  border-radius:12px;
+  background:#fef3c7;
+  color:#92400e;
+  text-align:center;
+  font-weight:bold;
 }
 
-.level{
-  text-align:center;
-  font-size:18px;
-  font-weight:bold;
+body.dark .hint-box{
+  background:#78350f;
+  color:#fef3c7;
 }
 
 .big-score{
@@ -263,43 +296,6 @@ input:focus{
   padding:8px 12px;
 }
 
-.hint-box{
-  padding:10px;
-  margin:10px 0;
-  border-radius:12px;
-  background:#fef3c7;
-  color:#92400e;
-  text-align:center;
-  font-weight:bold;
-}
-
-body.dark .hint-box{
-  background:#78350f;
-  color:#fef3c7;
-}
-
-.daily{
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#f59e0b,#ef4444);
-  color:white;
-}
-
-.daily strong{
-  font-size:20px;
-}
-
-.challenge{
-  padding:12px;
-  margin:10px 0;
-  border-radius:14px;
-  background:linear-gradient(135deg,#7c3aed,#dc2626);
-  color:white;
-  text-align:center;
-  font-weight:bold;
-}
-
 .daily-stats{
   padding:14px;
   margin:10px 0;
@@ -312,6 +308,10 @@ body.dark .hint-box{
 }
 
 @media(max-width:550px){
+
+  body{
+    padding:10px;
+  }
 
   .game{
     padding:20px;
@@ -347,517 +347,517 @@ body.dark .hint-box{
 <div class="game">
 
 <!-- MENU -->
+<section id="menu">
 
-<div id="menu">
+  <div class="topbar">
+    <div></div>
+    <button id="themeBtn" class="small-btn dark-btn">🌙 Dark</button>
+  </div>
 
-<div class="topbar">
-<div></div>
+  <h1>🧩 Lug‘at Boshqotirmasi</h1>
 
-<button id="themeBtn" class="small-btn dark-btn">
-🌙 Dark
-</button>
-</div>
+  <p class="subtitle">
+    Inglizcha so‘zlarni o‘yin orqali o‘rganing!
+  </p>
 
-<h1>🧩 Lug‘at Boshqotirmasi</h1>
+  <div class="daily">
+    🎯 <strong>Daily Challenge</strong>
+    <br><br>
+    <span id="dailyMenuText">
+      Bugungi 10 ta maxsus savolga javob bering!
+    </span>
+  </div>
 
-<p class="subtitle">
-Inglizcha va dasturlash so‘zlarini o‘yin orqali o‘rganing
-</p>
+  <div class="menu-grid">
 
-<div class="daily">
+    <button id="startBtn">
+      🎮 O‘YINNI BOSHLASH
+    </button>
 
-🎯 <strong>Daily Challenge</strong>
+    <button id="dailyBtn">
+      🎯 DAILY CHALLENGE
+    </button>
 
-<br>
+    <button id="wordsBtn">
+      📚 MENING LUG‘ATIM
+    </button>
 
-<span id="dailyMenuText">
-Bugungi 10 ta maxsus savolga javob bering!
-</span>
+    <button id="highBtn">
+      🏆 HIGH SCORE
+    </button>
 
-</div>
+  </div>
 
-<div class="menu-grid">
-
-<button id="startBtn">
-🎮 O‘YINNI BOSHLASH
-</button>
-
-<button id="dailyBtn">
-🎯 DAILY CHALLENGE
-</button>
-
-<button id="wordsBtn">
-📚 MENING LUG‘ATIM
-</button>
-
-<button id="highBtn">
-🏆 HIGH SCORE
-</button>
-
-</div>
-
-</div>
+</section>
 
 
 <!-- MODE -->
+<section id="modeScreen" class="hidden">
 
-<div id="modeScreen" class="hidden">
+  <h2>🎯 Rejimni tanlang</h2>
 
-<h2>🎯 Rejimni tanlang</h2>
+  <p class="subtitle">
+    Qaysi usulda o‘ynaysiz?
+  </p>
 
-<p class="subtitle">
-Boshqotirma turini tanlang
-</p>
+  <div class="mode-grid">
 
-<div class="mode-grid">
+    <button class="mode-btn" data-mode="english">
+      🇬🇧 → 🇺🇿<br>
+      English → Uzbek
+    </button>
 
-<button class="mode-btn" data-mode="english">
-🇬🇧 English → 🇺🇿
-</button>
+    <button class="mode-btn" data-mode="uzbek">
+      🇺🇿 → 🇬🇧<br>
+      Uzbek → English
+    </button>
 
-<button class="mode-btn" data-mode="uzbek">
-🇺🇿 O‘zbekcha → 🇬🇧
-</button>
+    <button class="mode-btn" data-mode="letters">
+      🔤<br>
+      Harflardan so‘z
+    </button>
 
-<button class="mode-btn" data-mode="letters">
-🔤 Harflardan so‘z
-</button>
+    <button class="mode-btn" data-mode="match">
+      🔗<br>
+      Juftini topish
+    </button>
 
-<button class="mode-btn" data-mode="match">
-🔗 Juftini topish
-</button>
+    <button class="mode-btn" data-mode="blank">
+      ✍️<br>
+      Bo‘sh joy
+    </button>
 
-<button class="mode-btn" data-mode="blank">
-✍️ Bo‘sh joy
-</button>
+    <button class="mode-btn" data-mode="sentence">
+      💬<br>
+      Gapdan so‘z
+    </button>
 
-<button class="mode-btn" data-mode="sentence">
-💬 Gapdan so‘z
-</button>
+  </div>
 
-</div>
+  <button id="backModeBtn" class="secondary">
+    ⬅️ Orqaga
+  </button>
 
-<button id="backMenuBtn" class="secondary">
-↩️ Bosh menyu
-</button>
-
-</div>
+</section>
 
 
 <!-- GAME -->
+<section id="gameScreen" class="hidden">
 
-<div id="gameScreen" class="hidden">
+  <div class="topbar">
 
-<div class="topbar">
+    <div class="level">
+      Level <span id="level">1</span>
+    </div>
 
-<div class="level">
-Level <span id="level">1</span>
-</div>
+    <button id="quitBtn" class="small-btn secondary">
+      🚪 Chiqish
+    </button>
 
-<button id="quitBtn" class="small-btn secondary">
-🚪 Chiqish
-</button>
+  </div>
 
-</div>
+  <div id="challengeBox" class="challenge hidden">
+    ⚡ CHALLENGE!
+    Tezlik oshdi:
+    <span id="challengeCount">0</span> ta savol
+  </div>
 
-<div id="challengeBox" class="challenge hidden">
-⚡ CHALLENGE!
-Tezlik oshdi:
-<span id="challengeCount">0</span>
-</div>
+  <div class="stats">
 
-<div class="stats">
+    <div class="stat">
+      ⭐ Ball
+      <span id="score">0</span>
+    </div>
 
-<div class="stat">
-⭐
-<span id="score">0</span>
-</div>
+    <div class="stat">
+      ❤️ Jon
+      <span id="lives">3</span>
+    </div>
 
-<div class="stat">
-❤️
-<span id="lives">3</span>
-</div>
+    <div class="stat">
+      ❌ Xato
+      <span id="mistakes">0</span>
+    </div>
 
-<div class="stat">
-❌
-<span id="mistakes">0</span>
-</div>
+    <div class="stat">
+      🔥 Combo
+      <span id="combo">0</span>
+    </div>
 
-<div class="stat">
-🔥
-<span id="combo">0</span>
-</div>
+    <div class="stat">
+      ⏱️ Vaqt
+      <span id="timer">15</span>
+    </div>
 
-<div class="stat">
-⏱️
-<span id="timer">15</span>
-</div>
+  </div>
 
-</div>
+  <div class="progress">
+    <div id="progressBar" class="progress-bar"></div>
+  </div>
 
-<div class="progress">
-<div id="progressBar" class="progress-bar"></div>
-</div>
+  <div id="modeTitle" class="mode-title">
+    English → Uzbek
+  </div>
 
-<div id="modeTitle" class="mode-title"></div>
+  <div id="question" class="question">
+    Savol
+  </div>
 
-<div id="question" class="question"></div>
+  <div id="answers"></div>
 
-<div id="hintBox" class="hint-box hidden"></div>
+  <!-- LETTERS -->
+  <div id="lettersBox" class="hidden">
 
-<div id="answers"></div>
+    <div id="mixedLetters" class="letters"></div>
 
-<div id="lettersBox" class="hidden">
+    <input
+      id="wordInput"
+      type="text"
+      placeholder="So‘zni yozing..."
+      autocomplete="off"
+    >
 
-<div id="mixedLetters" class="letters"></div>
+    <button id="wordSubmit">
+      ✅ Tekshirish
+    </button>
 
-<input
-id="wordInput"
-placeholder="So‘zni yozing..."
->
+  </div>
 
-<button id="checkWordBtn">
-✅ Tekshirish
-</button>
+  <!-- BLANK -->
+  <div id="blankBox" class="hidden">
 
-</div>
+    <input
+      id="blankInput"
+      type="text"
+      placeholder="Javobni yozing..."
+      autocomplete="off"
+    >
 
-<div id="blankBox" class="hidden">
+    <button id="blankSubmit">
+      ✅ Tekshirish
+    </button>
 
-<input
-id="blankInput"
-placeholder="Javobni yozing..."
->
+  </div>
 
-<button id="checkBlankBtn">
-✅ Tekshirish
-</button>
+  <div id="hintBox" class="hint-box hidden"></div>
 
-</div>
+  <div id="result" class="result"></div>
 
-<div id="result" class="result"></div>
+  <div id="comboText" class="combo"></div>
 
-<div id="comboText" class="combo"></div>
+  <button id="hintBtn" class="secondary">
+    💡 Hint
+  </button>
 
-<div class="menu-grid">
+  <button id="speakBtn" class="secondary">
+    🔊 Talaffuz
+  </button>
 
-<button id="hintBtn">
-💡 Hint
-</button>
-
-<button id="speakBtn">
-🔊 Talaffuz
-</button>
-
-</div>
-
-</div>
+</section>
 
 
 <!-- RESULT -->
+<section id="resultScreen" class="hidden">
 
-<div id="resultScreen" class="hidden">
+  <h2>🏁 O‘yin tugadi!</h2>
 
-<h1>🏆 Natija</h1>
+  <div id="finalScore" class="big-score">
+    0
+  </div>
 
-<div class="big-score">
-<span id="finalScore">0</span> ⭐
-</div>
+  <div class="daily-stats">
 
-<p>
-🎯 Level:
-<strong id="finalLevel">1</strong>
-</p>
+    <div>
+      📈 Level:
+      <strong id="finalLevel">1</strong>
+    </div>
 
-<p>
-✅ To‘g‘ri:
-<strong id="finalCorrect">0</strong>
-</p>
+    <div>
+      ✅ To‘g‘ri:
+      <strong id="finalCorrect">0</strong>
+    </div>
 
-<p>
-❌ Xato:
-<strong id="finalMistakes">0</strong>
-</p>
+    <div>
+      ❌ Xato:
+      <strong id="finalMistakes">0</strong>
+    </div>
 
-<p>
-🔥 Eng katta combo:
-<strong id="finalCombo">0</strong>
-</p>
+    <div>
+      🔥 Eng yaxshi combo:
+      <strong id="finalCombo">0</strong>
+    </div>
 
-<p>
-🏆 High Score:
-<strong id="finalHighScore">0</strong>
-</p>
+    <div>
+      🏆 High Score:
+      <strong id="finalHighScore">0</strong>
+    </div>
 
-<button id="restartBtn">
-🔄 Qayta o‘ynash
-</button>
+  </div>
 
-<button id="resultMenuBtn" class="secondary">
-🏠 Bosh menyu
-</button>
+  <button id="restartBtn">
+    🔄 Qayta o‘ynash
+  </button>
 
-</div>
+  <button id="resultMenuBtn" class="secondary">
+    🏠 Bosh menyu
+  </button>
 
-
-<!-- DAILY -->
-
-<div id="dailyScreen" class="hidden">
-
-<h2>🎯 Kunlik topshiriq</h2>
-
-<div class="daily">
-
-<strong>⭐ 10 ta maxsus savol</strong>
-
-<br>
-
-Har kuni yangi topshiriq!
-
-</div>
-
-<div class="daily-stats">
-
-<div>
-📅 Sana:
-<strong id="dailyDate"></strong>
-</div>
-
-<div>
-🎯 Bugungi natija:
-<strong id="dailyProgress">0/10</strong>
-</div>
-
-<div>
-🏆 Kunlik rekord:
-<strong id="dailyBest">0</strong> ⭐
-</div>
-
-<div>
-🎁 10/10 bonusi:
-<strong>+50 ⭐</strong>
-</div>
-
-</div>
-
-<button id="dailyStartBtn">
-🚀 TOPSHIRIQNI BOSHLASH
-</button>
-
-<button id="dailyBackBtn" class="secondary">
-↩️ Bosh menyu
-</button>
-
-</div>
+</section>
 
 
 <!-- WORDS -->
+<section id="wordsScreen" class="hidden">
 
-<div id="wordsScreen" class="hidden">
+  <h2>📚 Mening lug‘atim</h2>
 
-<h2>📚 Mening lug‘atim</h2>
+  <div id="learnedWords"></div>
 
-<p class="subtitle">
-O‘yinda o‘rgangan so‘zlaringiz
-</p>
+  <button id="wordsBackBtn" class="secondary">
+    ⬅️ Orqaga
+  </button>
 
-<div id="learnedWords"></div>
-
-<button id="wordsBackBtn" class="secondary">
-↩️ Bosh menyu
-</button>
-
-</div>
+</section>
 
 
 <!-- HIGH SCORE -->
+<section id="highScreen" class="hidden">
 
-<div id="highScreen" class="hidden">
+  <h2>🏆 High Score</h2>
 
-<h2>🏆 High Score</h2>
+  <div id="highScoreValue" class="big-score">
+    0
+  </div>
 
-<div class="big-score">
-<span id="highScoreValue">0</span> ⭐
-</div>
+  <p style="text-align:center">
+    Sizning eng yuqori natijangiz
+  </p>
 
-<p>
-Eng yuqori natijangiz shu yerda saqlanadi.
-</p>
+  <button id="highBackBtn" class="secondary">
+    ⬅️ Orqaga
+  </button>
 
-<button id="highBackBtn" class="secondary">
-↩️ Bosh menyu
-</button>
+</section>
 
-</div>
+
+<!-- DAILY -->
+<section id="dailyScreen" class="hidden">
+
+  <h2>🎯 Daily Challenge</h2>
+
+  <div class="daily">
+    📅 Bugun:
+    <strong id="dailyDate"></strong>
+  </div>
+
+  <div class="daily-stats">
+
+    <div>
+      🎯 Bugungi progress:
+      <strong id="dailyProgress">0/10</strong>
+    </div>
+
+    <div>
+      🏆 Daily Best:
+      <strong id="dailyBest">0</strong>
+    </div>
+
+    <div>
+      🎁 10/10 bonus:
+      <strong>+50</strong>
+    </div>
+
+  </div>
+
+  <button id="dailyStartBtn">
+    🚀 Boshlash
+  </button>
+
+  <button id="dailyBackBtn" class="secondary">
+    ⬅️ Orqaga
+  </button>
+
+</section>
 
 </div>
 
 
 <script>
 
+/* =========================
+   WORDS
+========================= */
+
 const words = [
 
-["create","yaratmoq"],
-["delete","o‘chirmoq"],
-["save","saqlamoq"],
-["open","ochmoq"],
-["close","yopmoq"],
-["search","qidirmoq"],
-["click","bosmoq"],
-["change","o‘zgartirmoq"],
-["add","qo‘shmoq"],
-["remove","olib tashlamoq"],
-["update","yangilamoq"],
-["run","ishga tushirmoq"],
-["function","funksiya"],
-["variable","o‘zgaruvchi"],
-["value","qiymat"],
-["string","matn"],
-["number","son"],
-["array","massiv"],
-["object","obyekt"],
-["method","metod"],
-["error","xato"],
-["test","sinov"],
-["fix","tuzatmoq"],
-["project","loyiha"],
-["website","veb-sayt"],
-["developer","dasturchi"],
-["code","kod"],
-["file","fayl"],
-["folder","papka"],
-["button","tugma"],
-["computer","kompyuter"],
-["screen","ekran"],
-["keyboard","klaviatura"],
-["mouse","sichqoncha"],
-["browser","brauzer"],
-["internet","internet"],
-["server","server"],
-["database","ma’lumotlar bazasi"],
-["data","ma’lumot"],
-["program","dastur"],
-["application","ilova"],
-["page","sahifa"],
-["link","havola"],
-["image","rasm"],
-["text","matn"],
-["color","rang"],
-["style","uslub"],
-["design","dizayn"],
-["frontend","old qism"],
-["backend","orqa qism"],
-["login","kirish"],
-["logout","chiqish"],
-["password","parol"],
-["username","foydalanuvchi nomi"],
-["account","hisob"],
-["start","boshlash"],
-["stop","to‘xtatmoq"],
-["finish","tugatmoq"],
-["continue","davom ettirmoq"],
-["back","orqaga"],
-["next","keyingi"],
-["download","yuklab olmoq"],
-["upload","yuklamoq"],
-["install","o‘rnatmoq"],
-["connect","ulamoq"],
-["disconnect","uzmoq"],
-["check","tekshirmoq"],
-["learn","o‘rganmoq"],
-["write","yozmoq"],
-["read","o‘qimoq"],
-["build","qurmoq"],
-["develop","ishlab chiqmoq"],
-["debug","xatoni izlamoq"],
-["command","buyruq"],
-["terminal","terminal"],
-["repository","loyiha ombori"],
-["branch","tarmoq"],
-["commit","o‘zgarishni saqlash"],
-["push","yubormoq"],
-["pull","olib kelmoq"],
-["clone","nusxa olmoq"],
-["github","kod platformasi"],
-["version","versiya"],
-["lesson","dars"],
-["question","savol"],
-["answer","javob"],
-["correct","to‘g‘ri"],
-["wrong","noto‘g‘ri"],
-["score","ball"],
-["level","daraja"],
-["game","o‘yin"],
-["time","vaqt"],
-["life","jon"],
-["word","so‘z"],
-["sentence","gap"],
-["language","til"],
-["practice","mashq qilmoq"],
-["easy","oson"],
-["hard","qiyin"],
-["simple","oddiy"],
-["important","muhim"]
+  ["create","yaratmoq"],
+  ["delete","o‘chirmoq"],
+  ["save","saqlamoq"],
+  ["open","ochmoq"],
+  ["close","yopmoq"],
+  ["read","o‘qimoq"],
+  ["write","yozmoq"],
+  ["learn","o‘rganmoq"],
+  ["study","o‘qimoq"],
+  ["work","ishlamoq"],
+  ["play","o‘ynamoq"],
+  ["start","boshlamoq"],
+  ["finish","tugatmoq"],
+  ["build","qurmoq"],
+  ["change","o‘zgartirmoq"],
+  ["add","qo‘shmoq"],
+  ["remove","olib tashlamoq"],
+  ["find","topmoq"],
+  ["search","qidirmoq"],
+  ["send","yubormoq"],
+  ["receive","qabul qilmoq"],
+  ["open","ochmoq"],
+  ["close","yopmoq"],
+  ["help","yordam bermoq"],
+  ["use","foydalanmoq"],
+  ["make","qilmoq"],
+  ["give","bermoq"],
+  ["take","olmoq"],
+  ["look","qaramoq"],
+  ["see","ko‘rmoq"],
+  ["know","bilmoq"],
+  ["think","o‘ylamoq"],
+  ["want","xohlamoq"],
+  ["need","kerak bo‘lmoq"],
+  ["like","yoqtirmoq"],
+  ["love","sevmoq"],
+  ["come","kelmoq"],
+  ["go","bormoq"],
+  ["run","yugurmoq"],
+  ["walk","yurmoq"],
+  ["speak","gapirmoq"],
+  ["listen","tinglamoq"],
+  ["watch","tomosha qilmoq"],
+  ["understand","tushunmoq"],
+  ["remember","eslamoq"],
+  ["forget","unutmoq"],
+  ["question","savol"],
+  ["answer","javob"],
+  ["word","so‘z"],
+  ["sentence","gap"],
+  ["computer","kompyuter"],
+  ["phone","telefon"],
+  ["keyboard","klaviatura"],
+  ["screen","ekran"],
+  ["file","fayl"],
+  ["folder","papka"],
+  ["project","loyiha"],
+  ["code","kod"],
+  ["website","veb-sayt"],
+  ["browser","brauzer"],
+  ["button","tugma"],
+  ["game","o‘yin"],
+  ["car","avtomobil"],
+  ["road","yo‘l"],
+  ["fast","tez"],
+  ["slow","sekin"],
+  ["easy","oson"],
+  ["hard","qiyin"],
+  ["new","yangi"],
+  ["old","eski"],
+  ["big","katta"],
+  ["small","kichik"]
 
-].map(x=>({
-english:x[0],
-uzbek:x[1]
-}));
+];
 
+
+/* =========================
+   SENTENCES
+========================= */
 
 const sentenceQuestions = [
 
-["Faylni ___ uchun Ctrl + S tugmalarini bosing.","save"],
-["Yangi loyiha ___ uchun bu tugmani bosing.","create"],
-["Faylni ___ uchun ustiga bosing.","open"],
-["Kerakli ma’lumotni ___ uchun search tugmasidan foydalaning.","search"],
-["Dasturni ___ uchun Run tugmasini bosing.","run"],
-["Dasturdagi xatoni ___ kerak.","fix"],
-["Tugmani ___ uchun sichqonchani ishlating.","click"],
-["Saytdagi ma’lumotlarni ___ kerak.","update"],
-["Yangi elementni loyihaga ___ mumkin.","add"],
-["Keraksiz faylni ___ mumkin.","delete"],
-["Kod yozish uchun yangi ___ oching.","file"],
-["Saytning rangini ___ mumkin.","change"],
-["GitHub'dagi loyihaga yangi o‘zgarishni ___ qilamiz.","push"],
-["Koddagi xatoni topish jarayoni ___ deyiladi.","debug"]
+  {
+    sentence:"Faylni ___ uchun Ctrl + S tugmalarini bosing.",
+    answer:"save"
+  },
 
-].map(x=>({
-sentence:x[0],
-answer:x[1],
-options:[]
-}));
+  {
+    sentence:"Yangi loyiha ___ uchun shu tugmani bosing.",
+    answer:"create"
+  },
 
+  {
+    sentence:"Faylni ___ uchun Open tugmasini bosing.",
+    answer:"open"
+  },
 
-sentenceQuestions.forEach(q=>{
+  {
+    sentence:"Keraksiz faylni ___ uchun Delete tugmasini bosing.",
+    answer:"delete"
+  },
 
-let pool=[
-"save",
-"delete",
-"open",
-"close",
-"create",
-"search",
-"run",
-"fix",
-"click",
-"update",
-"add",
-"remove"
+  {
+    sentence:"Yangi so‘zlarni ___ juda foydali.",
+    answer:"learn"
+  },
+
+  {
+    sentence:"Kompyuterda ___ yozish mumkin.",
+    answer:"code"
+  },
+
+  {
+    sentence:"Internetda ma’lumot ___ mumkin.",
+    answer:"search"
+  },
+
+  {
+    sentence:"Savolga to‘g‘ri ___ bering.",
+    answer:"answer"
+  },
+
+  {
+    sentence:"Kitobni ___ kerak.",
+    answer:"read"
+  },
+
+  {
+    sentence:"Ustozni diqqat bilan ___ kerak.",
+    answer:"listen"
+  }
+
 ];
 
-q.options=[
-q.answer,
-...pool
-.filter(x=>x!==q.answer)
-.sort(()=>Math.random()-.5)
-.slice(0,3)
-];
 
-});
-
+/* =========================
+   HELPERS
+========================= */
 
 const $ = id => document.getElementById(id);
+
+const shuffle = array => {
+
+  const arr = [...array];
+
+  for(let i = arr.length - 1; i > 0; i--){
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+
+  }
+
+  return arr;
+};
+
+
+const random = array => {
+
+  return array[
+    Math.floor(Math.random() * array.length)
+  ];
+
+};
+
+
+/* =========================
+   SCREENS
+========================= */
 
 const menu = $("menu");
 const modeScreen = $("modeScreen");
@@ -868,1183 +868,1422 @@ const highScreen = $("highScreen");
 const dailyScreen = $("dailyScreen");
 
 
-const shuffle = a => {
-
-a=[...a];
-
-for(let i=a.length-1;i>0;i--){
-
-let j=Math.floor(Math.random()*(i+1));
-
-[a[i],a[j]]=[a[j],a[i]];
-
-}
-
-return a;
-
-};
-
-
-const random = a =>
-a[Math.floor(Math.random()*a.length)];
-
-
 function hideAll(){
 
-[
-menu,
-modeScreen,
-gameScreen,
-resultScreen,
-wordsScreen,
-highScreen,
-dailyScreen
-].forEach(x=>x.classList.add("hidden"));
+  [
+    menu,
+    modeScreen,
+    gameScreen,
+    resultScreen,
+    wordsScreen,
+    highScreen,
+    dailyScreen
+  ].forEach(screen => {
+
+    screen.classList.add("hidden");
+
+  });
 
 }
+
+
+/* =========================
+   STORAGE
+========================= */
+
+let highScore =
+  Number(localStorage.getItem("vocabularyHighScore")) || 0;
+
+
+let learned = JSON.parse(
+  localStorage.getItem("learnedVocabulary") || "[]"
+);
 
 
 function today(){
 
-const d=new Date();
+  const d = new Date();
 
-return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  return (
+    d.getFullYear() +
+    "-" +
+    String(d.getMonth()+1).padStart(2,"0") +
+    "-" +
+    String(d.getDate()).padStart(2,"0")
+  );
 
 }
-
-
-let highScore =
-Number(localStorage.getItem("vocabularyHighScore")) || 0;
-
-let learned =
-JSON.parse(
-localStorage.getItem("learnedVocabulary") || "[]"
-);
-
-
-let score=0;
-let lives=3;
-let mistakes=0;
-let correctAnswers=0;
-let combo=0;
-let bestCombo=0;
-let level=1;
-let questionNumber=0;
-
-let currentWord=null;
-let currentMode="";
-let currentSentence=null;
-let correctAnswer="";
-let answered=false;
-let timer=15;
-let timerInterval=null;
-let hintUsed=false;
-let usedWords=[];
-
-let isDaily=false;
-let dailyIndex=0;
-let dailyScore=0;
-let dailyCorrect=0;
-let dailyCombo=0;
-let dailyBestCombo=0;
-let challenge=0;
 
 
 function dailyData(){
 
-let d=localStorage.getItem("dailyDate");
+  const saved = JSON.parse(
+    localStorage.getItem("dailyData") || "null"
+  );
 
-if(d!==today()){
+  if(!saved || saved.date !== today()){
 
-localStorage.setItem("dailyDate",today());
-localStorage.setItem("dailyProgress","0");
-localStorage.setItem("dailyBest","0");
+    return {
+      date:today(),
+      progress:0,
+      best:0
+    };
 
-return{
-progress:0,
-best:0
-};
+  }
 
-}
-
-return{
-
-progress:
-Number(localStorage.getItem("dailyProgress"))||0,
-
-best:
-Number(localStorage.getItem("dailyBest"))||0
-
-};
+  return saved;
 
 }
 
 
 function updateDailyUI(){
 
-let d=dailyData();
+  const d = dailyData();
 
-$("dailyDate").textContent=today();
+  $("dailyDate").textContent = d.date;
 
-$("dailyProgress").textContent=d.progress+"/10";
+  $("dailyProgress").textContent =
+    d.progress + "/10";
 
-$("dailyBest").textContent=d.best;
+  $("dailyBest").textContent =
+    d.best;
 
-$("dailyMenuText").textContent =
-d.progress>=10
-?
-"✅ Bugungi topshiriq bajarildi!"
-:
-"Bugungi 10 ta maxsus savolga javob bering!";
+  $("dailyMenuText").textContent =
+    d.progress >= 10
+    ? "✅ Bugungi topshiriq bajarildi!"
+    : "Bugungi 10 ta maxsus savolga javob bering!";
+
+}
+
+
+/* =========================
+   LEARNED WORDS
+========================= */
+
+function addLearned(word){
+
+  if(word && !learned.includes(word)){
+
+    learned.push(word);
+
+    localStorage.setItem(
+      "learnedVocabulary",
+      JSON.stringify(learned)
+    );
+
+  }
 
 }
 
 
-function addLearned(w){
+/* =========================
+   GAME VARIABLES
+========================= */
 
-if(w && !learned.includes(w)){
+let currentMode = "english";
 
-learned.push(w);
+let currentWord = null;
 
-localStorage.setItem(
-"learnedVocabulary",
-JSON.stringify(learned)
-);
+let currentSentence = null;
 
-}
+let correctAnswer = "";
 
-}
+let score = 0;
 
+let lives = 3;
+
+let mistakes = 0;
+
+let combo = 0;
+
+let bestCombo = 0;
+
+let correctAnswers = 0;
+
+let level = 1;
+
+let timer = 15;
+
+let maxTime = 15;
+
+let timerInterval = null;
+
+let answered = false;
+
+let hintUsed = false;
+
+let challenge = 0;
+
+let usedWords = [];
+
+
+/* =========================
+   DAILY VARIABLES
+========================= */
+
+let isDaily = false;
+
+let dailyIndex = 0;
+
+let dailyScore = 0;
+
+let dailyCorrect = 0;
+
+let dailyCombo = 0;
+
+let dailyBestCombo = 0;
+
+
+/* =========================
+   STATS
+========================= */
 
 function updateStats(){
 
-$("score").textContent=score;
-$("lives").textContent=lives;
-$("mistakes").textContent=mistakes;
-$("combo").textContent=combo;
-$("level").textContent=level;
+  $("score").textContent = score;
+
+  $("lives").textContent = lives;
+
+  $("mistakes").textContent = mistakes;
+
+  $("combo").textContent = combo;
 
 }
 
+
+/* =========================
+   START GAME
+========================= */
 
 function startGame(){
 
-clearInterval(timerInterval);
+  isDaily = false;
 
-score=0;
-lives=3;
-mistakes=0;
-correctAnswers=0;
-combo=0;
-bestCombo=0;
-level=1;
-questionNumber=0;
-usedWords=[];
-challenge=0;
+  score = 0;
 
-$("challengeBox").classList.add("hidden");
+  lives = 3;
 
-updateStats();
+  mistakes = 0;
 
-showQuestion();
+  combo = 0;
 
-}
+  bestCombo = 0;
 
+  correctAnswers = 0;
 
-function startDaily(){
+  level = 1;
 
-isDaily=true;
+  challenge = 0;
 
-dailyIndex=0;
-dailyScore=0;
-dailyCorrect=0;
-dailyCombo=0;
-dailyBestCombo=0;
-challenge=0;
-mistakes=0;
+  usedWords = [];
 
-currentMode="sentence";
+  updateStats();
 
-hideAll();
+  $("challengeCount").textContent = 0;
 
-gameScreen.classList.remove("hidden");
+  $("challengeBox").classList.add("hidden");
 
-showDailyQuestion();
+  hideAll();
+
+  gameScreen.classList.remove("hidden");
+
+  showQuestion();
 
 }
 
 
-function startDailyQuestionTimer(){
-
-clearInterval(timerInterval);
-
-let max =
-challenge>0
-?
-Math.max(5,10-challenge)
-:
-12;
-
-timer=max;
-
-$("timer").textContent=timer;
-
-$("progressBar").style.width="100%";
-
-timerInterval=setInterval(()=>{
-
-timer--;
-
-$("timer").textContent=timer;
-
-$("progressBar").style.width =
-(timer/max*100)+"%";
-
-if(timer<=0){
-
-clearInterval(timerInterval);
-
-if(!answered)
-dailyWrong(true);
-
-}
-
-},1000);
-
-}
-
-
-function showDailyQuestion(){
-
-answered=false;
-hintUsed=false;
-
-$("answers").innerHTML="";
-$("lettersBox").classList.add("hidden");
-$("blankBox").classList.add("hidden");
-$("hintBox").classList.add("hidden");
-$("result").textContent="";
-
-dailyIndex++;
-
-let q =
-sentenceQuestions[
-(dailyIndex-1)%sentenceQuestions.length
-];
-
-currentSentence=q;
-correctAnswer=q.answer;
-
-$("modeTitle").textContent =
-"🎯 DAILY "+dailyIndex+"/10";
-
-$("question").innerHTML =
-'<div class="sentence">'+
-q.sentence+
-"</div>";
-
-createButtons(shuffle(q.options));
-
-updateStats();
-
-startDailyQuestionTimer();
-
-}
-
-
-function dailyWrong(timeout=false){
-
-if(answered)return;
-
-answered=true;
-
-clearInterval(timerInterval);
-
-mistakes++;
-
-dailyCombo=0;
-
-challenge=Math.min(5,challenge+1);
-
-$("challengeCount").textContent=challenge;
-
-$("challengeBox").classList.remove("hidden");
-
-$("result").textContent =
-(timeout?"⏰ Vaqt tugadi! ":"❌ Xato! ")+
-"Javob: "+correctAnswer;
-
-$("result").className="result wrong";
-
-if(dailyIndex>=10){
-
-setTimeout(finishDaily,1200);
-
-}else{
-
-setTimeout(showDailyQuestion,1200);
-
-}
-
-}
-
-
-function finishDaily(){
-
-clearInterval(timerInterval);
-
-let bonus =
-dailyCorrect===10
-?
-50
-:
-0;
-
-let total=dailyScore+bonus;
-
-let old=dailyData();
-
-let best=Math.max(old.best,total);
-
-localStorage.setItem(
-"dailyProgress",
-dailyCorrect
-);
-
-localStorage.setItem(
-"dailyBest",
-best
-);
-
-isDaily=false;
-
-hideAll();
-
-resultScreen.classList.remove("hidden");
-
-$("finalScore").textContent=total;
-
-$("finalLevel").textContent="Daily";
-
-$("finalCorrect").textContent=dailyCorrect+"/10";
-
-$("finalMistakes").textContent=mistakes;
-
-$("finalCombo").textContent=dailyBestCombo;
-
-$("finalHighScore").textContent=best;
-
-if(total>highScore){
-
-highScore=total;
-
-localStorage.setItem(
-"vocabularyHighScore",
-highScore
-);
-
-}
-
-}
-
+/* =========================
+   SHOW QUESTION
+========================= */
 
 function showQuestion(){
 
-clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-answered=false;
-hintUsed=false;
+  answered = false;
 
-$("result").textContent="";
-$("result").className="result";
+  hintUsed = false;
 
-$("hintBox").classList.add("hidden");
+  $("result").textContent = "";
 
-$("answers").innerHTML="";
+  $("result").className = "result";
 
-$("lettersBox").classList.add("hidden");
+  $("comboText").textContent = "";
 
-$("blankBox").classList.add("hidden");
+  $("hintBox").classList.add("hidden");
 
-questionNumber++;
+  $("answers").innerHTML = "";
 
-if(questionNumber>5){
+  $("lettersBox").classList.add("hidden");
 
-level++;
-questionNumber=1;
+  $("blankBox").classList.add("hidden");
+
+  const available =
+    words.filter(
+      word => !usedWords.includes(word[0])
+    );
+
+  if(available.length === 0){
+
+    usedWords = [];
+
+  }
+
+  currentWord = random(
+    words.filter(
+      word => !usedWords.includes(word[0])
+    )
+  );
+
+  usedWords.push(currentWord[0]);
+
+  if(usedWords.length > words.length - 5){
+
+    usedWords = [];
+
+  }
+
+  level =
+    Math.floor(correctAnswers / 5) + 1;
+
+  $("level").textContent = level;
+
+  startTimer();
+
+  switch(currentMode){
+
+    case "english":
+      showEnglish();
+      break;
+
+    case "uzbek":
+      showUzbek();
+      break;
+
+    case "letters":
+      showLetters();
+      break;
+
+    case "match":
+      showMatch();
+      break;
+
+    case "blank":
+      showBlank();
+      break;
+
+    case "sentence":
+      showSentence();
+      break;
+
+  }
 
 }
 
-let av =
-words.filter(
-w=>!usedWords.includes(w.english)
-);
 
-if(!av.length){
-
-usedWords=[];
-av=[...words];
-
-}
-
-currentWord=random(av);
-
-usedWords.push(currentWord.english);
-
-if(currentMode==="english")
-showEnglish();
-
-else if(currentMode==="uzbek")
-showUzbek();
-
-else if(currentMode==="letters")
-showLetters();
-
-else if(currentMode==="match")
-showMatch();
-
-else if(currentMode==="blank")
-showBlank();
-
-else
-showSentence();
-
-updateStats();
-
-startTimer();
-
-}
-
+/* =========================
+   TIMER
+========================= */
 
 function startTimer(){
 
-clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-let max =
-currentMode==="letters"
-?
-Math.max(20,30-level+1)
-:
-Math.max(8,15-level+1);
+  if(currentMode === "letters"){
 
-if(challenge>0)
-max=Math.max(5,max-challenge*2);
+    maxTime =
+      Math.max(20,30 - level + 1);
 
-timer=max;
+  }else{
 
-$("timer").textContent=timer;
+    maxTime =
+      Math.max(8,15 - level + 1);
 
-$("progressBar").style.width="100%";
+  }
 
-timerInterval=setInterval(()=>{
+  if(challenge > 0){
 
-timer--;
+    maxTime =
+      Math.max(
+        5,
+        maxTime - challenge * 2
+      );
 
-$("timer").textContent=timer;
+  }
 
-$("progressBar").style.width =
-(timer/max*100)+"%";
+  timer = maxTime;
 
-if(timer<=0){
+  $("timer").textContent = timer;
 
-clearInterval(timerInterval);
+  $("progressBar").style.width = "100%";
 
-if(!answered)
-timeOut();
+  timerInterval = setInterval(() => {
+
+    timer--;
+
+    $("timer").textContent = timer;
+
+    $("progressBar").style.width =
+      (timer / maxTime * 100) + "%";
+
+    if(timer <= 0){
+
+      timeOut();
+
+    }
+
+  },1000);
 
 }
 
-},1000);
 
-}
-
+/* =========================
+   TIME OUT
+========================= */
 
 function timeOut(){
 
-if(answered)return;
+  if(answered) return;
 
-answered=true;
+  answered = true;
 
-clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-lives--;
-mistakes++;
-combo=0;
+  lives--;
 
-challenge=Math.min(5,challenge+1);
+  mistakes++;
 
-$("challengeCount").textContent=challenge;
+  combo = 0;
 
-$("challengeBox").classList.remove("hidden");
+  challenge =
+    Math.min(5,challenge + 1);
 
-$("result").textContent =
-"⏰ Vaqt tugadi! Javob: "+correctAnswer;
+  $("challengeCount").textContent =
+    challenge;
 
-$("result").className="result wrong";
+  $("challengeBox").classList.remove("hidden");
 
-updateStats();
+  $("result").textContent =
+    "⏰ Vaqt tugadi! Javob: " +
+    correctAnswer;
 
-checkGameOver();
+  $("result").className =
+    "result wrong";
+
+  updateStats();
+
+  checkGameOver();
 
 }
 
+
+/* =========================
+   ENGLISH
+========================= */
 
 function showEnglish(){
 
-$("modeTitle").textContent =
-"🇬🇧 English → 🇺🇿 O‘zbekcha";
+  $("modeTitle").textContent =
+    "🇬🇧 English → 🇺🇿 O‘zbekcha";
 
-$("question").textContent =
-currentWord.english;
+  $("question").textContent =
+    currentWord[0];
 
-correctAnswer =
-currentWord.uzbek;
+  correctAnswer =
+    currentWord[1];
 
-createButtons(
-getOptions("uzbek",correctAnswer)
-);
+  createButtons(
+    getOptions(1,correctAnswer)
+  );
 
 }
 
+
+/* =========================
+   UZBEK
+========================= */
 
 function showUzbek(){
 
-$("modeTitle").textContent =
-"🇺🇿 O‘zbekcha → 🇬🇧 English";
+  $("modeTitle").textContent =
+    "🇺🇿 O‘zbekcha → 🇬🇧 English";
 
-$("question").textContent =
-currentWord.uzbek;
+  $("question").textContent =
+    currentWord[1];
 
-correctAnswer =
-currentWord.english;
+  correctAnswer =
+    currentWord[0];
 
-createButtons(
-getOptions("english",correctAnswer)
-);
+  createButtons(
+    getOptions(0,correctAnswer)
+  );
 
 }
 
+
+/* =========================
+   LETTERS
+========================= */
 
 function showLetters(){
 
-$("modeTitle").textContent =
-"🔤 Harflardan so‘z";
+  $("modeTitle").textContent =
+    "🔤 Harflardan so‘z";
 
-$("question").textContent =
-"Harflarni to‘g‘ri joylashtiring";
+  $("question").textContent =
+    "Harflarni to‘g‘ri joylashtiring";
 
-correctAnswer =
-currentWord.english;
+  correctAnswer =
+    currentWord[0];
 
-$("lettersBox").classList.remove("hidden");
+  $("lettersBox").classList.remove("hidden");
 
-$("mixedLetters").textContent =
-shuffle(
-currentWord.english.split("")
-).join(" ");
-
-$("wordInput").value="";
-
-setTimeout(
-()=>$("wordInput").focus(),
-100
-);
+  $("mixedLetters").textContent =
+    shuffle(
+      currentWord[0].split("")
+    ).join(" ");
 
 }
 
+
+/* =========================
+   MATCH
+========================= */
 
 function showMatch(){
 
-$("modeTitle").textContent =
-"🔗 Juftini topish";
+  $("modeTitle").textContent =
+    "🔗 Juftini topish";
 
-$("question").textContent =
-currentWord.english;
+  $("question").textContent =
+    currentWord[0];
 
-correctAnswer =
-currentWord.uzbek;
+  correctAnswer =
+    currentWord[1];
 
-createButtons(
-getOptions("uzbek",correctAnswer)
-);
+  createButtons(
+    getOptions(1,correctAnswer)
+  );
 
 }
 
+
+/* =========================
+   BLANK
+========================= */
 
 function showBlank(){
 
-let sentences={
+  const sentences = {
 
-save:"Faylni ___ uchun Ctrl + S tugmasini bosing.",
-create:"Yangi loyiha ___ uchun tugmani bosing.",
-delete:"Keraksiz faylni ___ mumkin.",
-open:"Faylni ___ uchun ustiga bosing.",
-close:"Oynani ___ uchun X tugmasini bosing.",
-search:"Ma’lumotni ___ uchun search tugmasidan foydalaning.",
-run:"Dasturni ___ uchun Run tugmasini bosing.",
-fix:"Xatoni ___ kerak.",
-update:"Ma’lumotlarni ___ kerak.",
-add:"Yangi elementni ___ mumkin.",
-debug:"Koddagi xatoni ___ kerak.",
-download:"Faylni ___ uchun tugmani bosing.",
-upload:"Faylni serverga ___ kerak.",
-install:"Dasturni kompyuterga ___ kerak."
+    save:"Faylni ___ uchun Ctrl + S tugmasini bosing.",
 
-};
+    create:"Yangi loyiha ___ uchun tugmani bosing.",
 
-$("modeTitle").textContent =
-"✍️ Bo‘sh joyni to‘ldirish";
+    delete:"Keraksiz faylni ___ uchun Delete tugmasini bosing.",
 
-correctAnswer =
-currentWord.english;
+    open:"Faylni ___ uchun Open tugmasini bosing.",
 
-$("question").textContent =
-sentences[currentWord.english] ||
-"Bu so‘zni gapda ishlating: ___";
+    read:"Kitobni ___ kerak.",
 
-$("blankBox").classList.remove("hidden");
+    learn:"Yangi so‘zlarni ___ kerak.",
 
-$("blankInput").value="";
+    write:"Kod ___ uchun editor kerak.",
 
-setTimeout(
-()=>$("blankInput").focus(),
-100
-);
+    search:"Internetdan ma’lumot ___ mumkin.",
+
+    start:"O‘yinni ___ uchun tugmani bosing.",
+
+    finish:"Ishni ___ kerak."
+
+  };
+
+  $("modeTitle").textContent =
+    "✍️ Bo‘sh joyni to‘ldirish";
+
+  correctAnswer =
+    currentWord[0];
+
+  $("question").textContent =
+    sentences[currentWord[0]] ||
+    "Bu so‘zni gapda ishlating: ___";
+
+  $("blankBox").classList.remove("hidden");
 
 }
 
+
+/* =========================
+   SENTENCE
+========================= */
 
 function showSentence(){
 
-currentSentence =
-random(sentenceQuestions);
+  currentSentence =
+    random(sentenceQuestions);
 
-$("modeTitle").textContent =
-"💬 Gapdan so‘zni topish";
+  $("modeTitle").textContent =
+    "💬 Gapdan so‘zni topish";
 
-$("question").innerHTML =
-'<div class="sentence">'+
-currentSentence.sentence+
-"</div>";
+  $("question").innerHTML =
+    '<div class="sentence">' +
+    currentSentence.sentence +
+    "</div>";
 
-correctAnswer =
-currentSentence.answer;
+  correctAnswer =
+    currentSentence.answer;
 
-createButtons(
-shuffle(currentSentence.options)
-);
+  createButtons(
+    getOptions(
+      0,
+      correctAnswer
+    )
+  );
 
 }
 
+
+/* =========================
+   OPTIONS
+========================= */
 
 function getOptions(type,correct){
 
-let all=words.map(w=>w[type]);
+  const all =
+    words.map(word => word[type]);
 
-let options=shuffle(all).slice(0,4);
+  let options =
+    shuffle(all).slice(0,4);
 
-if(!options.includes(correct)){
+  if(!options.includes(correct)){
 
-options[0]=correct;
+    options[0] = correct;
 
-options=shuffle(options);
+    options = shuffle(options);
+
+  }
+
+  return options;
 
 }
 
-return options;
 
-}
-
+/* =========================
+   BUTTONS
+========================= */
 
 function createButtons(options){
 
-$("answers").innerHTML="";
+  $("answers").innerHTML = "";
 
-options.forEach(option=>{
+  options.forEach(option => {
 
-let button=document.createElement("button");
+    const button =
+      document.createElement("button");
 
-button.className="answer-btn";
+    button.className =
+      "answer-btn";
 
-button.textContent=option;
+    button.textContent =
+      option;
 
-button.onclick=()=>{
-checkAnswer(option);
-};
+    button.onclick = () => {
 
-$("answers").appendChild(button);
+      checkAnswer(option);
 
-});
+    };
 
-}
+    $("answers").appendChild(button);
 
-
-function checkAnswer(user){
-
-if(answered)return;
-
-answered=true;
-
-clearInterval(timerInterval);
-
-let ok =
-String(user).trim().toLowerCase() ===
-String(correctAnswer).trim().toLowerCase();
-
-if(isDaily){
-
-if(ok){
-
-dailyCorrect++;
-dailyCombo++;
-
-dailyBestCombo =
-Math.max(
-dailyBestCombo,
-dailyCombo
-);
-
-let bonus =
-10+
-(
-dailyCombo>=2
-?
-dailyCombo*2
-:
-0
-);
-
-dailyScore+=bonus;
-
-addLearned(correctAnswer);
-
-$("result").textContent =
-"✅ To‘g‘ri! +"+bonus+" ⭐";
-
-$("result").className =
-"result correct";
-
-}else{
-
-mistakes++;
-
-dailyCombo=0;
-
-challenge=Math.min(5,challenge+1);
-
-$("challengeCount").textContent=challenge;
-
-$("challengeBox").classList.remove("hidden");
-
-$("result").textContent =
-"❌ Xato! Challenge kuchaydi! Javob: "+
-correctAnswer;
-
-$("result").className =
-"result wrong";
-
-}
-
-if(dailyIndex>=10){
-
-setTimeout(finishDaily,1200);
-
-}else{
-
-setTimeout(showDailyQuestion,1200);
-
-}
-
-return;
+  });
 
 }
 
 
-if(ok){
+/* =========================
+   CHECK ANSWER
+========================= */
 
-let bonus =
-10+
-(
-combo>=2
-?
-combo*2
-:
-0
-)-
-(
-hintUsed
-?
-3
-:
-0
-);
+function checkAnswer(userAnswer){
 
-bonus=Math.max(1,bonus);
+  if(answered) return;
 
-score+=bonus;
+  answered = true;
 
-correctAnswers++;
+  clearInterval(timerInterval);
 
-combo++;
+  const ok =
+    String(userAnswer)
+      .trim()
+      .toLowerCase() ===
+    String(correctAnswer)
+      .trim()
+      .toLowerCase();
 
-bestCombo =
-Math.max(bestCombo,combo);
+  if(ok){
 
-addLearned(
-currentWord
-?
-currentWord.english
-:
-correctAnswer
-);
+    if(isDaily){
 
-$("result").textContent =
-"✅ To‘g‘ri! +"+bonus+" ball";
+      dailyCorrect++;
 
-$("result").className =
-"result correct";
+      dailyCombo++;
 
-$("comboText").textContent =
-combo>=2
-?
-"🔥 Combo x"+combo
-:
-"";
+      dailyBestCombo =
+        Math.max(
+          dailyBestCombo,
+          dailyCombo
+        );
 
-}else{
+      const bonus =
+        10 +
+        (dailyCombo >= 2 ? 5 : 0);
 
-lives--;
-mistakes++;
-combo=0;
+      dailyScore += bonus;
 
-challenge=Math.min(5,challenge+1);
+      addLearned(correctAnswer);
 
-$("challengeCount").textContent=challenge;
+      $("result").textContent =
+        "✅ To‘g‘ri! +" +
+        bonus +
+        " ⭐";
 
-$("challengeBox").classList.remove("hidden");
+      $("result").className =
+        "result correct";
 
-$("result").textContent =
-"❌ Noto‘g‘ri! To‘g‘ri javob: "+
-correctAnswer;
+    }else{
 
-$("result").className =
-"result wrong";
+      let bonus =
+        10 +
+        (combo >= 2 ? combo * 2 : 0);
 
-$("comboText").textContent="";
+      score += bonus;
+
+      correctAnswers++;
+
+      combo++;
+
+      bestCombo =
+        Math.max(
+          bestCombo,
+          combo
+        );
+
+      addLearned(
+        currentMode === "uzbek"
+          ? currentWord[0]
+          : currentWord[0]
+      );
+
+      $("result").textContent =
+        "✅ To‘g‘ri! +" +
+        bonus +
+        " ball";
+
+      $("result").className =
+        "result correct";
+
+      $("comboText").textContent =
+        combo >= 2
+          ? "🔥 Combo x" + combo
+          : "";
+
+    }
+
+  }else{
+
+    lives--;
+
+    mistakes++;
+
+    combo = 0;
+
+    if(isDaily){
+
+      dailyCombo = 0;
+
+    }
+
+    challenge =
+      Math.min(
+        5,
+        challenge + 1
+      );
+
+    $("challengeCount").textContent =
+      challenge;
+
+    $("challengeBox").classList.remove("hidden");
+
+    $("result").textContent =
+      "❌ Noto‘g‘ri! To‘g‘ri javob: " +
+      correctAnswer;
+
+    $("result").className =
+      "result wrong";
+
+    $("comboText").textContent = "";
+
+  }
+
+  updateStats();
+
+  if(isDaily){
+
+    if(dailyIndex >= 10){
+
+      setTimeout(
+        finishDaily,
+        1200
+      );
+
+    }else{
+
+      setTimeout(
+        showDailyQuestion,
+        1200
+      );
+
+    }
+
+    return;
+
+  }
+
+  if(lives <= 0){
+
+    setTimeout(
+      showFinalResult,
+      1200
+    );
+
+  }else{
+
+    setTimeout(
+      showQuestion,
+      1000
+    );
+
+  }
 
 }
 
-updateStats();
 
-checkGameOver();
-
-}
-
+/* =========================
+   GAME OVER
+========================= */
 
 function checkGameOver(){
 
-if(lives<=0){
+  if(isDaily){
 
-setTimeout(showFinalResult,1200);
+    if(dailyIndex >= 10){
 
-}else{
+      setTimeout(
+        finishDaily,
+        1200
+      );
 
-setTimeout(showQuestion,1000);
+    }else{
+
+      setTimeout(
+        showDailyQuestion,
+        1200
+      );
+
+    }
+
+    return;
+
+  }
+
+  if(lives <= 0){
+
+    setTimeout(
+      showFinalResult,
+      1200
+    );
+
+  }else{
+
+    setTimeout(
+      showQuestion,
+      1000
+    );
+
+  }
 
 }
 
-}
 
+/* =========================
+   FINAL RESULT
+========================= */
 
 function showFinalResult(){
 
-clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-if(score>highScore){
+  hideAll();
 
-highScore=score;
+  resultScreen.classList.remove("hidden");
 
-localStorage.setItem(
-"vocabularyHighScore",
-highScore
-);
+  $("finalScore").textContent =
+    score;
+
+  $("finalLevel").textContent =
+    level;
+
+  $("finalCorrect").textContent =
+    correctAnswers;
+
+  $("finalMistakes").textContent =
+    mistakes;
+
+  $("finalCombo").textContent =
+    bestCombo;
+
+  if(score > highScore){
+
+    highScore = score;
+
+    localStorage.setItem(
+      "vocabularyHighScore",
+      highScore
+    );
+
+  }
+
+  $("finalHighScore").textContent =
+    highScore;
 
 }
 
-hideAll();
 
-resultScreen.classList.remove("hidden");
+/* =========================
+   DAILY START
+========================= */
 
-$("finalScore").textContent=score;
+function startDaily(){
 
-$("finalLevel").textContent=level;
+  const d = dailyData();
 
-$("finalCorrect").textContent=correctAnswers;
+  if(d.progress >= 10){
 
-$("finalMistakes").textContent=mistakes;
+    alert(
+      "Bugungi Daily Challenge allaqachon bajarilgan!"
+    );
 
-$("finalCombo").textContent=bestCombo;
+    return;
 
-$("finalHighScore").textContent=highScore;
+  }
+
+  isDaily = true;
+
+  dailyIndex = d.progress;
+
+  dailyScore = 0;
+
+  dailyCorrect = 0;
+
+  dailyCombo = 0;
+
+  dailyBestCombo = 0;
+
+  mistakes = 0;
+
+  challenge = 0;
+
+  lives = 3;
+
+  hideAll();
+
+  gameScreen.classList.remove("hidden");
+
+  showDailyQuestion();
 
 }
 
+
+/* =========================
+   DAILY QUESTION
+========================= */
+
+function showDailyQuestion(){
+
+  clearInterval(timerInterval);
+
+  answered = false;
+
+  hintUsed = false;
+
+  $("result").textContent = "";
+
+  $("result").className = "result";
+
+  $("comboText").textContent = "";
+
+  $("answers").innerHTML = "";
+
+  $("lettersBox").classList.add("hidden");
+
+  $("blankBox").classList.add("hidden");
+
+  $("hintBox").classList.add("hidden");
+
+  dailyIndex++;
+
+  const q =
+    sentenceQuestions[
+      (dailyIndex - 1) %
+      sentenceQuestions.length
+    ];
+
+  currentSentence = q;
+
+  correctAnswer = q.answer;
+
+  $("modeTitle").textContent =
+    "🎯 DAILY " +
+    dailyIndex +
+    "/10";
+
+  $("question").innerHTML =
+    '<div class="sentence">' +
+    q.sentence +
+    "</div>";
+
+  createButtons(
+    getOptions(
+      0,
+      correctAnswer
+    )
+  );
+
+  startTimer();
+
+}
+
+
+/* =========================
+   FINISH DAILY
+========================= */
+
+function finishDaily(){
+
+  clearInterval(timerInterval);
+
+  const bonus =
+    dailyCorrect === 10
+      ? 50
+      : 0;
+
+  const total =
+    dailyScore + bonus;
+
+  const old =
+    dailyData();
+
+  const best =
+    Math.max(
+      old.best,
+      total
+    );
+
+  localStorage.setItem(
+    "dailyData",
+    JSON.stringify({
+      date:today(),
+      progress:10,
+      best:best
+    })
+  );
+
+  if(total > highScore){
+
+    highScore = total;
+
+    localStorage.setItem(
+      "vocabularyHighScore",
+      highScore
+    );
+
+  }
+
+  hideAll();
+
+  resultScreen.classList.remove("hidden");
+
+  $("finalScore").textContent =
+    total;
+
+  $("finalLevel").textContent =
+    "Daily";
+
+  $("finalCorrect").textContent =
+    dailyCorrect + "/10";
+
+  $("finalMistakes").textContent =
+    mistakes;
+
+  $("finalCombo").textContent =
+    dailyBestCombo;
+
+  $("finalHighScore").textContent =
+    highScore;
+
+  updateDailyUI();
+
+}
+
+
+/* =========================
+   WORDS SCREEN
+========================= */
 
 function showWords(){
 
-hideAll();
+  hideAll();
 
-wordsScreen.classList.remove("hidden");
+  wordsScreen.classList.remove("hidden");
 
-$("learnedWords").innerHTML="";
+  $("learnedWords").innerHTML = "";
 
-if(!learned.length){
+  if(!learned.length){
 
-$("learnedWords").innerHTML =
-"<p>📚 Hali hech qanday so‘z o‘rganilmagan.</p>";
+    $("learnedWords").innerHTML =
+      "<p>📚 Hali hech qanday so‘z o‘rganilmagan.</p>";
 
-return;
+    return;
+
+  }
+
+  learned.forEach(word => {
+
+    const data =
+      words.find(
+        item => item[0] === word
+      );
+
+    if(!data) return;
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "word-card";
+
+    card.innerHTML =
+      "<div><strong>" +
+      data[0] +
+      "</strong> — " +
+      data[1] +
+      "</div>" +
+      "<button>🔊</button>";
+
+    card.querySelector("button").onclick =
+      () => {
+
+        const speech =
+          new SpeechSynthesisUtterance(
+            data[0]
+          );
+
+        speech.lang = "en-US";
+
+        speech.rate = .8;
+
+        speechSynthesis.speak(speech);
+
+      };
+
+    $("learnedWords")
+      .appendChild(card);
+
+  });
 
 }
 
-learned.forEach(word=>{
 
-let data =
-words.find(
-x=>x.english===word
-);
-
-if(!data)return;
-
-let card =
-document.createElement("div");
-
-card.className="word-card";
-
-card.innerHTML =
-"<div><strong>"+
-data.english+
-"</strong> — "+
-data.uzbek+
-"</div><button>🔊</button>";
-
-card.querySelector("button").onclick=()=>{
-
-let speech =
-new SpeechSynthesisUtterance(
-data.english
-);
-
-speech.lang="en-US";
-speech.rate=.8;
-
-speechSynthesis.speak(speech);
-
-};
-
-$("learnedWords").appendChild(card);
-
-});
-
-}
-
+/* =========================
+   SPEAK
+========================= */
 
 function speak(){
 
-let word =
-currentWord
-?
-currentWord.english
-:
-correctAnswer;
+  const word =
+    currentWord
+      ? currentWord[0]
+      : correctAnswer;
 
-if("speechSynthesis" in window){
+  if("speechSynthesis" in window){
 
-let speech =
-new SpeechSynthesisUtterance(word);
+    const speech =
+      new SpeechSynthesisUtterance(word);
 
-speech.lang="en-US";
-speech.rate=.8;
+    speech.lang = "en-US";
 
-speechSynthesis.cancel();
+    speech.rate = .8;
 
-speechSynthesis.speak(speech);
+    speechSynthesis.cancel();
+
+    speechSynthesis.speak(speech);
+
+  }
 
 }
 
-}
 
+/* =========================
+   HINT
+========================= */
 
-$("startBtn").onclick=()=>{
+$("hintBtn").onclick = () => {
 
-hideAll();
+  if(
+    !answered &&
+    !hintUsed &&
+    correctAnswer
+  ){
 
-modeScreen.classList.remove("hidden");
+    hintUsed = true;
+
+    $("hintBox").textContent =
+      "💡 Birinchi harfi: " +
+      correctAnswer[0].toUpperCase();
+
+    $("hintBox").classList.remove(
+      "hidden"
+    );
+
+  }
 
 };
 
 
-$("dailyBtn").onclick=()=>{
+/* =========================
+   INPUTS
+========================= */
 
-hideAll();
+$("wordSubmit").onclick = () => {
 
-dailyScreen.classList.remove("hidden");
+  checkAnswer(
+    $("wordInput").value
+  );
 
-updateDailyUI();
+  $("wordInput").value = "";
+
+};
+
+
+$("blankSubmit").onclick = () => {
+
+  checkAnswer(
+    $("blankInput").value
+  );
+
+  $("blankInput").value = "";
+
+};
+
+
+$("wordInput").onkeydown = e => {
+
+  if(e.key === "Enter"){
+
+    checkAnswer(
+      e.target.value
+    );
+
+    e.target.value = "";
+
+  }
+
+};
+
+
+$("blankInput").onkeydown = e => {
+
+  if(e.key === "Enter"){
+
+    checkAnswer(
+      e.target.value
+    );
+
+    e.target.value = "";
+
+  }
+
+};
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+$("startBtn").onclick = () => {
+
+  hideAll();
+
+  modeScreen.classList.remove(
+    "hidden"
+  );
+
+};
+
+
+$("backModeBtn").onclick = () => {
+
+  hideAll();
+
+  menu.classList.remove(
+    "hidden"
+  );
+
+};
+
+
+document
+  .querySelectorAll(".mode-btn")
+  .forEach(button => {
+
+    button.onclick = () => {
+
+      currentMode =
+        button.dataset.mode;
+
+      startGame();
+
+    };
+
+  });
+
+
+$("dailyBtn").onclick = () => {
+
+  hideAll();
+
+  dailyScreen.classList.remove(
+    "hidden"
+  );
+
+  updateDailyUI();
 
 };
 
 
 $("dailyStartBtn").onclick =
-startDaily;
+  startDaily;
 
 
-$("dailyBackBtn").onclick=()=>{
+$("dailyBackBtn").onclick = () => {
 
-hideAll();
+  hideAll();
 
-menu.classList.remove("hidden");
-
-};
-
-
-document.querySelectorAll(".mode-btn")
-.forEach(button=>{
-
-button.onclick=()=>{
-
-currentMode =
-button.dataset.mode;
-
-isDaily=false;
-
-hideAll();
-
-gameScreen.classList.remove("hidden");
-
-startGame();
+  menu.classList.remove(
+    "hidden"
+  );
 
 };
-
-});
 
 
 $("wordsBtn").onclick =
-showWords;
+  showWords;
 
 
-$("highBtn").onclick=()=>{
+$("highBtn").onclick = () => {
 
-hideAll();
+  hideAll();
 
-highScreen.classList.remove("hidden");
+  highScreen.classList.remove(
+    "hidden"
+  );
 
-$("highScoreValue").textContent =
-highScore;
-
-};
-
-
-$("themeBtn").onclick=()=>{
-
-document.body.classList.toggle("dark");
-
-$("themeBtn").textContent =
-document.body.classList.contains("dark")
-?
-"☀️ Light"
-:
-"🌙 Dark";
+  $("highScoreValue").textContent =
+    highScore;
 
 };
 
 
-$("backMenuBtn").onclick =
-$("resultMenuBtn").onclick =
-$("wordsBackBtn").onclick =
-$("highBackBtn").onclick =
-$("quitBtn").onclick=()=>{
+$("themeBtn").onclick = () => {
 
-clearInterval(timerInterval);
+  document.body.classList.toggle(
+    "dark"
+  );
 
-hideAll();
-
-menu.classList.remove("hidden");
-
-updateDailyUI();
-
-};
-
-
-$("restartBtn").onclick=()=>{
-
-hideAll();
-
-modeScreen.classList.remove("hidden");
-
-};
-
-
-$("hintBtn").onclick=()=>{
-
-if(!answered && !hintUsed){
-
-hintUsed=true;
-
-$("hintBox").textContent =
-"💡 Birinchi harfi: "+
-correctAnswer[0].toUpperCase();
-
-$("hintBox").classList.remove("hidden");
-
-}
+  $("themeBtn").textContent =
+    document.body.classList.contains("dark")
+      ? "☀️ Light"
+      : "🌙 Dark";
 
 };
 
 
 $("speakBtn").onclick =
-speak;
+  speak;
 
 
-$("checkWordBtn").onclick=()=>{
+$("resultMenuBtn").onclick = () => {
 
-checkAnswer(
-$("wordInput").value
-);
+  clearInterval(timerInterval);
 
-};
+  hideAll();
 
-
-$("wordInput").onkeydown=e=>{
-
-if(e.key==="Enter"){
-
-checkAnswer(e.target.value);
-
-}
+  menu.classList.remove(
+    "hidden"
+  );
 
 };
 
 
-$("checkBlankBtn").onclick=()=>{
+$("restartBtn").onclick = () => {
 
-checkAnswer(
-$("blankInput").value
-);
+  hideAll();
+
+  modeScreen.classList.remove(
+    "hidden"
+  );
+
+};
+
+
+$("wordsBackBtn").onclick = () => {
+
+  hideAll();
+
+  menu.classList.remove(
+    "hidden"
+  );
 
 };
 
 
-$("blankInput").onkeydown=e=>{
+$("highBackBtn").onclick = () => {
 
-if(e.key==="Enter"){
+  hideAll();
 
-checkAnswer(e.target.value);
-
-}
+  menu.classList.remove(
+    "hidden"
+  );
 
 };
 
+
+$("quitBtn").onclick = () => {
+
+  clearInterval(timerInterval);
+
+  hideAll();
+
+  menu.classList.remove(
+    "hidden"
+  );
+
+};
+
+
+/* =========================
+   STARTUP
+========================= */
 
 updateDailyUI();
 
