@@ -1103,6 +1103,10 @@ function showQuestion(){
   answered = false;
 
   hintUsed = false;
+  hintLevel = 0;
+
+  $("hintBtn").disabled = false;
+  $("hintBtn").textContent = "💡 Hint";
 
   $("result").textContent = "";
 
@@ -1815,6 +1819,10 @@ function showDailyQuestion(){
   answered = false;
 
   hintUsed = false;
+  hintLevel = 0;
+
+  $("hintBtn").disabled = false;
+  $("hintBtn").textContent = "💡 Hint";
 
   $("result").textContent = "";
 
@@ -2037,24 +2045,69 @@ function speak(){
    HINT
 ========================= */
 
+/* =========================
+   HINT SYSTEM
+========================= */
+
+let hintLevel = 0;
+
 $("hintBtn").onclick = () => {
 
-  if(
-    !answered &&
-    !hintUsed &&
-    correctAnswer
-  ){
+  if(answered || !correctAnswer) return;
 
-    hintUsed = true;
+  hintLevel++;
+
+  /* 1-HINT:
+     Birinchi va oxirgi harfni ko‘rsatadi
+  */
+  if(hintLevel === 1){
+
+    const word = correctAnswer.trim();
+
+    if(word.length === 1){
+
+      $("hintBox").textContent =
+        "💡 1-Hint: " + word.toUpperCase();
+
+    }else{
+
+      const first = word[0].toUpperCase();
+      const last = word[word.length - 1].toLowerCase();
+
+      const middle = ".".repeat(
+        Math.max(0, word.length - 2)
+      );
+
+      $("hintBox").textContent =
+        "💡 1-Hint: " +
+        first +
+        middle +
+        last;
+    }
+
+    $("hintBox").classList.remove("hidden");
+
+    $("hintBtn").textContent = "💡 2-Hint";
+
+    return;
+  }
+
+  /* 2-HINT:
+     So‘z nechta harfdan iboratligini ko‘rsatadi
+  */
+  if(hintLevel === 2){
 
     $("hintBox").textContent =
-      "💡 Birinchi harfi: " +
-      correctAnswer[0].toUpperCase();
+      "💡 2-Hint: " +
+      correctAnswer.trim().length +
+      " harf";
 
-    $("hintBox").classList.remove(
-      "hidden"
-    );
+    $("hintBtn").disabled = true;
 
+    $("hintBtn").textContent =
+      "💡 Hintlar tugadi";
+
+    return;
   }
 
 };
