@@ -8,85 +8,329 @@
 <style>
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 :root{
-  --bg1:#111827;
-  --bg2:#1e3a8a;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
-  --soft:#f3f4f6;
-  --blue:#2563eb;
-  --blue2:#1d4ed8;
-  --green:#16a34a;
-  --red:#dc2626;
-  --gold:#f59e0b;
+  --bg:#eef3ff;
+  --bg2:#dbeafe;
+
+  --card:rgba(255,255,255,.82);
+  --card-solid:#ffffff;
+
+  --text:#101828;
+  --muted:#667085;
+
+  --soft:#f2f5fa;
+  --soft2:#e8edf5;
+
+  --primary:#2563eb;
+  --primary2:#7c3aed;
+  --green:#12b76a;
+  --red:#f04438;
+  --gold:#f79009;
+  --cyan:#06b6d4;
+
+  --border:rgba(15,23,42,.08);
+
+  --shadow:
+    0 25px 70px rgba(15,23,42,.14),
+    0 5px 20px rgba(15,23,42,.06);
 }
 
 body.dark{
-  --card:#1f2937;
-  --text:#f9fafb;
-  --muted:#cbd5e1;
-  --soft:#374151;
+  --bg:#070b14;
+  --bg2:#111827;
+
+  --card:rgba(17,24,39,.82);
+  --card-solid:#111827;
+
+  --text:#f8fafc;
+  --muted:#98a2b3;
+
+  --soft:#182230;
+  --soft2:#202c3d;
+
+  --border:rgba(255,255,255,.08);
+
+  --shadow:
+    0 30px 80px rgba(0,0,0,.45),
+    0 5px 25px rgba(0,0,0,.25);
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
   min-height:100vh;
   padding:20px;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
   color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(37,99,235,.28),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(124,58,237,.24),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(6,182,212,.18),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      var(--bg),
+      var(--bg2)
+    );
+
+  transition:
+    background .35s ease,
+    color .35s ease;
 }
 
-.game{
-  width:100%;
-  max-width:720px;
-  padding:30px;
-  border-radius:28px;
-  background:var(--card);
-  box-shadow:0 25px 70px #0006;
+body::before{
+  content:"";
+  position:fixed;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(37,99,235,.12);
+  filter:blur(80px);
+  top:-100px;
+  left:-100px;
+  pointer-events:none;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:rgba(124,58,237,.10);
+  filter:blur(90px);
+  right:-100px;
+  bottom:-100px;
+  pointer-events:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 .hidden{
   display:none!important;
 }
 
+.game{
+  width:100%;
+  max-width:820px;
+  min-height:600px;
+
+  padding:30px;
+
+  border:1px solid var(--border);
+  border-radius:32px;
+
+  background:var(--card);
+
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+
+  box-shadow:var(--shadow);
+
+  position:relative;
+  overflow:hidden;
+
+  animation:pageIn .45s ease;
+}
+
+.game::before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:rgba(37,99,235,.08);
+  filter:blur(50px);
+  right:-70px;
+  top:-70px;
+  pointer-events:none;
+}
+
+.game::after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:rgba(124,58,237,.07);
+  filter:blur(45px);
+  left:-60px;
+  bottom:-60px;
+  pointer-events:none;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.985);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+section{
+  position:relative;
+  z-index:2;
+}
+
 h1{
-  margin-top:0;
-  font-size:32px;
+  font-size:38px;
+  line-height:1.15;
+  letter-spacing:-1.2px;
 }
 
 h2{
-  margin-top:0;
+  font-size:28px;
+  letter-spacing:-.5px;
 }
 
 .subtitle{
   color:var(--muted);
-  margin-bottom:25px;
+  margin-top:9px;
+  margin-bottom:24px;
+  line-height:1.6;
 }
 
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.level{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:9px 13px;
+
+  border:1px solid var(--border);
+  border-radius:12px;
+
+  background:var(--soft);
+
+  color:var(--muted);
+  font-size:14px;
+  font-weight:700;
+}
+
+.level span{
+  color:var(--primary);
+  font-size:17px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
 button{
-  width:100%;
-  padding:14px;
+  position:relative;
+  overflow:hidden;
+
+  padding:14px 17px;
   margin:6px 0;
-  border:0;
-  border-radius:13px;
-  background:var(--blue);
+
+  border-radius:15px;
+
   color:white;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.2s;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary2)
+    );
+
+  font-size:15px;
+  font-weight:800;
+
+  box-shadow:
+    0 8px 20px rgba(37,99,235,.18);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    opacity .2s ease;
+}
+
+button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255,255,255,.22),
+      transparent 75%
+    );
+
+  transform:translateX(-120%);
+  transition:transform .5s ease;
+}
+
+button:hover::after{
+  transform:translateX(120%);
 }
 
 button:hover{
-  background:var(--blue2);
-  transform:translateY(-1px);
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(37,99,235,.25);
 }
 
 button:active{
@@ -94,15 +338,28 @@ button:active{
 }
 
 .secondary{
-  background:#6b7280;
+  background:var(--soft);
+  color:var(--text);
+
+  box-shadow:none;
+  border:1px solid var(--border);
 }
 
 .secondary:hover{
-  background:#4b5563;
+  background:var(--soft2);
+  box-shadow:none;
 }
 
 .dark-btn{
-  background:#111827;
+  width:auto;
+  padding:10px 14px;
+
+  background:var(--soft);
+  color:var(--text);
+
+  border:1px solid var(--border);
+
+  box-shadow:none;
 }
 
 .small-btn{
@@ -112,231 +369,1073 @@ button:active{
   font-size:13px;
 }
 
-.topbar{
+/* =========================
+   MENU HERO
+========================= */
+
+.hero{
+  padding:8px 0 18px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:7px 11px;
+  margin-bottom:14px;
+
+  border:1px solid rgba(37,99,235,.15);
+  border-radius:999px;
+
+  background:rgba(37,99,235,.08);
+
+  color:var(--primary);
+
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+}
+
+.hero-title{
+  max-width:620px;
+}
+
+.hero-title span{
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary2),
+      var(--cyan)
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+}
+
+.hero-subtitle{
+  max-width:580px;
+}
+
+/* =========================
+   MENU STATS
+========================= */
+
+.menu-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:10px 0 18px;
+}
+
+.menu-stat{
+  padding:15px;
+
+  border:1px solid var(--border);
+  border-radius:18px;
+
+  background:rgba(255,255,255,.35);
+  backdrop-filter:blur(10px);
+}
+
+body.dark .menu-stat{
+  background:rgba(255,255,255,.025);
+}
+
+.menu-stat-icon{
+  width:36px;
+  height:36px;
+
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:15px;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:var(--soft);
+
+  margin-bottom:9px;
 }
 
-.menu-grid,
-.mode-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
+.menu-stat-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
 }
+
+.menu-stat-value{
+  margin-top:3px;
+  font-size:21px;
+  font-weight:900;
+}
+
+/* =========================
+   DAILY
+========================= */
 
 .daily{
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#f59e0b,#ef4444);
+  position:relative;
+  overflow:hidden;
+
+  padding:20px;
+  margin:15px 0;
+
+  border-radius:22px;
+
   color:white;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255,255,255,.2),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #f79009,
+      #ef4444,
+      #c026d3
+    );
+
+  box-shadow:
+    0 15px 35px rgba(239,68,68,.2);
+}
+
+.daily::before{
+  content:"🎯";
+
+  position:absolute;
+  right:18px;
+  top:12px;
+
+  font-size:50px;
+  opacity:.15;
 }
 
 .daily strong{
   font-size:20px;
 }
 
-.challenge{
-  padding:12px;
-  margin:10px 0;
-  border-radius:14px;
-  background:linear-gradient(135deg,#7c3aed,#dc2626);
-  color:white;
-  text-align:center;
-  font-weight:bold;
+.daily-description{
+  display:block;
+  margin-top:7px;
+  font-size:13px;
+  opacity:.9;
 }
+
+/* =========================
+   MENU GRID
+========================= */
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
+
+.menu-button{
+  min-height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:12px;
+
+  text-align:left;
+}
+
+.menu-button .icon{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:13px;
+
+  background:rgba(255,255,255,.16);
+
+  font-size:20px;
+}
+
+.menu-button .button-text{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.menu-button .button-title{
+  font-size:14px;
+  font-weight:900;
+}
+
+.menu-button .button-sub{
+  font-size:11px;
+  font-weight:600;
+  opacity:.7;
+}
+
+/* =========================
+   MODE GRID
+========================= */
+
+.mode-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:22px 0;
+}
+
+.mode-btn{
+  min-height:118px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+
+  text-align:left;
+
+  padding:19px;
+
+  background:var(--card-solid);
+  color:var(--text);
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 8px 25px rgba(15,23,42,.06);
+}
+
+body.dark .mode-btn{
+  background:#131c2b;
+}
+
+.mode-btn:hover{
+  border-color:rgba(37,99,235,.3);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.10),
+      rgba(124,58,237,.10)
+    );
+
+  color:var(--text);
+
+  box-shadow:
+    0 15px 35px rgba(37,99,235,.12);
+}
+
+.mode-icon{
+  font-size:28px;
+  margin-bottom:12px;
+}
+
+.mode-name{
+  font-size:15px;
+  font-weight:900;
+}
+
+.mode-desc{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+}
+
+/* =========================
+   GAME STATS
+========================= */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:7px;
+  gap:8px;
   margin-bottom:15px;
 }
 
 .stat{
-  padding:10px 5px;
-  border-radius:12px;
+  min-height:74px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:9px 5px;
+
+  border:1px solid var(--border);
+  border-radius:16px;
+
   background:var(--soft);
+
   text-align:center;
-  font-size:13px;
-  font-weight:bold;
+
+  font-size:11px;
+  font-weight:800;
+
+  transition:.2s;
+}
+
+.stat:hover{
+  transform:translateY(-2px);
 }
 
 .stat span{
   display:block;
-  margin-top:3px;
-  font-size:18px;
+  margin-top:4px;
+
+  color:var(--text);
+
+  font-size:20px;
+  font-weight:900;
 }
+
+/* =========================
+   PROGRESS
+========================= */
 
 .progress{
   width:100%;
   height:9px;
+
   margin:10px 0 20px;
+
   overflow:hidden;
-  border-radius:20px;
-  background:var(--soft);
+
+  border-radius:999px;
+
+  background:var(--soft2);
 }
 
 .progress-bar{
   width:100%;
   height:100%;
-  background:var(--blue);
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary2),
+      var(--cyan)
+    );
+
+  box-shadow:
+    0 0 12px rgba(37,99,235,.35);
+
   transition:width 1s linear;
 }
 
+/* =========================
+   MODE TITLE
+========================= */
+
 .mode-title{
+  display:inline-flex;
+
+  padding:8px 11px;
   margin-bottom:10px;
-  color:var(--blue);
-  font-weight:bold;
+
+  border-radius:10px;
+
+  background:rgba(37,99,235,.08);
+
+  color:var(--primary);
+
+  font-size:12px;
+  font-weight:900;
 }
 
+/* =========================
+   QUESTION
+========================= */
+
 .question{
+  min-height:130px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   padding:25px;
+
   margin-bottom:15px;
-  border-radius:18px;
-  background:var(--soft);
+
+  border:1px solid var(--border);
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.07),
+      rgba(124,58,237,.06)
+    );
+
   text-align:center;
-  font-size:26px;
-  font-weight:bold;
+
+  font-size:29px;
+  font-weight:900;
+
+  letter-spacing:-.5px;
+
+  animation:questionIn .35s ease;
+}
+
+@keyframes questionIn{
+  from{
+    opacity:0;
+    transform:translateY(7px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .sentence{
-  font-size:21px;
-  line-height:1.5;
+  font-size:20px;
+  line-height:1.6;
 }
 
-.result{
-  min-height:30px;
-  margin:12px 0;
+/* =========================
+   ANSWERS
+========================= */
+
+#answers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.answer-btn{
+  min-height:58px;
+
+  background:var(--card-solid);
+  color:var(--text);
+
+  border:1px solid var(--border);
+
+  box-shadow:none;
+
+  font-size:14px;
+}
+
+.answer-btn:hover{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.10),
+      rgba(124,58,237,.08)
+    );
+
+  color:var(--text);
+
+  border-color:rgba(37,99,235,.3);
+
+  box-shadow:none;
+}
+
+/* =========================
+   LETTERS
+========================= */
+
+.letters{
+  padding:20px;
+  margin:15px 0;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.08),
+      rgba(124,58,237,.08)
+    );
+
+  color:var(--primary);
+
   text-align:center;
-  font-size:18px;
-  font-weight:bold;
+
+  font-size:29px;
+  font-weight:900;
+
+  letter-spacing:7px;
+}
+
+/* =========================
+   INPUT
+========================= */
+
+input{
+  width:100%;
+
+  padding:15px 16px;
+
+  margin-bottom:8px;
+
+  border:1.5px solid var(--border);
+  border-radius:15px;
+
+  outline:none;
+
+  background:var(--card-solid);
+  color:var(--text);
+
+  font-size:16px;
+
+  transition:.2s;
+}
+
+input:focus{
+  border-color:var(--primary);
+
+  box-shadow:
+    0 0 0 4px rgba(37,99,235,.10);
+}
+
+/* =========================
+   HINT
+========================= */
+
+.hint-box{
+  padding:13px;
+  margin:11px 0;
+
+  border:1px solid rgba(245,158,11,.18);
+  border-radius:14px;
+
+  background:rgba(245,158,11,.10);
+  color:var(--gold);
+
+  text-align:center;
+  font-weight:900;
+
+  animation:hintIn .3s ease;
+}
+
+@keyframes hintIn{
+  from{
+    opacity:0;
+    transform:scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result{
+  min-height:28px;
+
+  margin:12px 0;
+
+  text-align:center;
+
+  font-size:16px;
+  font-weight:900;
 }
 
 .correct{
   color:var(--green);
+  animation:correctAnim .45s ease;
 }
 
 .wrong{
   color:var(--red);
+  animation:wrongAnim .35s ease;
 }
+
+@keyframes correctAnim{
+  0%{
+    transform:scale(.9);
+    opacity:.3;
+  }
+
+  60%{
+    transform:scale(1.08);
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@keyframes wrongAnim{
+  0%,100%{
+    transform:translateX(0);
+  }
+
+  25%{
+    transform:translateX(-6px);
+  }
+
+  75%{
+    transform:translateX(6px);
+  }
+}
+
+/* =========================
+   COMBO
+========================= */
 
 .combo{
-  min-height:24px;
+  min-height:28px;
+
   color:var(--gold);
+
   text-align:center;
-  font-weight:bold;
+
+  font-size:16px;
+  font-weight:900;
 }
 
-.letters{
-  margin:20px 0;
-  color:var(--blue);
+.combo.pop{
+  animation:comboPop .5s ease;
+}
+
+@keyframes comboPop{
+  0%{
+    transform:scale(.7);
+    opacity:.3;
+  }
+
+  50%{
+    transform:scale(1.2);
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* =========================
+   CHALLENGE
+========================= */
+
+.challenge{
+  padding:13px 16px;
+  margin-bottom:15px;
+
+  border:1px solid rgba(239,68,68,.15);
+  border-radius:15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239,68,68,.12),
+      rgba(245,158,11,.12)
+    );
+
+  color:var(--red);
+
   text-align:center;
-  font-size:30px;
-  font-weight:bold;
-  letter-spacing:8px;
+
+  font-size:13px;
+  font-weight:900;
+
+  animation:challengePulse 1.5s infinite;
 }
 
-input{
-  width:100%;
-  padding:14px;
-  margin-bottom:8px;
-  border:2px solid #d1d5db;
-  border-radius:12px;
-  outline:none;
-  background:var(--card);
-  color:var(--text);
-  font-size:17px;
+@keyframes challengePulse{
+  0%,100%{
+    box-shadow:0 0 0 rgba(239,68,68,0);
+  }
+
+  50%{
+    box-shadow:0 0 22px rgba(239,68,68,.10);
+  }
 }
 
-input:focus{
-  border-color:var(--blue);
+/* =========================
+   GAME ACTIONS
+========================= */
+
+.game-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:8px;
 }
 
-.hint-box{
-  padding:10px;
-  margin:10px 0;
-  border-radius:12px;
-  background:#fef3c7;
-  color:#92400e;
-  text-align:center;
-  font-weight:bold;
+.game-actions button{
+  margin:0;
 }
 
-body.dark .hint-box{
-  background:#78350f;
-  color:#fef3c7;
+.speak-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  width:28px;
+  height:28px;
+
+  margin-right:5px;
+
+  border-radius:9px;
+
+  background:rgba(255,255,255,.1);
 }
+
+/* =========================
+   BIG SCORE
+========================= */
 
 .big-score{
-  margin:20px;
-  color:var(--blue);
+  margin:25px 0;
+
   text-align:center;
-  font-size:55px;
-  font-weight:bold;
+
+  font-size:68px;
+  font-weight:1000;
+  letter-spacing:-3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary2),
+      var(--cyan)
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  animation:scoreIn .6s ease;
+}
+
+@keyframes scoreIn{
+  from{
+    opacity:0;
+    transform:scale(.75);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* =========================
+   RESULT STATS
+========================= */
+
+.daily-stats{
+  padding:18px;
+
+  margin:12px 0 18px;
+
+  border:1px solid var(--border);
+  border-radius:20px;
+
+  background:var(--soft);
+}
+
+.daily-stats div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:9px 0;
+
+  border-bottom:1px solid var(--border);
+
+  color:var(--muted);
+  font-size:14px;
+}
+
+.daily-stats div:last-child{
+  border-bottom:0;
+}
+
+.daily-stats strong{
+  color:var(--text);
+  font-size:16px;
+}
+
+/* =========================
+   WORDS
+========================= */
+
+#learnedWords{
+  margin:18px 0;
 }
 
 .word-card{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:12px;
+
   padding:14px;
-  margin:7px 0;
-  border-radius:15px;
+
+  margin:8px 0;
+
+  border:1px solid var(--border);
+  border-radius:17px;
+
   background:var(--soft);
+
+  transition:.2s;
+}
+
+.word-card:hover{
+  transform:translateX(3px);
+  border-color:rgba(37,99,235,.2);
+}
+
+.word-left{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.word-icon{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.13),
+      rgba(124,58,237,.13)
+    );
+
+  font-size:17px;
+}
+
+.word-main{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.word-main strong{
+  font-size:15px;
+}
+
+.word-main span{
+  color:var(--muted);
+  font-size:12px;
 }
 
 .word-card button{
-  width:auto;
+  width:42px;
+  height:42px;
+
+  padding:0;
   margin:0;
-  padding:8px 12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
 }
 
-.daily-stats{
-  padding:14px;
-  margin:10px 0;
-  border-radius:15px;
+/* =========================
+   DAILY SCREEN
+========================= */
+
+.daily-progress-bar{
+  width:100%;
+  height:10px;
+
+  overflow:hidden;
+
+  margin:12px 0;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.2);
+}
+
+.daily-progress-fill{
+  width:0%;
+  height:100%;
+
+  border-radius:999px;
+
+  background:white;
+
+  transition:width .5s ease;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty-state{
+  padding:35px 20px;
+
+  border:1px dashed var(--border);
+  border-radius:20px;
+
   background:var(--soft);
+
+  text-align:center;
+  color:var(--muted);
 }
 
-.daily-stats div{
-  margin:5px 0;
+.empty-icon{
+  font-size:42px;
+  margin-bottom:10px;
 }
 
-@media(max-width:550px){
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
 
   body{
-    padding:10px;
+    padding:9px;
+    align-items:flex-start;
   }
 
   .game{
-    padding:20px;
+    min-height:calc(100vh - 18px);
+
+    padding:19px;
+
+    border-radius:25px;
   }
 
   h1{
-    font-size:26px;
+    font-size:29px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .subtitle{
+    font-size:14px;
+  }
+
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .menu-button{
+    min-height:67px;
+  }
+
+  .menu-stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .menu-stat{
+    padding:11px 8px;
+  }
+
+  .menu-stat-icon{
+    width:32px;
+    height:32px;
+  }
+
+  .menu-stat-value{
+    font-size:17px;
+  }
+
+  .mode-grid{
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  .mode-btn{
+    min-height:92px;
   }
 
   .stats{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .mode-grid,
-  .menu-grid{
-    grid-template-columns:1fr;
+  .stat{
+    min-height:68px;
   }
 
   .question{
-    font-size:22px;
+    min-height:115px;
+    padding:20px;
+    font-size:24px;
+  }
+
+  .sentence{
+    font-size:17px;
+  }
+
+  #answers{
+    grid-template-columns:1fr;
   }
 
   .letters{
-    font-size:24px;
-    letter-spacing:5px;
+    font-size:22px;
+    letter-spacing:4px;
+    overflow:hidden;
+  }
+
+  .game-actions{
+    grid-template-columns:1fr;
+  }
+
+  .big-score{
+    font-size:55px;
+  }
+}
+
+@media(max-width:390px){
+
+  .game{
+    padding:15px;
+  }
+
+  .stats{
+    gap:5px;
+  }
+
+  .stat{
+    font-size:10px;
+  }
+
+  .stat span{
+    font-size:17px;
+  }
+
+  .menu-stats{
+    gap:6px;
+  }
+
+  .menu-stat-label{
+    font-size:10px;
+  }
+
+  .menu-stat-value{
+    font-size:15px;
   }
 }
 </style>
@@ -346,44 +1445,217 @@ body.dark .hint-box{
 
 <div class="game">
 
-<!-- MENU -->
+<!-- =========================
+     MENU
+========================= -->
+
 <section id="menu">
 
   <div class="topbar">
-    <div></div>
-    <button id="themeBtn" class="small-btn dark-btn">🌙 Dark</button>
+
+    <div class="hero-badge">
+      ✨ PREMIUM LEARNING
+    </div>
+
+    <button id="themeBtn" class="dark-btn small-btn">
+      🌙
+    </button>
+
   </div>
 
-  <h1>🧩 Lug‘at Boshqotirmasi</h1>
+  <div class="hero">
 
-  <p class="subtitle">
-    Inglizcha so‘zlarni o‘yin orqali o‘rganing!
-  </p>
+    <h1 class="hero-title">
+      🧩 Lug‘at <span>Boshqotirmasi</span>
+    </h1>
+
+    <p class="subtitle hero-subtitle">
+      Inglizcha so‘zlarni o‘yin orqali o‘rganing,
+      ball to‘plang va o‘z rekordingizni yangilang.
+    </p>
+
+  </div>
+
+
+  <!-- MENU STATS -->
+
+  <div class="menu-stats">
+
+    <div class="menu-stat">
+
+      <div class="menu-stat-icon">
+        🏆
+      </div>
+
+      <div class="menu-stat-label">
+        High Score
+      </div>
+
+      <div
+        class="menu-stat-value"
+        id="menuHighScore"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="menu-stat">
+
+      <div class="menu-stat-icon">
+        📚
+      </div>
+
+      <div class="menu-stat-label">
+        O‘rganilgan
+      </div>
+
+      <div
+        class="menu-stat-value"
+        id="menuLearned"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="menu-stat">
+
+      <div class="menu-stat-icon">
+        🎯
+      </div>
+
+      <div class="menu-stat-label">
+        Daily
+      </div>
+
+      <div
+        class="menu-stat-value"
+        id="menuDaily"
+      >
+        0/10
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DAILY -->
 
   <div class="daily">
+
     🎯 <strong>Daily Challenge</strong>
-    <br><br>
-    <span id="dailyMenuText">
+
+    <span
+      class="daily-description"
+      id="dailyMenuText"
+    >
       Bugungi 10 ta maxsus savolga javob bering!
     </span>
+
   </div>
+
+
+  <!-- MENU -->
 
   <div class="menu-grid">
 
-    <button id="startBtn">
-      🎮 O‘YINNI BOSHLASH
+    <button
+      id="startBtn"
+      class="menu-button"
+    >
+
+      <span class="icon">
+        🎮
+      </span>
+
+      <span class="button-text">
+
+        <span class="button-title">
+          O‘YINNI BOSHLASH
+        </span>
+
+        <span class="button-sub">
+          Rejimni tanlang
+        </span>
+
+      </span>
+
     </button>
 
-    <button id="dailyBtn">
-      🎯 DAILY CHALLENGE
+
+    <button
+      id="dailyBtn"
+      class="menu-button"
+    >
+
+      <span class="icon">
+        🎯
+      </span>
+
+      <span class="button-text">
+
+        <span class="button-title">
+          DAILY CHALLENGE
+        </span>
+
+        <span class="button-sub">
+          Bugungi 10 savol
+        </span>
+
+      </span>
+
     </button>
 
-    <button id="wordsBtn">
-      📚 MENING LUG‘ATIM
+
+    <button
+      id="wordsBtn"
+      class="menu-button"
+    >
+
+      <span class="icon">
+        📚
+      </span>
+
+      <span class="button-text">
+
+        <span class="button-title">
+          MENING LUG‘ATIM
+        </span>
+
+        <span class="button-sub">
+          O‘rgangan so‘zlaringiz
+        </span>
+
+      </span>
+
     </button>
 
-    <button id="highBtn">
-      🏆 HIGH SCORE
+
+    <button
+      id="highBtn"
+      class="menu-button"
+    >
+
+      <span class="icon">
+        🏆
+      </span>
+
+      <span class="button-text">
+
+        <span class="button-title">
+          HIGH SCORE
+        </span>
+
+        <span class="button-sub">
+          Shaxsiy rekord
+        </span>
+
+      </span>
+
     </button>
 
   </div>
@@ -391,76 +1663,198 @@ body.dark .hint-box{
 </section>
 
 
-<!-- MODE -->
-<section id="modeScreen" class="hidden">
+<!-- =========================
+     MODE
+========================= -->
 
-  <h2>🎯 Rejimni tanlang</h2>
+<section
+  id="modeScreen"
+  class="hidden"
+>
 
-  <p class="subtitle">
-    Qaysi usulda o‘ynaysiz?
-  </p>
+  <div class="topbar">
+
+    <div>
+      <h2>🎯 Rejimni tanlang</h2>
+
+      <p class="subtitle">
+        O‘zingizga mos o‘yin usulini tanlang.
+      </p>
+    </div>
+
+  </div>
+
 
   <div class="mode-grid">
 
-    <button class="mode-btn" data-mode="english">
-      🇬🇧 → 🇺🇿<br>
-      English → Uzbek
+    <button
+      class="mode-btn"
+      data-mode="english"
+    >
+
+      <span class="mode-icon">
+        🇬🇧
+      </span>
+
+      <span class="mode-name">
+        English → Uzbek
+      </span>
+
+      <span class="mode-desc">
+        Inglizcha so‘zni tarjima qiling
+      </span>
+
     </button>
 
-    <button class="mode-btn" data-mode="uzbek">
-      🇺🇿 → 🇬🇧<br>
-      Uzbek → English
+
+    <button
+      class="mode-btn"
+      data-mode="uzbek"
+    >
+
+      <span class="mode-icon">
+        🇺🇿
+      </span>
+
+      <span class="mode-name">
+        Uzbek → English
+      </span>
+
+      <span class="mode-desc">
+        O‘zbekcha so‘zni toping
+      </span>
+
     </button>
 
-    <button class="mode-btn" data-mode="letters">
-      🔤<br>
-      Harflardan so‘z
+
+    <button
+      class="mode-btn"
+      data-mode="letters"
+    >
+
+      <span class="mode-icon">
+        🔤
+      </span>
+
+      <span class="mode-name">
+        Harflardan so‘z
+      </span>
+
+      <span class="mode-desc">
+        Aralash harflarni tartiblang
+      </span>
+
     </button>
 
-    <button class="mode-btn" data-mode="match">
-      🔗<br>
-      Juftini topish
+
+    <button
+      class="mode-btn"
+      data-mode="match"
+    >
+
+      <span class="mode-icon">
+        🔗
+      </span>
+
+      <span class="mode-name">
+        Juftini topish
+      </span>
+
+      <span class="mode-desc">
+        To‘g‘ri tarjimani toping
+      </span>
+
     </button>
 
-    <button class="mode-btn" data-mode="blank">
-      ✍️<br>
-      Bo‘sh joy
+
+    <button
+      class="mode-btn"
+      data-mode="blank"
+    >
+
+      <span class="mode-icon">
+        ✍️
+      </span>
+
+      <span class="mode-name">
+        Bo‘sh joy
+      </span>
+
+      <span class="mode-desc">
+        Gapdagi so‘zni yozing
+      </span>
+
     </button>
 
-    <button class="mode-btn" data-mode="sentence">
-      💬<br>
-      Gapdan so‘z
+
+    <button
+      class="mode-btn"
+      data-mode="sentence"
+    >
+
+      <span class="mode-icon">
+        💬
+      </span>
+
+      <span class="mode-name">
+        Gapdan so‘z
+      </span>
+
+      <span class="mode-desc">
+        Gapga mos so‘zni toping
+      </span>
+
     </button>
 
   </div>
 
-  <button id="backModeBtn" class="secondary">
-    ⬅️ Orqaga
+
+  <button
+    id="backModeBtn"
+    class="secondary"
+  >
+    ← Orqaga
   </button>
 
 </section>
 
 
-<!-- GAME -->
-<section id="gameScreen" class="hidden">
+<!-- =========================
+     GAME
+========================= -->
+
+<section
+  id="gameScreen"
+  class="hidden"
+>
 
   <div class="topbar">
 
     <div class="level">
-      Level <span id="level">1</span>
+      ⭐ Level
+      <span id="level">1</span>
     </div>
 
-    <button id="quitBtn" class="small-btn secondary">
+    <button
+      id="quitBtn"
+      class="small-btn secondary"
+    >
       🚪 Chiqish
     </button>
 
   </div>
 
-  <div id="challengeBox" class="challenge hidden">
+
+  <div
+    id="challengeBox"
+    class="challenge hidden"
+  >
     ⚡ CHALLENGE!
     Tezlik oshdi:
-    <span id="challengeCount">0</span> ta savol
+    <span id="challengeCount">0</span>
+    ta savol
   </div>
+
 
   <div class="stats">
 
@@ -491,24 +1885,47 @@ body.dark .hint-box{
 
   </div>
 
+
   <div class="progress">
-    <div id="progressBar" class="progress-bar"></div>
+
+    <div
+      id="progressBar"
+      class="progress-bar"
+    ></div>
+
   </div>
 
-  <div id="modeTitle" class="mode-title">
+
+  <div
+    id="modeTitle"
+    class="mode-title"
+  >
     English → Uzbek
   </div>
 
-  <div id="question" class="question">
+
+  <div
+    id="question"
+    class="question"
+  >
     Savol
   </div>
 
+
   <div id="answers"></div>
 
-  <!-- LETTERS -->
-  <div id="lettersBox" class="hidden">
 
-    <div id="mixedLetters" class="letters"></div>
+  <!-- LETTERS -->
+
+  <div
+    id="lettersBox"
+    class="hidden"
+  >
+
+    <div
+      id="mixedLetters"
+      class="letters"
+    ></div>
 
     <input
       id="wordInput"
@@ -518,13 +1935,18 @@ body.dark .hint-box{
     >
 
     <button id="wordSubmit">
-      ✅ Tekshirish
+      ✓ Tekshirish
     </button>
 
   </div>
 
+
   <!-- BLANK -->
-  <div id="blankBox" class="hidden">
+
+  <div
+    id="blankBox"
+    class="hidden"
+  >
 
     <input
       id="blankInput"
@@ -534,146 +1956,261 @@ body.dark .hint-box{
     >
 
     <button id="blankSubmit">
-      ✅ Tekshirish
+      ✓ Tekshirish
     </button>
 
   </div>
 
-  <div id="hintBox" class="hint-box hidden"></div>
 
-  <div id="result" class="result"></div>
+  <div
+    id="hintBox"
+    class="hint-box hidden"
+  ></div>
 
-  <div id="comboText" class="combo"></div>
 
-  <button id="hintBtn" class="secondary">
-    💡 Hint
-  </button>
+  <div
+    id="result"
+    class="result"
+  ></div>
 
-  <button id="speakBtn" class="secondary">
-    🔊 Talaffuz
-  </button>
+
+  <div
+    id="comboText"
+    class="combo"
+  ></div>
+
+
+  <div class="game-actions">
+
+    <button
+      id="hintBtn"
+      class="secondary"
+    >
+      💡 Hint
+    </button>
+
+    <button
+      id="speakBtn"
+      class="secondary"
+    >
+      <span class="speak-icon">🔊</span>
+      Talaffuz
+    </button>
+
+  </div>
 
 </section>
 
 
-<!-- RESULT -->
-<section id="resultScreen" class="hidden">
+<!-- =========================
+     RESULT
+========================= -->
 
-  <h2>🏁 O‘yin tugadi!</h2>
+<section
+  id="resultScreen"
+  class="hidden"
+>
 
-  <div id="finalScore" class="big-score">
+  <div class="hero-badge">
+    🏁 RESULT
+  </div>
+
+  <h2>
+    O‘yin tugadi!
+  </h2>
+
+  <p class="subtitle">
+    Natijangiz tayyor. Keyingi rekordni yangilang!
+  </p>
+
+
+  <div
+    id="finalScore"
+    class="big-score"
+  >
     0
   </div>
+
 
   <div class="daily-stats">
 
     <div>
-      📈 Level:
+      📈 Level
       <strong id="finalLevel">1</strong>
     </div>
 
     <div>
-      ✅ To‘g‘ri:
+      ✅ To‘g‘ri
       <strong id="finalCorrect">0</strong>
     </div>
 
     <div>
-      ❌ Xato:
+      ❌ Xato
       <strong id="finalMistakes">0</strong>
     </div>
 
     <div>
-      🔥 Eng yaxshi combo:
+      🔥 Eng yaxshi combo
       <strong id="finalCombo">0</strong>
     </div>
 
     <div>
-      🏆 High Score:
+      🏆 High Score
       <strong id="finalHighScore">0</strong>
     </div>
 
   </div>
 
+
   <button id="restartBtn">
     🔄 Qayta o‘ynash
   </button>
 
-  <button id="resultMenuBtn" class="secondary">
+  <button
+    id="resultMenuBtn"
+    class="secondary"
+  >
     🏠 Bosh menyu
   </button>
 
 </section>
 
 
-<!-- WORDS -->
-<section id="wordsScreen" class="hidden">
+<!-- =========================
+     WORDS
+========================= -->
 
-  <h2>📚 Mening lug‘atim</h2>
+<section
+  id="wordsScreen"
+  class="hidden"
+>
+
+  <h2>
+    📚 Mening lug‘atim
+  </h2>
+
+  <p class="subtitle">
+    O‘yin davomida o‘rgangan so‘zlaringiz.
+  </p>
 
   <div id="learnedWords"></div>
 
-  <button id="wordsBackBtn" class="secondary">
-    ⬅️ Orqaga
+  <button
+    id="wordsBackBtn"
+    class="secondary"
+  >
+    ← Orqaga
   </button>
 
 </section>
 
 
-<!-- HIGH SCORE -->
-<section id="highScreen" class="hidden">
+<!-- =========================
+     HIGH SCORE
+========================= -->
 
-  <h2>🏆 High Score</h2>
+<section
+  id="highScreen"
+  class="hidden"
+>
 
-  <div id="highScoreValue" class="big-score">
-    0
+  <div class="hero-badge">
+    🏆 PERSONAL RECORD
   </div>
 
-  <p style="text-align:center">
+  <h2>
+    High Score
+  </h2>
+
+  <p class="subtitle">
     Sizning eng yuqori natijangiz
   </p>
 
-  <button id="highBackBtn" class="secondary">
-    ⬅️ Orqaga
+  <div
+    id="highScoreValue"
+    class="big-score"
+  >
+    0
+  </div>
+
+  <button
+    id="highBackBtn"
+    class="secondary"
+  >
+    ← Orqaga
   </button>
 
 </section>
 
 
-<!-- DAILY -->
-<section id="dailyScreen" class="hidden">
+<!-- =========================
+     DAILY
+========================= -->
 
-  <h2>🎯 Daily Challenge</h2>
+<section
+  id="dailyScreen"
+  class="hidden"
+>
+
+  <div class="hero-badge">
+    🎯 DAILY CHALLENGE
+  </div>
+
+  <h2>
+    Bugungi Challenge
+  </h2>
+
+  <p class="subtitle">
+    Har kuni yangi 10 ta savol. Rekordingizni yangilang!
+  </p>
+
 
   <div class="daily">
+
     📅 Bugun:
     <strong id="dailyDate"></strong>
+
+    <div class="daily-progress-bar">
+
+      <div
+        id="dailyProgressFill"
+        class="daily-progress-fill"
+      ></div>
+
+    </div>
+
   </div>
+
 
   <div class="daily-stats">
 
     <div>
-      🎯 Bugungi progress:
+      🎯 Bugungi progress
       <strong id="dailyProgress">0/10</strong>
     </div>
 
     <div>
-      🏆 Daily Best:
+      🏆 Daily Best
       <strong id="dailyBest">0</strong>
     </div>
 
     <div>
-      🎁 10/10 bonus:
+      🎁 10/10 bonus
       <strong>+50</strong>
     </div>
 
   </div>
 
+
   <button id="dailyStartBtn">
     🚀 Boshlash
   </button>
 
-  <button id="dailyBackBtn" class="secondary">
-    ⬅️ Orqaga
+  <button
+    id="dailyBackBtn"
+    class="secondary"
+  >
+    ← Orqaga
   </button>
 
 </section>
@@ -683,13 +2220,13 @@ body.dark .hint-box{
 
 <script>
 
-/* =========================
+/* =========================================================
    WORDS
-========================= */
+   ASOSIY SO‘ZLAR O‘ZGARTIRILMADI
+========================================================= */
 
 const words = [
 
-  // 🏠 Uy va kundalik hayot
   ["house","uy"],
   ["room","xona"],
   ["door","eshik"],
@@ -701,7 +2238,6 @@ const words = [
   ["bathroom","hammom"],
   ["garden","bog‘"],
 
-  // 👨‍👩‍👧 Oila va odamlar
   ["family","oila"],
   ["mother","ona"],
   ["father","ota"],
@@ -713,7 +2249,6 @@ const words = [
   ["man","erkak"],
   ["woman","ayol"],
 
-  // 🍎 Oziq-ovqat
   ["food","ovqat"],
   ["bread","non"],
   ["water","suv"],
@@ -725,7 +2260,6 @@ const words = [
   ["rice","guruch"],
   ["egg","tuxum"],
 
-  // 🚗 Avtomobil va transport
   ["car","avtomobil"],
   ["wheel","g‘ildirak"],
   ["engine","dvigatel"],
@@ -737,7 +2271,6 @@ const words = [
   ["driver","haydovchi"],
   ["ticket","chipta"],
 
-  // 🏫 Maktab va o‘qish
   ["school","maktab"],
   ["teacher","o‘qituvchi"],
   ["student","o‘quvchi"],
@@ -749,7 +2282,6 @@ const words = [
   ["answer","javob"],
   ["exam","imtihon"],
 
-  // 💻 Texnologiya
   ["computer","kompyuter"],
   ["phone","telefon"],
   ["keyboard","klaviatura"],
@@ -761,7 +2293,6 @@ const words = [
   ["website","veb-sayt"],
   ["browser","brauzer"],
 
-  // 🌳 Tabiat
   ["tree","daraxt"],
   ["flower","gul"],
   ["river","daryo"],
@@ -773,7 +2304,6 @@ const words = [
   ["sun","quyosh"],
   ["moon","oy"],
 
-  // 👕 Kiyimlar
   ["shirt","ko‘ylak"],
   ["pants","shim"],
   ["shoes","poyabzal"],
@@ -785,7 +2315,6 @@ const words = [
   ["bag","sumka"],
   ["watch","qo‘l soati"],
 
-  // 😊 His-tuyg‘ular
   ["happy","xursand"],
   ["sad","xafa"],
   ["angry","jahldor"],
@@ -797,7 +2326,6 @@ const words = [
   ["busy","band"],
   ["ready","tayyor"],
 
-  // 🏃 Harakatlar
   ["run","yugurmoq"],
   ["walk","yurmoq"],
   ["jump","sakramoq"],
@@ -809,7 +2337,6 @@ const words = [
   ["cook","ovqat pishirmoq"],
   ["dance","raqs tushmoq"],
 
-  // ⚽ Sport
   ["sport","sport"],
   ["football","futbol"],
   ["basketball","basketbol"],
@@ -821,7 +2348,6 @@ const words = [
   ["lose","yutqazmoq"],
   ["score","hisob"],
 
-  // ✈️ Sayohat
   ["travel","sayohat qilmoq"],
   ["airport","aeroport"],
   ["hotel","mehmonxona"],
@@ -833,7 +2359,6 @@ const words = [
   ["visit","tashrif buyurmoq"],
   ["holiday","ta’til"],
 
-  // 🕐 Vaqt
   ["today","bugun"],
   ["tomorrow","ertaga"],
   ["yesterday","kecha"],
@@ -845,7 +2370,6 @@ const words = [
   ["month","oy"],
   ["year","yil"],
 
-  // 🔤 Kundalik fe’llar
   ["create","yaratmoq"],
   ["delete","o‘chirmoq"],
   ["save","saqlamoq"],
@@ -857,7 +2381,6 @@ const words = [
   ["study","o‘qimoq"],
   ["work","ishlamoq"],
 
-  // 📚 Qo‘shimcha so‘zlar
   ["start","boshlamoq"],
   ["finish","tugatmoq"],
   ["build","qurmoq"],
@@ -872,9 +2395,9 @@ const words = [
 ];
 
 
-/* =========================
+/* =========================================================
    SENTENCES
-========================= */
+========================================================= */
 
 const sentenceQuestions = [
 
@@ -931,11 +2454,13 @@ const sentenceQuestions = [
 ];
 
 
-/* =========================
+/* =========================================================
    HELPERS
-========================= */
+========================================================= */
 
-const $ = id => document.getElementById(id);
+const $ = id =>
+  document.getElementById(id);
+
 
 const shuffle = array => {
 
@@ -943,36 +2468,56 @@ const shuffle = array => {
 
   for(let i = arr.length - 1; i > 0; i--){
 
-    const j = Math.floor(Math.random() * (i + 1));
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
 
-    [arr[i],arr[j]] = [arr[j],arr[i]];
+    [arr[i],arr[j]] =
+      [arr[j],arr[i]];
 
   }
 
   return arr;
+
 };
 
 
 const random = array => {
 
   return array[
-    Math.floor(Math.random() * array.length)
+    Math.floor(
+      Math.random() * array.length
+    )
   ];
 
 };
 
 
-/* =========================
+/* =========================================================
    SCREENS
-========================= */
+========================================================= */
 
-const menu = $("menu");
-const modeScreen = $("modeScreen");
-const gameScreen = $("gameScreen");
-const resultScreen = $("resultScreen");
-const wordsScreen = $("wordsScreen");
-const highScreen = $("highScreen");
-const dailyScreen = $("dailyScreen");
+const menu =
+  $("menu");
+
+const modeScreen =
+  $("modeScreen");
+
+const gameScreen =
+  $("gameScreen");
+
+const resultScreen =
+  $("resultScreen");
+
+const wordsScreen =
+  $("wordsScreen");
+
+const highScreen =
+  $("highScreen");
+
+const dailyScreen =
+  $("dailyScreen");
 
 
 function hideAll(){
@@ -985,6 +2530,7 @@ function hideAll(){
     wordsScreen,
     highScreen,
     dailyScreen
+
   ].forEach(screen => {
 
     screen.classList.add("hidden");
@@ -994,29 +2540,41 @@ function hideAll(){
 }
 
 
-/* =========================
+/* =========================================================
    STORAGE
-========================= */
+========================================================= */
 
 let highScore =
-  Number(localStorage.getItem("vocabularyHighScore")) || 0;
+  Number(
+    localStorage.getItem(
+      "vocabularyHighScore"
+    )
+  ) || 0;
 
 
-let learned = JSON.parse(
-  localStorage.getItem("learnedVocabulary") || "[]"
-);
+let learned =
+  JSON.parse(
+    localStorage.getItem(
+      "learnedVocabulary"
+    ) || "[]"
+  );
 
 
 function today(){
 
-  const d = new Date();
+  const d =
+    new Date();
 
   return (
     d.getFullYear() +
     "-" +
-    String(d.getMonth()+1).padStart(2,"0") +
+    String(
+      d.getMonth() + 1
+    ).padStart(2,"0") +
     "-" +
-    String(d.getDate()).padStart(2,"0")
+    String(
+      d.getDate()
+    ).padStart(2,"0")
   );
 
 }
@@ -1024,11 +2582,17 @@ function today(){
 
 function dailyData(){
 
-  const saved = JSON.parse(
-    localStorage.getItem("dailyData") || "null"
-  );
+  const saved =
+    JSON.parse(
+      localStorage.getItem(
+        "dailyData"
+      ) || "null"
+    );
 
-  if(!saved || saved.date !== today()){
+  if(
+    !saved ||
+    saved.date !== today()
+  ){
 
     return {
       date:today(),
@@ -1043,11 +2607,38 @@ function dailyData(){
 }
 
 
+/* =========================================================
+   MENU STATS
+========================================================= */
+
+function updateMenuStats(){
+
+  $("menuHighScore").textContent =
+    highScore;
+
+  $("menuLearned").textContent =
+    learned.length;
+
+  const d =
+    dailyData();
+
+  $("menuDaily").textContent =
+    d.progress + "/10";
+
+}
+
+
+/* =========================================================
+   DAILY UI
+========================================================= */
+
 function updateDailyUI(){
 
-  const d = dailyData();
+  const d =
+    dailyData();
 
-  $("dailyDate").textContent = d.date;
+  $("dailyDate").textContent =
+    d.date;
 
   $("dailyProgress").textContent =
     d.progress + "/10";
@@ -1057,19 +2648,35 @@ function updateDailyUI(){
 
   $("dailyMenuText").textContent =
     d.progress >= 10
-    ? "✅ Bugungi topshiriq bajarildi!"
-    : "Bugungi 10 ta maxsus savolga javob bering!";
+      ? "✅ Bugungi topshiriq bajarildi!"
+      : "Bugungi 10 ta maxsus savolga javob bering!";
+
+
+  const fill =
+    $("dailyProgressFill");
+
+  if(fill){
+
+    fill.style.width =
+      (d.progress / 10 * 100) + "%";
+
+  }
+
+  updateMenuStats();
 
 }
 
 
-/* =========================
+/* =========================================================
    LEARNED WORDS
-========================= */
+========================================================= */
 
 function addLearned(word){
 
-  if(word && !learned.includes(word)){
+  if(
+    word &&
+    !learned.includes(word)
+  ){
 
     learned.push(word);
 
@@ -1078,14 +2685,16 @@ function addLearned(word){
       JSON.stringify(learned)
     );
 
+    updateMenuStats();
+
   }
 
 }
 
 
-/* =========================
+/* =========================================================
    GAME VARIABLES
-========================= */
+========================================================= */
 
 let currentMode = "english";
 
@@ -1119,14 +2728,16 @@ let answered = false;
 
 let hintUsed = false;
 
+let hintLevel = 0;
+
 let challenge = 0;
 
 let usedWords = [];
 
 
-/* =========================
+/* =========================================================
    DAILY VARIABLES
-========================= */
+========================================================= */
 
 let isDaily = false;
 
@@ -1141,26 +2752,30 @@ let dailyCombo = 0;
 let dailyBestCombo = 0;
 
 
-/* =========================
+/* =========================================================
    STATS
-========================= */
+========================================================= */
 
 function updateStats(){
 
-  $("score").textContent = score;
+  $("score").textContent =
+    score;
 
-  $("lives").textContent = lives;
+  $("lives").textContent =
+    lives;
 
-  $("mistakes").textContent = mistakes;
+  $("mistakes").textContent =
+    mistakes;
 
-  $("combo").textContent = combo;
+  $("combo").textContent =
+    combo;
 
 }
 
 
-/* =========================
+/* =========================================================
    START GAME
-========================= */
+========================================================= */
 
 function startGame(){
 
@@ -1188,78 +2803,111 @@ function startGame(){
 
   $("challengeCount").textContent = 0;
 
-  $("challengeBox").classList.add("hidden");
+  $("challengeBox")
+    .classList.add("hidden");
 
   hideAll();
 
-  gameScreen.classList.remove("hidden");
+  gameScreen
+    .classList.remove("hidden");
 
   showQuestion();
 
 }
 
 
-/* =========================
+/* =========================================================
    SHOW QUESTION
-========================= */
+========================================================= */
 
 function showQuestion(){
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
   answered = false;
 
   hintUsed = false;
+
   hintLevel = 0;
 
   $("hintBtn").disabled = false;
-  $("hintBtn").textContent = "💡 Hint";
+
+  $("hintBtn").textContent =
+    "💡 Hint";
 
   $("result").textContent = "";
 
-  $("result").className = "result";
+  $("result").className =
+    "result";
 
   $("comboText").textContent = "";
 
-  $("hintBox").classList.add("hidden");
+  $("hintBox")
+    .classList.add("hidden");
 
   $("answers").innerHTML = "";
 
-  $("lettersBox").classList.add("hidden");
+  $("lettersBox")
+    .classList.add("hidden");
 
-  $("blankBox").classList.add("hidden");
+  $("blankBox")
+    .classList.add("hidden");
+
 
   const available =
     words.filter(
-      word => !usedWords.includes(word[0])
+      word =>
+        !usedWords.includes(word[0])
     );
 
-  if(available.length === 0){
+
+  if(
+    available.length === 0
+  ){
 
     usedWords = [];
 
   }
 
-  currentWord = random(
-    words.filter(
-      word => !usedWords.includes(word[0])
-    )
+
+  currentWord =
+    random(
+      words.filter(
+        word =>
+          !usedWords.includes(word[0])
+      )
+    );
+
+
+  usedWords.push(
+    currentWord[0]
   );
 
-  usedWords.push(currentWord[0]);
 
-  if(usedWords.length > words.length - 5){
+  if(
+    usedWords.length >
+    words.length - 5
+  ){
 
     usedWords = [];
 
   }
 
-  level =
-    Math.floor(correctAnswers / 5) + 1;
 
-  $("level").textContent = level;
+  level =
+    Math.floor(
+      correctAnswers / 5
+    ) + 1;
+
+
+  $("level").textContent =
+    level;
+
 
   startTimer();
+
 
   switch(currentMode){
 
@@ -1292,25 +2940,37 @@ function showQuestion(){
 }
 
 
-/* =========================
+/* =========================================================
    TIMER
-========================= */
+========================================================= */
 
 function startTimer(){
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
-  if(currentMode === "letters"){
+
+  if(
+    currentMode === "letters"
+  ){
 
     maxTime =
-      Math.max(20,30 - level + 1);
+      Math.max(
+        20,
+        30 - level + 1
+      );
 
   }else{
 
     maxTime =
-      Math.max(8,15 - level + 1);
+      Math.max(
+        8,
+        15 - level + 1
+      );
 
   }
+
 
   if(challenge > 0){
 
@@ -1322,35 +2982,44 @@ function startTimer(){
 
   }
 
+
   timer = maxTime;
 
-  $("timer").textContent = timer;
+  $("timer").textContent =
+    timer;
 
-  $("progressBar").style.width = "100%";
+  $("progressBar")
+    .style.width = "100%";
 
-  timerInterval = setInterval(() => {
 
-    timer--;
+  timerInterval =
+    setInterval(() => {
 
-    $("timer").textContent = timer;
+      timer--;
 
-    $("progressBar").style.width =
-      (timer / maxTime * 100) + "%";
+      $("timer").textContent =
+        timer;
 
-    if(timer <= 0){
+      $("progressBar")
+        .style.width =
+          (timer / maxTime * 100) +
+          "%";
 
-      timeOut();
 
-    }
+      if(timer <= 0){
 
-  },1000);
+        timeOut();
+
+      }
+
+    },1000);
 
 }
 
 
-/* =========================
+/* =========================================================
    TIME OUT
-========================= */
+========================================================= */
 
 function timeOut(){
 
@@ -1358,7 +3027,9 @@ function timeOut(){
 
   answered = true;
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
   lives--;
 
@@ -1367,12 +3038,17 @@ function timeOut(){
   combo = 0;
 
   challenge =
-    Math.min(5,challenge + 1);
+    Math.min(
+      5,
+      challenge + 1
+    );
 
-  $("challengeCount").textContent =
-    challenge;
+  $("challengeCount")
+    .textContent =
+      challenge;
 
-  $("challengeBox").classList.remove("hidden");
+  $("challengeBox")
+    .classList.remove("hidden");
 
   $("result").textContent =
     "⏰ Vaqt tugadi! Javob: " +
@@ -1388,9 +3064,9 @@ function timeOut(){
 }
 
 
-/* =========================
+/* =========================================================
    ENGLISH
-========================= */
+========================================================= */
 
 function showEnglish(){
 
@@ -1404,15 +3080,18 @@ function showEnglish(){
     currentWord[1];
 
   createButtons(
-    getOptions(1,correctAnswer)
+    getOptions(
+      1,
+      correctAnswer
+    )
   );
 
 }
 
 
-/* =========================
+/* =========================================================
    UZBEK
-========================= */
+========================================================= */
 
 function showUzbek(){
 
@@ -1426,15 +3105,18 @@ function showUzbek(){
     currentWord[0];
 
   createButtons(
-    getOptions(0,correctAnswer)
+    getOptions(
+      0,
+      correctAnswer
+    )
   );
 
 }
 
 
-/* =========================
+/* =========================================================
    LETTERS
-========================= */
+========================================================= */
 
 function showLetters(){
 
@@ -1447,7 +3129,8 @@ function showLetters(){
   correctAnswer =
     currentWord[0];
 
-  $("lettersBox").classList.remove("hidden");
+  $("lettersBox")
+    .classList.remove("hidden");
 
   $("mixedLetters").textContent =
     shuffle(
@@ -1457,9 +3140,9 @@ function showLetters(){
 }
 
 
-/* =========================
+/* =========================================================
    MATCH
-========================= */
+========================================================= */
 
 function showMatch(){
 
@@ -1473,41 +3156,55 @@ function showMatch(){
     currentWord[1];
 
   createButtons(
-    getOptions(1,correctAnswer)
+    getOptions(
+      1,
+      correctAnswer
+    )
   );
 
 }
 
 
-/* =========================
+/* =========================================================
    BLANK
-========================= */
+========================================================= */
 
 function showBlank(){
 
   const sentences = {
 
-    save:"Faylni ___ uchun Ctrl + S tugmasini bosing.",
+    save:
+      "Faylni ___ uchun Ctrl + S tugmasini bosing.",
 
-    create:"Yangi loyiha ___ uchun tugmani bosing.",
+    create:
+      "Yangi loyiha ___ uchun tugmani bosing.",
 
-    delete:"Keraksiz faylni ___ uchun Delete tugmasini bosing.",
+    delete:
+      "Keraksiz faylni ___ uchun Delete tugmasini bosing.",
 
-    open:"Faylni ___ uchun Open tugmasini bosing.",
+    open:
+      "Faylni ___ uchun Open tugmasini bosing.",
 
-    read:"Kitobni ___ kerak.",
+    read:
+      "Kitobni ___ kerak.",
 
-    learn:"Yangi so‘zlarni ___ kerak.",
+    learn:
+      "Yangi so‘zlarni ___ kerak.",
 
-    write:"Kod ___ uchun editor kerak.",
+    write:
+      "Kod ___ uchun editor kerak.",
 
-    search:"Internetdan ma’lumot ___ mumkin.",
+    search:
+      "Internetdan ma’lumot ___ mumkin.",
 
-    start:"O‘yinni ___ uchun tugmani bosing.",
+    start:
+      "O‘yinni ___ uchun tugmani bosing.",
 
-    finish:"Ishni ___ kerak."
+    finish:
+      "Ishni ___ kerak."
 
   };
+
 
   $("modeTitle").textContent =
     "✍️ Bo‘sh joyni to‘ldirish";
@@ -1519,19 +3216,22 @@ function showBlank(){
     sentences[currentWord[0]] ||
     "Bu so‘zni gapda ishlating: ___";
 
-  $("blankBox").classList.remove("hidden");
+  $("blankBox")
+    .classList.remove("hidden");
 
 }
 
 
-/* =========================
+/* =========================================================
    SENTENCE
-========================= */
+========================================================= */
 
 function showSentence(){
 
   currentSentence =
-    random(sentenceQuestions);
+    random(
+      sentenceQuestions
+    );
 
   $("modeTitle").textContent =
     "💬 Gapdan so‘zni topish";
@@ -1554,23 +3254,33 @@ function showSentence(){
 }
 
 
-/* =========================
+/* =========================================================
    OPTIONS
-========================= */
+========================================================= */
 
-function getOptions(type,correct){
+function getOptions(
+  type,
+  correct
+){
 
   const all =
-    words.map(word => word[type]);
+    words.map(
+      word =>
+        word[type]
+    );
 
   let options =
     shuffle(all).slice(0,4);
 
-  if(!options.includes(correct)){
+  if(
+    !options.includes(correct)
+  ){
 
-    options[0] = correct;
+    options[0] =
+      correct;
 
-    options = shuffle(options);
+    options =
+      shuffle(options);
 
   }
 
@@ -1579,49 +3289,63 @@ function getOptions(type,correct){
 }
 
 
-/* =========================
+/* =========================================================
    BUTTONS
-========================= */
+========================================================= */
 
-function createButtons(options){
+function createButtons(
+  options
+){
 
   $("answers").innerHTML = "";
 
-  options.forEach(option => {
+  options.forEach(
+    option => {
 
-    const button =
-      document.createElement("button");
+      const button =
+        document.createElement(
+          "button"
+        );
 
-    button.className =
-      "answer-btn";
+      button.className =
+        "answer-btn";
 
-    button.textContent =
-      option;
+      button.textContent =
+        option;
 
-    button.onclick = () => {
+      button.onclick = () => {
 
-      checkAnswer(option);
+        checkAnswer(
+          option
+        );
 
-    };
+      };
 
-    $("answers").appendChild(button);
+      $("answers")
+        .appendChild(button);
 
-  });
+    }
+  );
 
 }
 
 
-/* =========================
+/* =========================================================
    CHECK ANSWER
-========================= */
+========================================================= */
 
-function checkAnswer(userAnswer){
+function checkAnswer(
+  userAnswer
+){
 
   if(answered) return;
 
   answered = true;
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
+
 
   const ok =
     String(userAnswer)
@@ -1630,6 +3354,7 @@ function checkAnswer(userAnswer){
     String(correctAnswer)
       .trim()
       .toLowerCase();
+
 
   if(ok){
 
@@ -1645,13 +3370,22 @@ function checkAnswer(userAnswer){
           dailyCombo
         );
 
+
       const bonus =
         10 +
-        (dailyCombo >= 2 ? 5 : 0);
+        (
+          dailyCombo >= 2
+            ? 5
+            : 0
+        );
+
 
       dailyScore += bonus;
 
-      addLearned(correctAnswer);
+      addLearned(
+        correctAnswer
+      );
+
 
       $("result").textContent =
         "✅ To‘g‘ri! +" +
@@ -1661,11 +3395,17 @@ function checkAnswer(userAnswer){
       $("result").className =
         "result correct";
 
+
     }else{
 
       let bonus =
         10 +
-        (combo >= 2 ? combo * 2 : 0);
+        (
+          combo >= 2
+            ? combo * 2
+            : 0
+        );
+
 
       score += bonus;
 
@@ -1673,17 +3413,18 @@ function checkAnswer(userAnswer){
 
       combo++;
 
+
       bestCombo =
         Math.max(
           bestCombo,
           combo
         );
 
+
       addLearned(
-        currentMode === "uzbek"
-          ? currentWord[0]
-          : currentWord[0]
+        currentWord[0]
       );
+
 
       $("result").textContent =
         "✅ To‘g‘ri! +" +
@@ -1693,12 +3434,28 @@ function checkAnswer(userAnswer){
       $("result").className =
         "result correct";
 
+
       $("comboText").textContent =
         combo >= 2
           ? "🔥 Combo x" + combo
           : "";
 
+
+      if(combo >= 2){
+
+        $("comboText")
+          .classList.remove("pop");
+
+        void $("comboText")
+          .offsetWidth;
+
+        $("comboText")
+          .classList.add("pop");
+
+      }
+
     }
+
 
   }else{
 
@@ -1708,11 +3465,13 @@ function checkAnswer(userAnswer){
 
     combo = 0;
 
+
     if(isDaily){
 
       dailyCombo = 0;
 
     }
+
 
     challenge =
       Math.min(
@@ -1720,10 +3479,15 @@ function checkAnswer(userAnswer){
         challenge + 1
       );
 
-    $("challengeCount").textContent =
+
+    $("challengeCount")
+      .textContent =
       challenge;
 
-    $("challengeBox").classList.remove("hidden");
+
+    $("challengeBox")
+      .classList.remove("hidden");
+
 
     $("result").textContent =
       "❌ Noto‘g‘ri! To‘g‘ri javob: " +
@@ -1732,15 +3496,20 @@ function checkAnswer(userAnswer){
     $("result").className =
       "result wrong";
 
-    $("comboText").textContent = "";
+    $("comboText").textContent =
+      "";
 
   }
 
+
   updateStats();
+
 
   if(isDaily){
 
-    if(dailyIndex >= 10){
+    if(
+      dailyIndex >= 10
+    ){
 
       setTimeout(
         finishDaily,
@@ -1759,6 +3528,7 @@ function checkAnswer(userAnswer){
     return;
 
   }
+
 
   if(lives <= 0){
 
@@ -1779,15 +3549,17 @@ function checkAnswer(userAnswer){
 }
 
 
-/* =========================
+/* =========================================================
    GAME OVER
-========================= */
+========================================================= */
 
 function checkGameOver(){
 
   if(isDaily){
 
-    if(dailyIndex >= 10){
+    if(
+      dailyIndex >= 10
+    ){
 
       setTimeout(
         finishDaily,
@@ -1806,6 +3578,7 @@ function checkGameOver(){
     return;
 
   }
+
 
   if(lives <= 0){
 
@@ -1826,17 +3599,21 @@ function checkGameOver(){
 }
 
 
-/* =========================
+/* =========================================================
    FINAL RESULT
-========================= */
+========================================================= */
 
 function showFinalResult(){
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
   hideAll();
 
-  resultScreen.classList.remove("hidden");
+  resultScreen
+    .classList.remove("hidden");
+
 
   $("finalScore").textContent =
     score;
@@ -1853,6 +3630,7 @@ function showFinalResult(){
   $("finalCombo").textContent =
     bestCombo;
 
+
   if(score > highScore){
 
     highScore = score;
@@ -1864,19 +3642,25 @@ function showFinalResult(){
 
   }
 
+
   $("finalHighScore").textContent =
     highScore;
+
+
+  updateMenuStats();
 
 }
 
 
-/* =========================
+/* =========================================================
    DAILY START
-========================= */
+========================================================= */
 
 function startDaily(){
 
-  const d = dailyData();
+  const d =
+    dailyData();
+
 
   if(d.progress >= 10){
 
@@ -1888,9 +3672,11 @@ function startDaily(){
 
   }
 
+
   isDaily = true;
 
-  dailyIndex = d.progress;
+  dailyIndex =
+    d.progress;
 
   dailyScore = 0;
 
@@ -1906,46 +3692,63 @@ function startDaily(){
 
   lives = 3;
 
+
   hideAll();
 
-  gameScreen.classList.remove("hidden");
+  gameScreen
+    .classList.remove("hidden");
+
 
   showDailyQuestion();
 
 }
 
 
-/* =========================
+/* =========================================================
    DAILY QUESTION
-========================= */
+========================================================= */
 
 function showDailyQuestion(){
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
   answered = false;
 
   hintUsed = false;
+
   hintLevel = 0;
 
   $("hintBtn").disabled = false;
-  $("hintBtn").textContent = "💡 Hint";
 
-  $("result").textContent = "";
+  $("hintBtn").textContent =
+    "💡 Hint";
 
-  $("result").className = "result";
+  $("result").textContent =
+    "";
 
-  $("comboText").textContent = "";
+  $("result").className =
+    "result";
 
-  $("answers").innerHTML = "";
+  $("comboText").textContent =
+    "";
 
-  $("lettersBox").classList.add("hidden");
+  $("answers").innerHTML =
+    "";
 
-  $("blankBox").classList.add("hidden");
+  $("lettersBox")
+    .classList.add("hidden");
 
-  $("hintBox").classList.add("hidden");
+  $("blankBox")
+    .classList.add("hidden");
+
+  $("hintBox")
+    .classList.add("hidden");
+
 
   dailyIndex++;
+
 
   const q =
     sentenceQuestions[
@@ -1953,19 +3756,25 @@ function showDailyQuestion(){
       sentenceQuestions.length
     ];
 
-  currentSentence = q;
 
-  correctAnswer = q.answer;
+  currentSentence =
+    q;
+
+  correctAnswer =
+    q.answer;
+
 
   $("modeTitle").textContent =
     "🎯 DAILY " +
     dailyIndex +
     "/10";
 
+
   $("question").innerHTML =
     '<div class="sentence">' +
     q.sentence +
     "</div>";
+
 
   createButtons(
     getOptions(
@@ -1974,35 +3783,43 @@ function showDailyQuestion(){
     )
   );
 
+
   startTimer();
 
 }
 
 
-/* =========================
+/* =========================================================
    FINISH DAILY
-========================= */
+========================================================= */
 
 function finishDaily(){
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
+
 
   const bonus =
     dailyCorrect === 10
       ? 50
       : 0;
 
+
   const total =
     dailyScore + bonus;
 
+
   const old =
     dailyData();
+
 
   const best =
     Math.max(
       old.best,
       total
     );
+
 
   localStorage.setItem(
     "dailyData",
@@ -2012,6 +3829,7 @@ function finishDaily(){
       best:best
     })
   );
+
 
   if(total > highScore){
 
@@ -2024,9 +3842,12 @@ function finishDaily(){
 
   }
 
+
   hideAll();
 
-  resultScreen.classList.remove("hidden");
+  resultScreen
+    .classList.remove("hidden");
+
 
   $("finalScore").textContent =
     total;
@@ -2046,82 +3867,140 @@ function finishDaily(){
   $("finalHighScore").textContent =
     highScore;
 
+
   updateDailyUI();
 
 }
 
 
-/* =========================
+/* =========================================================
    WORDS SCREEN
-========================= */
+========================================================= */
 
 function showWords(){
 
   hideAll();
 
-  wordsScreen.classList.remove("hidden");
+  wordsScreen
+    .classList.remove("hidden");
 
-  $("learnedWords").innerHTML = "";
+  $("learnedWords").innerHTML =
+    "";
+
 
   if(!learned.length){
 
-    $("learnedWords").innerHTML =
-      "<p>📚 Hali hech qanday so‘z o‘rganilmagan.</p>";
+    $("learnedWords").innerHTML = `
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          📚
+        </div>
+
+        <strong>
+          Hali hech qanday so‘z o‘rganilmagan.
+        </strong>
+
+        <p style="margin-top:6px">
+          O‘yin o‘ynab yangi so‘zlarni to‘plang.
+        </p>
+
+      </div>
+
+    `;
 
     return;
 
   }
 
-  learned.forEach(word => {
 
-    const data =
-      words.find(
-        item => item[0] === word
-      );
+  learned.forEach(
+    word => {
 
-    if(!data) return;
+      const data =
+        words.find(
+          item =>
+            item[0] === word
+        );
 
-    const card =
-      document.createElement("div");
 
-    card.className =
-      "word-card";
+      if(!data) return;
 
-    card.innerHTML =
-      "<div><strong>" +
-      data[0] +
-      "</strong> — " +
-      data[1] +
-      "</div>" +
-      "<button>🔊</button>";
 
-    card.querySelector("button").onclick =
-      () => {
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "word-card";
+
+
+      card.innerHTML = `
+
+        <div class="word-left">
+
+          <div class="word-icon">
+            📖
+          </div>
+
+          <div class="word-main">
+
+            <strong>
+              ${data[0]}
+            </strong>
+
+            <span>
+              ${data[1]}
+            </span>
+
+          </div>
+
+        </div>
+
+        <button>
+          🔊
+        </button>
+
+      `;
+
+
+      card.querySelector(
+        "button"
+      ).onclick = () => {
 
         const speech =
           new SpeechSynthesisUtterance(
             data[0]
           );
 
-        speech.lang = "en-US";
+        speech.lang =
+          "en-US";
 
-        speech.rate = .8;
+        speech.rate =
+          .8;
 
-        speechSynthesis.speak(speech);
+        speechSynthesis.speak(
+          speech
+        );
 
       };
 
-    $("learnedWords")
-      .appendChild(card);
 
-  });
+      $("learnedWords")
+        .appendChild(card);
+
+    }
+  );
 
 }
 
 
-/* =========================
+/* =========================================================
    SPEAK
-========================= */
+========================================================= */
 
 function speak(){
 
@@ -2130,78 +4009,108 @@ function speak(){
       ? currentWord[0]
       : correctAnswer;
 
-  if("speechSynthesis" in window){
+
+  if(
+    "speechSynthesis" in window
+  ){
 
     const speech =
-      new SpeechSynthesisUtterance(word);
+      new SpeechSynthesisUtterance(
+        word
+      );
 
-    speech.lang = "en-US";
+    speech.lang =
+      "en-US";
 
-    speech.rate = .8;
+    speech.rate =
+      .8;
 
     speechSynthesis.cancel();
 
-    speechSynthesis.speak(speech);
+    speechSynthesis.speak(
+      speech
+    );
 
   }
 
 }
 
 
-/* =========================
-   HINT
-========================= */
-
-/* =========================
+/* =========================================================
    HINT SYSTEM
-========================= */
-
-let hintLevel = 0;
+   FAQAT 2 TA HINT
+========================================================= */
 
 $("hintBtn").onclick = () => {
 
-  if(answered || !correctAnswer) return;
+  if(
+    answered ||
+    !correctAnswer
+  ){
+
+    return;
+
+  }
+
 
   hintLevel++;
 
-  /* 1-HINT:
-     Birinchi va oxirgi harfni ko‘rsatadi
-  */
+
   if(hintLevel === 1){
 
-    const word = correctAnswer.trim();
+    const word =
+      correctAnswer.trim();
+
 
     if(word.length === 1){
 
       $("hintBox").textContent =
-        "💡 1-Hint: " + word.toUpperCase();
+        "💡 1-Hint: " +
+        word.toUpperCase();
 
     }else{
 
-      const first = word[0].toUpperCase();
-      const last = word[word.length - 1].toLowerCase();
+      const first =
+        word[0].toUpperCase();
 
-      const middle = ".".repeat(
-        Math.max(0, word.length - 2)
-      );
+      const last =
+        word[
+          word.length - 1
+        ].toLowerCase();
+
+
+      const middle =
+        ".".repeat(
+          Math.max(
+            0,
+            word.length - 2
+          )
+        );
+
 
       $("hintBox").textContent =
         "💡 1-Hint: " +
         first +
         middle +
         last;
+
     }
 
-    $("hintBox").classList.remove("hidden");
 
-    $("hintBtn").textContent = "💡 2-Hint";
+    $("hintBox")
+      .classList.remove(
+        "hidden"
+      );
+
+
+    $("hintBtn").textContent =
+      "💡 2-Hint";
 
     return;
+
   }
 
-  /* 2-HINT:
-     So‘z nechta harfdan iboratligini ko‘rsatadi
-  */
+
   if(hintLevel === 2){
 
     $("hintBox").textContent =
@@ -2209,20 +4118,24 @@ $("hintBtn").onclick = () => {
       correctAnswer.trim().length +
       " harf";
 
-    $("hintBtn").disabled = true;
+
+    $("hintBtn").disabled =
+      true;
+
 
     $("hintBtn").textContent =
       "💡 Hintlar tugadi";
 
     return;
+
   }
 
 };
 
 
-/* =========================
+/* =========================================================
    INPUTS
-========================= */
+========================================================= */
 
 $("wordSubmit").onclick = () => {
 
@@ -2230,7 +4143,8 @@ $("wordSubmit").onclick = () => {
     $("wordInput").value
   );
 
-  $("wordInput").value = "";
+  $("wordInput").value =
+    "";
 
 };
 
@@ -2241,7 +4155,8 @@ $("blankSubmit").onclick = () => {
     $("blankInput").value
   );
 
-  $("blankInput").value = "";
+  $("blankInput").value =
+    "";
 
 };
 
@@ -2254,7 +4169,8 @@ $("wordInput").onkeydown = e => {
       e.target.value
     );
 
-    e.target.value = "";
+    e.target.value =
+      "";
 
   }
 
@@ -2269,24 +4185,26 @@ $("blankInput").onkeydown = e => {
       e.target.value
     );
 
-    e.target.value = "";
+    e.target.value =
+      "";
 
   }
 
 };
 
 
-/* =========================
+/* =========================================================
    BUTTONS
-========================= */
+========================================================= */
 
 $("startBtn").onclick = () => {
 
   hideAll();
 
-  modeScreen.classList.remove(
-    "hidden"
-  );
+  modeScreen
+    .classList.remove(
+      "hidden"
+    );
 
 };
 
@@ -2295,9 +4213,10 @@ $("backModeBtn").onclick = () => {
 
   hideAll();
 
-  menu.classList.remove(
-    "hidden"
-  );
+  menu
+    .classList.remove(
+      "hidden"
+    );
 
 };
 
@@ -2322,9 +4241,10 @@ $("dailyBtn").onclick = () => {
 
   hideAll();
 
-  dailyScreen.classList.remove(
-    "hidden"
-  );
+  dailyScreen
+    .classList.remove(
+      "hidden"
+    );
 
   updateDailyUI();
 
@@ -2339,9 +4259,10 @@ $("dailyBackBtn").onclick = () => {
 
   hideAll();
 
-  menu.classList.remove(
-    "hidden"
-  );
+  menu
+    .classList.remove(
+      "hidden"
+    );
 
 };
 
@@ -2354,9 +4275,10 @@ $("highBtn").onclick = () => {
 
   hideAll();
 
-  highScreen.classList.remove(
-    "hidden"
-  );
+  highScreen
+    .classList.remove(
+      "hidden"
+    );
 
   $("highScoreValue").textContent =
     highScore;
@@ -2366,14 +4288,30 @@ $("highBtn").onclick = () => {
 
 $("themeBtn").onclick = () => {
 
-  document.body.classList.toggle(
-    "dark"
-  );
+  document.body
+    .classList.toggle(
+      "dark"
+    );
+
+
+  const dark =
+    document.body
+      .classList
+      .contains("dark");
+
 
   $("themeBtn").textContent =
-    document.body.classList.contains("dark")
-      ? "☀️ Light"
-      : "🌙 Dark";
+    dark
+      ? "☀️"
+      : "🌙";
+
+
+  localStorage.setItem(
+    "vocabularyTheme",
+    dark
+      ? "dark"
+      : "light"
+  );
 
 };
 
@@ -2384,13 +4322,18 @@ $("speakBtn").onclick =
 
 $("resultMenuBtn").onclick = () => {
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
   hideAll();
 
-  menu.classList.remove(
-    "hidden"
-  );
+  menu
+    .classList.remove(
+      "hidden"
+    );
+
+  updateMenuStats();
 
 };
 
@@ -2399,9 +4342,10 @@ $("restartBtn").onclick = () => {
 
   hideAll();
 
-  modeScreen.classList.remove(
-    "hidden"
-  );
+  modeScreen
+    .classList.remove(
+      "hidden"
+    );
 
 };
 
@@ -2410,9 +4354,10 @@ $("wordsBackBtn").onclick = () => {
 
   hideAll();
 
-  menu.classList.remove(
-    "hidden"
-  );
+  menu
+    .classList.remove(
+      "hidden"
+    );
 
 };
 
@@ -2421,31 +4366,60 @@ $("highBackBtn").onclick = () => {
 
   hideAll();
 
-  menu.classList.remove(
-    "hidden"
-  );
+  menu
+    .classList.remove(
+      "hidden"
+    );
 
 };
 
 
 $("quitBtn").onclick = () => {
 
-  clearInterval(timerInterval);
+  clearInterval(
+    timerInterval
+  );
 
   hideAll();
 
-  menu.classList.remove(
-    "hidden"
-  );
+  menu
+    .classList.remove(
+      "hidden"
+    );
+
+  updateMenuStats();
 
 };
 
 
-/* =========================
+/* =========================================================
+   THEME LOAD
+========================================================= */
+
+const savedTheme =
+  localStorage.getItem(
+    "vocabularyTheme"
+  );
+
+
+if(savedTheme === "dark"){
+
+  document.body
+    .classList.add("dark");
+
+  $("themeBtn").textContent =
+    "☀️";
+
+}
+
+
+/* =========================================================
    STARTUP
-========================= */
+========================================================= */
 
 updateDailyUI();
+
+updateMenuStats();
 
 </script>
 
