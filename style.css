@@ -1727,3 +1727,221 @@ body.dark input {
   color: #eeeae1 !important;
   border-color: rgba(198,169,107,.3) !important;
 }
+/* =========================================
+   FINAL THEME OVERRIDE — BLACK & GOLD
+   ========================================= */
+
+/* LIGHT MODE */
+body:not(.dark) {
+  --bg: #f3f1eb;
+  --bg2: #e8e5dc;
+  --card: #fbfaf6;
+  --card-solid: #ffffff;
+  --text: #292820;
+  --muted: #777468;
+  --soft: #f0eee7;
+  --soft2: #e5e1d6;
+  --primary: #8c7448;
+  --primary2: #8c7448;
+  --gold: #8c7448;
+  --cyan: #8c7448;
+  --border: #ded8c8;
+  --lux-gold: #8c7448;
+
+  background: #f3f1eb !important;
+  color: #292820 !important;
+}
+
+body:not(.dark) .game {
+  background: #fbfaf6 !important;
+  color: #292820 !important;
+  border-color: #ded8c8 !important;
+}
+
+body:not(.dark) .menu-stat,
+body:not(.dark) .menu-button,
+body:not(.dark) .mode-btn,
+body:not(.dark) .answer-btn,
+body:not(.dark) .word-card,
+body:not(.dark) .daily-stats,
+body:not(.dark) .question,
+body:not(.dark) .empty-state {
+  background: #fff !important;
+  color: #292820 !important;
+  border-color: #ded8c8 !important;
+}
+
+body:not(.dark) .secondary,
+body:not(.dark) .dark-btn,
+body:not(.dark) .stat,
+body:not(.dark) .menu-stat-icon,
+body:not(.dark) .word-icon,
+body:not(.dark) .speak-icon,
+body:not(.dark) .letters,
+body:not(.dark) .hint-box,
+body:not(.dark) .challenge,
+body:not(.dark) .daily {
+  background: #f0eee7 !important;
+  color: #39372f !important;
+  border-color: #ded8c8 !important;
+}
+
+body:not(.dark) h1,
+body:not(.dark) h2,
+body:not(.dark) .question,
+body:not(.dark) .menu-stat-value,
+body:not(.dark) .word-main strong,
+body:not(.dark) .daily strong,
+body:not(.dark) .daily-stats strong {
+  color: #292820 !important;
+  -webkit-text-fill-color: #292820;
+}
+
+body:not(.dark) .subtitle,
+body:not(.dark) .menu-stat-label,
+body:not(.dark) .word-main span,
+body:not(.dark) .menu-button .button-sub {
+  color: #777468 !important;
+}
+
+body:not(.dark) input {
+  background: #fff !important;
+  color: #292820 !important;
+  border-color: #ded8c8 !important;
+}
+
+body:not(.dark) .hero-title span,
+body:not(.dark) .big-score {
+  color: #8c7448 !important;
+  -webkit-text-fill-color: #8c7448 !important;
+}
+
+/* DARK MODE */
+body.dark {
+  --bg: #080808;
+  --bg2: #080808;
+  --card: #141412;
+  --card-solid: #171714;
+  --text: #eeeae1;
+  --muted: #aaa69c;
+  --soft: #20201c;
+  --soft2: #2b2a24;
+  --primary: #c6a96b;
+  --primary2: #c6a96b;
+  --gold: #c6a96b;
+  --cyan: #c6a96b;
+  --border: rgba(198, 169, 107, .22);
+  --lux-gold: #c6a96b;
+
+  background: #080808 !important;
+  color: #eeeae1 !important;
+}
+
+body.dark .game {
+  background: #141412 !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198, 169, 107, .22) !important;
+}
+
+body.dark .menu-stat,
+body.dark .menu-button,
+body.dark .mode-btn,
+body.dark .answer-btn,
+body.dark .word-card,
+body.dark .daily-stats,
+body.dark .question,
+body.dark .empty-state {
+  background: #171714 !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198, 169, 107, .22) !important;
+}
+
+body.dark .secondary,
+body.dark .dark-btn,
+body.dark .stat,
+body.dark .menu-stat-icon,
+body.dark .word-icon,
+body.dark .speak-icon,
+body.dark .letters,
+body.dark .hint-box,
+body.dark .challenge,
+body.dark .daily {
+  background: #20201c !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198, 169, 107, .22) !important;
+}
+
+body.dark h1,
+body.dark h2,
+body.dark .question,
+body.dark .menu-stat-value,
+body.dark .word-main strong,
+body.dark .daily strong,
+body.dark .daily-stats strong {
+  color: #eeeae1 !important;
+  -webkit-text-fill-color: #eeeae1;
+}
+
+body.dark .subtitle,
+body.dark .menu-stat-label,
+body.dark .word-main span,
+body.dark .menu-button .button-sub {
+  color: #aaa69c !important;
+}
+
+body.dark input {
+  background: #10100e !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198, 169, 107, .3) !important;
+}
+
+/* GOLD ACCENTS */
+body .hero-title span,
+body .big-score,
+body .combo {
+  color: #c6a96b !important;
+  -webkit-text-fill-color: #c6a96b !important;
+}
+
+body .icon-svg {
+  stroke: #c6a96b !important;
+}
+
+body.dark .progress-bar,
+body.dark .daily-progress-fill {
+  background: #c6a96b !important;
+}
+
+body:not(.dark) .progress-bar,
+body:not(.dark) .daily-progress-fill {
+  background: #8c7448 !important;
+}
+
+/* PRIMARY BUTTONS */
+body .menu-button,
+body .mode-btn,
+body .answer-btn {
+  box-shadow: none !important;
+}
+
+body .menu-button:hover,
+body .mode-btn:hover,
+body .answer-btn:hover {
+  border-color: #c6a96b !important;
+}
+
+body.dark button:not(.secondary):not(.dark-btn) {
+  color: #eeeae1;
+}
+
+body.dark #startBtn,
+body.dark #dailyBtn {
+  background: #c6a96b !important;
+  color: #171613 !important;
+}
+
+body:not(.dark) #startBtn,
+body:not(.dark) #dailyBtn {
+  background: #8c7448 !important;
+  color: #fff !important;
+}
