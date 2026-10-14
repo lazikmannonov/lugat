@@ -2055,12 +2055,247 @@ button:disabled {
     transform: none;
   }
 }  
+
+
+:root {
+  --bg: #101010;
+  --bg2: #101010;
+  --card: #1b1b1b;
+  --card-solid: #1b1b1b;
+  --text: #eeeae1;
+  --muted: #aaa69c;
+  --soft: #252525;
+  --soft2: #303030;
+  --primary: #c6a96b;
+  --primary2: #c6a96b;
+  --gold: #c6a96b;
+  --cyan: #c6a96b;
+  --border: rgba(198,169,107,.17);
+  --shadow: 0 22px 60px rgba(0,0,0,.28);
+  --lux-gold: #c6a96b;
+  --lux-gold-hover: #ddc58f;
+}
+
+body,
+body.dark {
+  background: #101010;
+  color: #eeeae1;
+}
+
+.game {
+  background: #1b1b1b;
+  border-color: rgba(198,169,107,.17);
+}
+
+.menu-stat,
+.menu-button,
+.mode-btn,
+.answer-btn,
+.word-card,
+.daily-stats,
+.question,
+.empty-state {
+  background: #1b1b1b;
+  color: #eeeae1;
+  border-color: rgba(198,169,107,.17);
+}
+
+.secondary,
+.dark-btn,
+.stat,
+.menu-stat-icon,
+.word-icon,
+.speak-icon,
+.letters,
+.hint-box,
+.challenge,
+.daily {
+  background: #252525;
+  color: #eeeae1;
+  border-color: rgba(198,169,107,.17);
+}
+
+button {
+  background: #252525;
+  color: #eeeae1;
+  border: 1px solid rgba(198,169,107,.2);
+  box-shadow: none;
+}
+
+button:hover,
+.menu-button:hover,
+.mode-btn:hover,
+.answer-btn:hover {
+  background: #303030;
+  color: #eeeae1;
+  border-color: #c6a96b;
+  box-shadow: 0 4px 18px rgba(198,169,107,.07);
+}
+
+button.primary,
+#startBtn,
+#startGameBtn {
+  background: #c6a96b;
+  color: #171613;
+}
+
+.icon-svg {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: #c6a96b;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+
+.menu-button .icon,
+.menu-stat-icon,
+.mode-icon,
+.word-icon,
+.speak-icon {
+  color: #c6a96b;
+}
+
+.menu-button .icon,
+.menu-stat-icon,
+.word-icon,
+.speak-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-button .icon .icon-svg,
+.menu-stat-icon .icon-svg,
+.word-icon .icon-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.mode-icon .icon-svg {
+  width: 27px;
+  height: 27px;
+}
+
+.hero-badge,
+.mode-title {
+  background: #252525;
+  color: #c6a96b;
+  border-color: rgba(198,169,107,.2);
+}
+
+.hero-title span,
+.big-score {
+  background: none;
+  color: #c6a96b;
+  -webkit-text-fill-color: #c6a96b;
+}
+
+.progress-bar,
+.daily-progress-fill {
+  background: #c6a96b;
+  box-shadow: none;
+}
+
+.daily {
+  background: #252525;
+  color: #eeeae1;
+  box-shadow: none;
+}
+
+.daily strong,
+.combo {
+  color: #c6a96b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-svg {
+    transition: none;
+  }
+}
   
 </style>
 </head>
 
 <body>
 
+ 
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="i-game" viewBox="0 0 24 24">
+    <rect x="3" y="6" width="18" height="13" rx="4"/>
+    <path d="M8 10v5M5.5 12.5h5M16 11h.01M18.5 14h.01"/>
+  </symbol>
+  <symbol id="i-book" viewBox="0 0 24 24">
+    <path d="M12 7v14M12 7C9 4 5 4 3 5v14c3-1 6-1 9 2M12 7c3-3 7-3 9-2v14c-3-1-6-1-9 2"/>
+  </symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24">
+    <path d="M8 4h8v5a4 4 0 0 1-8 0V4ZM8 6H4v3a4 4 0 0 0 4 4M16 6h4v3a4 4 0 0 1-4 4M12 13v5m-4 2h8m-6-2h4"/>
+  </symbol>
+  <symbol id="i-target" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9"/>
+    <circle cx="12" cy="12" r="5"/>
+    <circle cx="12" cy="12" r="1"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 7v5l3 2"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24">
+    <path d="M20 8c0 5-8 11-8 11S4 13 4 8a4 4 0 0 1 8-1 4 4 0 0 1 8 1Z"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24">
+    <path d="m5 12 4 4L19 6"/>
+  </symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24">
+    <path d="M6 4h12v17l-6-4-6 4V4Z"/>
+  </symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24">
+    <path d="M4 10v4h4l5 4V6l-5 4H4ZM17 9a5 5 0 0 1 0 6M19 6a9 9 0 0 1 0 12"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24">
+    <path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24">
+    <path d="m15 18-6-6 6-6M9 12h12"/>
+  </symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 24 24">
+    <path d="M9 18h6m-5 3h4m-2-19a7 7 0 0 0-4 12c1 1 1 2 1 4h6c0-2 0-3 1-4a7 7 0 0 0-4-12Z"/>
+  </symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24">
+    <path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/>
+  </symbol>
+  <symbol id="i-message" viewBox="0 0 24 24">
+    <path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 21l2-5.3A8.5 8.5 0 1 1 21 11.5Z"/>
+  </symbol>
+  <symbol id="i-keyboard" viewBox="0 0 24 24">
+    <rect x="2" y="5" width="20" height="14" rx="2"/>
+    <path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 15h10"/>
+  </symbol>
+  <symbol id="i-link" viewBox="0 0 24 24">
+    <path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/>
+  </symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24">
+    <path d="m4 16-.8 4.8L8 20l11-11-4-4L4 16ZM13.5 6.5l4 4"/>
+  </symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24">
+    <path d="M5 21V4m0 0c6-4 8 4 14 0v12c-6 4-8-4-14 0"/>
+  </symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24">
+    <path d="M20 7v5h-5M4 17v-5h5M5.5 9A7 7 0 0 1 18 6l2 1M4 17l2 1a7 7 0 0 0 12.5-3"/>
+  </symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24">
+    <path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 14l1.2 3.1L23 18l-2.8 1-1.2 3-1-3-3-1 3-.9 1-3.1ZM5 2l.8 2.2L8 5l-2.2.8L5 8l-.8-2.2L2 5l2.2-.8L5 2Z"/>
+  </symbol>
+</svg>
+ 
 <div class="game">
 
 <!-- =========================
