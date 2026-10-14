@@ -5276,5 +5276,179 @@ updateMenuStats();
 
 </script>
 
+ 
+<style>
+.svg-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -0.18em;
+  margin-inline: 2px;
+}
+
+.svg-emoji .icon-svg {
+  width: 1.15em;
+  height: 1.15em;
+  stroke: #c6a96b;
+  fill: none;
+  stroke-width: 1.8;
+}
+</style>
+
+<script>
+(() => {
+  const icons = {
+    "🎮": "i-game",
+    "🧩": "i-layers",
+    "🏆": "i-trophy",
+    "📚": "i-book",
+    "📖": "i-book",
+    "🎯": "i-target",
+    "⭐": "i-sparkles",
+    "✨": "i-sparkles",
+    "💡": "i-lightbulb",
+    "🔊": "i-volume",
+    "🌙": "i-moon",
+    "☀️": "i-sun",
+    "☀": "i-sun",
+    "❤️": "i-heart",
+    "❤": "i-heart",
+    "❌": "i-close",
+    "✖️": "i-close",
+    "✓": "i-check",
+    "✅": "i-check",
+    "🔄": "i-refresh",
+    "🔗": "i-link",
+    "✍️": "i-edit",
+    "💬": "i-message",
+    "🔤": "i-keyboard",
+    "⏱️": "i-clock",
+    "⏰": "i-clock",
+    "🚪": "i-arrow",
+    "🏁": "i-flag",
+    "📈": "i-target",
+    "📅": "i-clock",
+    "🎁": "i-sparkles",
+    "🚀": "i-game",
+    "⚡": "i-sparkles",
+    "🇬🇧": "i-book",
+    "🇺🇿": "i-book",
+    "🔥": "i-sparkles"
+  };
+
+  const pattern = new RegExp(
+    Object.keys(icons)
+      .sort((a, b) => b.length - a.length)
+      .map(s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+      .join("|"),
+    "gu"
+  );
+
+  // SVG sprite ichida mavjud bo‘lmagan belgi uchun ikon qo‘shamiz.
+  const sprite = document.querySelector("body > svg");
+
+  if (sprite && !sprite.querySelector("#i-close")) {
+    sprite.insertAdjacentHTML("beforeend", `
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18"/>
+      </symbol>
+    `);
+  }
+
+  function convertTextNode(node) {
+    if (!node.parentElement ||
+        node.parentElement.closest("script,style,svg,.svg-emoji")) {
+      return;
+    }
+
+    const text = node.nodeValue;
+    pattern.lastIndex = 0;
+
+    if (!pattern.test(text)) return;
+
+    pattern.lastIndex = 0;
+    const fragment = document.createDocumentFragment();
+    let last = 0;
+
+    for (const match of text.matchAll(pattern)) {
+      const emoji = match[0];
+      const index = match.index;
+
+      fragment.appendChild(
+        document.createTextNode(text.slice(last, index))
+      );
+
+      const wrapper = document.createElement("span");
+      wrapper.className = "svg-emoji";
+      wrapper.setAttribute("aria-hidden", "true");
+
+      const svg = document.createElementNS(
+        "http://www.w3.org/2000/svg", "svg"
+      );
+      svg.setAttribute("class", "icon-svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("focusable", "false");
+
+      const use = document.createElementNS(
+        "http://www.w3.org/2000/svg", "use"
+      );
+      use.setAttribute("href", "#" + icons[emoji]);
+
+      svg.appendChild(use);
+      wrapper.appendChild(svg);
+      fragment.appendChild(wrapper);
+
+      last = index + emoji.length;
+    }
+
+    fragment.appendChild(
+      document.createTextNode(text.slice(last))
+    );
+
+    node.replaceWith(fragment);
+  }
+
+  function scan(root) {
+    const walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT
+    );
+
+    const nodes = [];
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+
+    nodes.forEach(convertTextNode);
+  }
+
+  scan(document.body);
+
+  // JavaScript keyinroq yangilaydigan matnlardagi emojilarni ham almashtiradi.
+  const observer = new MutationObserver(records => {
+    for (const record of records) {
+      if (record.type === "characterData") {
+        convertTextNode(record.target);
+      }
+
+      record.addedNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          convertTextNode(node);
+        } else if (node.nodeType === Node.ELEMENT_NODE &&
+                   !node.matches("script,style,svg")) {
+          scan(node);
+        }
+      });
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+})();
+  
+</script>
 </body>
 </html>
