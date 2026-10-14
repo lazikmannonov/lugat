@@ -1937,6 +1937,124 @@ body:not(.dark) .daily-progress-fill {
     transition: none;
   }
 }
+
+
+/* =========================================
+   DARK LUXURY — PREMIUM BUTTONS
+   JavaScript va mavjud funksiyalar saqlanadi
+   ========================================= */
+
+button,
+.menu-button,
+.mode-btn,
+.answer-btn,
+.secondary,
+.dark-btn {
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 13px;
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Asosiy tugmalar */
+button.primary,
+button.primary-btn,
+button.btn-primary,
+button.start-btn,
+button[type="submit"],
+#startBtn,
+#startGameBtn {
+  background: #d6c5a1;
+  color: #171714;
+  border: 1px solid #d6c5a1;
+  box-shadow: 0 3px 12px rgba(170, 145, 96, 0.12);
+}
+
+/* Oddiy va ikkilamchi tugmalar */
+.menu-button,
+.mode-btn,
+.answer-btn,
+.secondary,
+.dark-btn {
+  background: #252522;
+  color: #e8e5dc;
+  border: 1px solid #414039;
+}
+
+/* Sichqoncha bilan ustiga kelganda */
+button:hover,
+.menu-button:hover,
+.mode-btn:hover,
+.answer-btn:hover {
+  border-color: #bba77d;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.16);
+  transform: translateY(-2px);
+}
+
+/* Asosiy tugma hover */
+button.primary:hover,
+button.primary-btn:hover,
+button.btn-primary:hover,
+button.start-btn:hover,
+button[type="submit"]:hover,
+#startBtn:hover,
+#startGameBtn:hover {
+  background: #e5d7b8;
+  color: #171714;
+  border-color: #e5d7b8;
+}
+
+/* Tugma bosilganda */
+button:active,
+.menu-button:active,
+.mode-btn:active,
+.answer-btn:active {
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+/* Klaviatura orqali tanlash */
+button:focus-visible {
+  outline: 2px solid #d6c5a1;
+  outline-offset: 3px;
+}
+
+/* Faolsiz tugmalar */
+button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Oltin rangli nozik detal */
+#themeBtn,
+#backBtn {
+  border-color: #625740;
+}
+
+/* Harakatni kamaytirish sozlamasi */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .menu-button,
+  .mode-btn,
+  .answer-btn {
+    transition: none;
+  }
+
+  button:hover,
+  .menu-button:hover,
+  .mode-btn:hover,
+  .answer-btn:hover {
+    transform: none;
+  }
+}  
   
 </style>
 </head>
