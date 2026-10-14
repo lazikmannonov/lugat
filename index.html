@@ -2217,7 +2217,104 @@ button.primary,
     transition: none;
   }
 }
-  
+
+/* DARK LUXURY — BLACK & GOLD */
+:root {
+  --gold: #c6a96b;
+  --gold-light: #dfc58e;
+  --bg: #080808;
+  --surface: #111111;
+  --surface-2: #191919;
+  --border: rgba(198, 169, 107, 0.22);
+}
+
+/* Asosiy orqa fon */
+body {
+  background: #080808 !important;
+  color: #e9e5dc !important;
+}
+
+/* Barcha asosiy panellar */
+.topbar,
+.stat-card,
+.menu-card,
+.mode-btn,
+.game-card,
+.question-card,
+.result-card,
+.word-card,
+.daily-card,
+.highscore-card,
+.calendar-card,
+.hint-box,
+.empty-state {
+  background: #111111 !important;
+  border-color: rgba(198, 169, 107, 0.22) !important;
+  color: #e9e5dc !important;
+}
+
+/* Oltin rangli sarlavhalar va ikonlar */
+h1 span,
+h2 span,
+.icon-svg,
+.stat-value,
+.score-value {
+  color: #c6a96b !important;
+}
+
+/* Tugmalar */
+button {
+  transition: background .2s ease, border-color .2s ease,
+              transform .2s ease;
+}
+
+.menu-btn,
+.mode-btn,
+.secondary-btn,
+.back-btn {
+  background: #151515 !important;
+  border-color: rgba(198, 169, 107, 0.28) !important;
+  color: #e9e5dc !important;
+}
+
+button:hover {
+  border-color: #c6a96b !important;
+}
+
+/* Asosiy tugma */
+.primary-btn,
+.start-btn {
+  background: #c6a96b !important;
+  color: #111111 !important;
+  border-color: #c6a96b !important;
+}
+
+/* Maydonlar */
+input,
+textarea {
+  background: #0d0d0d !important;
+  color: #f0ece3 !important;
+  border-color: rgba(198, 169, 107, 0.3) !important;
+}
+
+/* Tanlangan javob va progress */
+.progress-fill,
+.selected,
+.active {
+  border-color: #c6a96b !important;
+}
+
+/* Ortiqcha rangli soyalarni olib tashlash */
+* {
+  box-shadow: none;
+}
+
+button:hover,
+.menu-card:hover,
+.word-card:hover {
+  box-shadow: 0 0 0 1px rgba(198, 169, 107, 0.12) !important;
+}
+
 </style>
 </head>
 
