@@ -1636,6 +1636,308 @@ input:focus{border-color:#8a9387;box-shadow:0 0 0 3px rgba(120,130,115,.12)}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 
+/* ==========================================
+   DARK LUXURY — PREMIUM BUTTON REDESIGN
+   Mavjud JavaScript va HTML saqlanadi
+========================================== */
+
+:root {
+  --lux-gold: #d6c5a1;
+  --lux-gold-hover: #e5d7b8;
+  --lux-black: #171816;
+  --lux-dark: #20211f;
+  --lux-line: #41423e;
+  --lux-muted: #a4a59e;
+}
+
+/* Asosiy tugmalar */
+button {
+  background: var(--lux-gold);
+  color: #171613;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  box-shadow: none;
+  font-weight: 750;
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+  background: var(--lux-gold-hover);
+  color: #171613;
+  border-color: transparent;
+  box-shadow: 0 5px 18px rgba(160, 139, 97, .12);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(.985);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--lux-gold);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Ikkinchi darajali tugmalar */
+button.secondary,
+button.dark-btn {
+  background: var(--soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+button.secondary:hover,
+button.dark-btn:hover {
+  background: var(--soft2);
+  color: var(--text);
+  border-color: var(--lux-gold);
+  box-shadow: none;
+}
+
+/* Asosiy menyu tugmalari */
+.menu-button {
+  min-height: 78px;
+  background: var(--card-solid);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: none;
+  text-align: left;
+}
+
+.menu-button:hover {
+  background: var(--soft);
+  color: var(--text);
+  border-color: var(--lux-gold);
+  box-shadow: none;
+}
+
+.menu-button .icon {
+  background: var(--soft);
+  color: var(--lux-gold);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.menu-button .button-title {
+  letter-spacing: .15px;
+}
+
+.menu-button .button-sub {
+  color: var(--muted);
+}
+
+/* O‘yin rejimlari */
+.mode-btn {
+  background: var(--card-solid);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.mode-btn:hover {
+  background: var(--soft);
+  color: var(--text);
+  border-color: var(--lux-gold);
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.mode-icon {
+  filter: grayscale(1);
+}
+
+/* Javob variantlari */
+.answer-btn {
+  min-height: 60px;
+  background: var(--card-solid);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: none;
+  font-weight: 650;
+}
+
+.answer-btn:hover {
+  background: var(--soft);
+  color: var(--text);
+  border-color: var(--lux-gold);
+  box-shadow: none;
+}
+
+/* Kunlik topshiriq — yorqin gradient o‘rniga
+   qora va xira oltin uslubi */
+.daily {
+  color: var(--text);
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.daily strong {
+  color: var(--text);
+}
+
+.daily .daily-description {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.daily::before {
+  display: none;
+}
+
+/* Kartalar va savol paneli */
+.menu-stat,
+.stat,
+.question,
+.daily-stats,
+.word-card,
+.empty-state {
+  box-shadow: none;
+}
+
+.question {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+}
+
+.progress-bar,
+.daily-progress-fill {
+  background: var(--lux-gold);
+  box-shadow: none;
+}
+
+.mode-title,
+.hero-badge {
+  background: var(--soft);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.hero-title span,
+.big-score {
+  background: none;
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+}
+
+.menu-stat-icon,
+.word-icon,
+.speak-icon {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  filter: grayscale(1);
+}
+
+.hint-box,
+.challenge {
+  background: var(--soft);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  animation: none;
+}
+
+.combo {
+  color: var(--lux-gold);
+}
+
+/* DARK MODE */
+body.dark {
+  --bg: #111210;
+  --bg2: #171815;
+  --card: rgba(27, 28, 25, .98);
+  --card-solid: #20211f;
+  --text: #f0eee8;
+  --muted: #a4a59e;
+  --soft: #252622;
+  --soft2: #30312c;
+  --border: rgba(235, 230, 215, .12);
+  --shadow: 0 25px 65px rgba(0, 0, 0, .30);
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.dark .game {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+body.dark .menu-button,
+body.dark .mode-btn,
+body.dark .answer-btn {
+  background: #1d1e1b;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .menu-button:hover,
+body.dark .mode-btn:hover,
+body.dark .answer-btn:hover {
+  background: #292a25;
+  border-color: var(--lux-gold);
+  color: var(--text);
+}
+
+body.dark .menu-button .icon {
+  color: var(--lux-gold);
+  background: #292a25;
+}
+
+body.dark .daily {
+  background: #22231f;
+  border-color: rgba(214, 197, 161, .22);
+}
+
+body.dark .daily strong {
+  color: var(--lux-gold);
+}
+
+body.dark .progress-bar,
+body.dark .daily-progress-fill {
+  background: var(--lux-gold);
+}
+
+/* Light mode — mos va sokin ranglar */
+body:not(.dark) .daily strong {
+  color: #756343;
+}
+
+body:not(.dark) .menu-button .icon {
+  color: #8b7956;
+}
+
+body:not(.dark) .progress-bar,
+body:not(.dark) .daily-progress-fill {
+  background: #a28d63;
+}
+
+/* Harakatni kamaytirish sozlamasi */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .menu-button,
+  .mode-btn {
+    transition: none;
+  }
+}
+  
 </style>
 </head>
 
