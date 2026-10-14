@@ -1574,3 +1574,156 @@ button:hover,
   fill:none;
   stroke-width:1.8;
 }
+
+/* =========================================
+   THEME FIX — LIGHT + DARK LUXURY
+   ========================================= */
+
+/* LIGHT MODE */
+body:not(.dark) {
+  background: #f3f2ee !important;
+  color: #25251f !important;
+}
+
+body:not(.dark) .game {
+  background: #fbfaf7 !important;
+  border-color: #ded8c8 !important;
+  color: #25251f !important;
+}
+
+body:not(.dark) .menu-stat,
+body:not(.dark) .menu-button,
+body:not(.dark) .mode-btn,
+body:not(.dark) .answer-btn,
+body:not(.dark) .word-card,
+body:not(.dark) .daily-stats,
+body:not(.dark) .question,
+body:not(.dark) .empty-state {
+  background: #ffffff !important;
+  color: #25251f !important;
+  border-color: #ded8c8 !important;
+}
+
+body:not(.dark) .secondary,
+body:not(.dark) .dark-btn,
+body:not(.dark) .stat,
+body:not(.dark) .menu-stat-icon,
+body:not(.dark) .word-icon,
+body:not(.dark) .speak-icon,
+body:not(.dark) .letters,
+body:not(.dark) .hint-box,
+body:not(.dark) .challenge,
+body:not(.dark) .daily {
+  background: #f0eee8 !important;
+  color: #39372f !important;
+  border-color: #ded8c8 !important;
+}
+
+body:not(.dark) h1,
+body:not(.dark) h2,
+body:not(.dark) .question,
+body:not(.dark) .menu-stat-value,
+body:not(.dark) .word-main strong {
+  color: #25251f !important;
+}
+
+body:not(.dark) .subtitle,
+body:not(.dark) .menu-stat-label,
+body:not(.dark) .word-main span {
+  color: #777469 !important;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #080808 !important;
+  color: #eeeae1 !important;
+}
+
+body.dark .game {
+  background: #141412 !important;
+  border-color: rgba(198,169,107,.22) !important;
+  color: #eeeae1 !important;
+}
+
+body.dark .menu-stat,
+body.dark .menu-button,
+body.dark .mode-btn,
+body.dark .answer-btn,
+body.dark .word-card,
+body.dark .daily-stats,
+body.dark .question,
+body.dark .empty-state {
+  background: #141412 !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198,169,107,.22) !important;
+}
+
+body.dark .secondary,
+body.dark .dark-btn,
+body.dark .stat,
+body.dark .menu-stat-icon,
+body.dark .word-icon,
+body.dark .speak-icon,
+body.dark .letters,
+body.dark .hint-box,
+body.dark .challenge,
+body.dark .daily {
+  background: #20201c !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198,169,107,.22) !important;
+}
+
+body.dark .subtitle,
+body.dark .menu-stat-label,
+body.dark .word-main span {
+  color: #aaa69c !important;
+}
+
+/* GOLD ACCENTS */
+body .icon-svg,
+body .menu-button .icon,
+body .menu-stat-icon,
+body .word-icon,
+body .combo {
+  color: #b39a62 !important;
+}
+
+body .progress-bar,
+body .daily-progress-fill {
+  background: #c6a96b !important;
+}
+
+body .hero-title span,
+body .big-score {
+  color: #b39a62 !important;
+  -webkit-text-fill-color: #b39a62 !important;
+  background: none !important;
+}
+
+/* BUTTONS */
+body .menu-button,
+body .mode-btn,
+body .answer-btn {
+  box-shadow: none !important;
+}
+
+body .menu-button:hover,
+body .mode-btn:hover,
+body .answer-btn:hover {
+  border-color: #b39a62 !important;
+}
+
+body .icon-svg {
+  stroke: #b39a62 !important;
+}
+
+body:not(.dark) input {
+  background: #fff !important;
+  color: #25251f !important;
+}
+
+body.dark input {
+  background: #10100e !important;
+  color: #eeeae1 !important;
+  border-color: rgba(198,169,107,.3) !important;
+}
